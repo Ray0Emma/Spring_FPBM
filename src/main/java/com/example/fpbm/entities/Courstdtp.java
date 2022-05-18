@@ -1,4 +1,4 @@
-package com.example.demo.entities;
+package com.example.fpbm.entities;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;

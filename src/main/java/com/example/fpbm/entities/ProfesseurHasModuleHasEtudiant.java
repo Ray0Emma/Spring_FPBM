@@ -1,4 +1,4 @@
-package com.example.demo.entities;
+package com.example.fpbm.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -6,12 +6,11 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "surveillant")
+@Table(name = "professeur_has_module_has_etudiant")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Surveillant {
+public class ProfesseurHasModuleHasEtudiant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idsurveillant;
-
+    private long professeur_has_module_has_etudiantcol;
 }
