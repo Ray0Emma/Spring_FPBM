@@ -1,6 +1,8 @@
-package com.example.fpbm.entities;
+package com.example.fpbm.entity;
+
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "salle")
@@ -14,4 +16,6 @@ public class Salle {
     private long capaciteEtudiant;
     @Column(name = "NombreSurveillant")
     private long NombreSurveillant;
+    @OneToMany(targetEntity=Examen.class, mappedBy="examenCollectionSalle")
+    private Collection<Examen> examenCollectionSalle;
 }

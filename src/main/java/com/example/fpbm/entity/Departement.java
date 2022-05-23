@@ -1,12 +1,12 @@
-package com.example.fpbm.entities;
+package com.example.fpbm.entity;
+
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 @Entity
 @Table(name = "departement")
@@ -20,7 +20,7 @@ public class Departement {
     @Column(name = "name")
     private String name;
     @OneToMany( targetEntity=Filiere.class, mappedBy="departement_iddepartement" )
-    private List<Filiere> filiereList = new ArrayList<>();
+    private Collection<Filiere> filiereCollection;
 
 
 }

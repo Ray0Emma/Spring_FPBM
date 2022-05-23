@@ -1,9 +1,8 @@
-package com.example.fpbm.entities;
+package com.example.fpbm.entity;
 
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -13,7 +12,6 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Filiere {
-    @Autowired
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idfiliere;
@@ -26,16 +24,18 @@ public class Filiere {
     private Departement departement_iddepartement;
 
     @ManyToOne( targetEntity=Type.class)
-    private Type type_idtype1;
+    private Type filiereCollectionType;
 
     @ManyToOne(targetEntity=Professeur.class)
-    private Professeur responsable_idprofesseur;
+    private Professeur filiereCollectionProfesseur;
 
-    @ManyToOne(targetEntity=Semester.class)
-    private Semester filiere_idfiliere;
 
-    @OneToMany( targetEntity=Etudiant.class, mappedBy="etudiantList" )
-    private Collection<Etudiant> etudiantList;
+    @OneToMany( targetEntity=Semester.class, mappedBy="filiereCollectionSemester" )
+    private Collection<Semester> filiereCollectionSemester;
+
+
+    @OneToMany( targetEntity=Etudiant.class, mappedBy="etudiantCollectionFiliere" )
+    private Collection<Etudiant> etudiantCollectionFiliere;
 
 
 }
