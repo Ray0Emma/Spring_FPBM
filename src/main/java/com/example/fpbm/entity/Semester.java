@@ -1,10 +1,10 @@
-package com.example.fpbm.entities;
+package com.example.fpbm.entity;
+
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
 import java.util.Collection;
 
 @Entity
@@ -17,6 +17,8 @@ public class Semester {
     private long idsemester;
     @Column(name = "name_semester")
     private String name_semester;
-    @OneToMany( targetEntity=Filiere.class, mappedBy="filiere_idfiliere" )
-    private Collection<Filiere> filiereCollection;
+    @ManyToOne(targetEntity=Filiere.class)
+    private Filiere filiereCollectionSemester;
+    @OneToMany(targetEntity= Module.class, mappedBy="moduleCollectionSemester")
+    private Collection<Module> moduleCollectionSemester;
 }

@@ -1,4 +1,5 @@
-package com.example.fpbm.entities;
+package com.example.fpbm.entity;
+
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -13,5 +14,9 @@ public class Surveillant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idsurveillant;
+    @ManyToOne(targetEntity=Examen.class)
+    private Examen surveillantCollectionExamen;
+    @ManyToOne(targetEntity=Professeur.class)
+    private Professeur surveillantCollectionProfesseur;
 
 }

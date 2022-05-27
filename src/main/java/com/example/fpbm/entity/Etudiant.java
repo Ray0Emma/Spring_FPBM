@@ -1,10 +1,10 @@
-package com.example.fpbm.entities;
-
+package com.example.fpbm.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "etudiant")
@@ -23,5 +23,7 @@ public class Etudiant {
     @Column(name = "date_naissance")
     private String date_naissance;
     @ManyToOne(targetEntity=Filiere.class)
-    private Filiere etudiantList;
+    private Filiere etudiantCollectionFiliere;
+    @OneToMany(targetEntity=ProfesseurHasModuleHasEtudiant.class, mappedBy="professeurHasModuleHasEtudiant")
+    private Collection<ProfesseurHasModuleHasEtudiant> professeurHasModuleHasEtudiantCollectionEtudiant;
 }

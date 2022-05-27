@@ -1,9 +1,10 @@
-package com.example.fpbm.entities;
+package com.example.fpbm.entity;
+
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
 import java.util.Collection;
 
 @Entity
@@ -24,6 +25,10 @@ public class Professeur {
     private String cin;
     @Column(name = "telephone")
     private String telephone;
-    @OneToMany(targetEntity=Filiere.class, mappedBy="responsable_idprofesseur")
-    private Collection<Filiere> filiereCollection;
+    @OneToMany(targetEntity=Filiere.class, mappedBy="filiereCollectionProfesseur")
+    private Collection<Filiere> filiereCollectionProfesseur;
+    @OneToMany(targetEntity=ProfesseurHasModule.class, mappedBy="professeurHasModuleCollectionProfesseur")
+    private Collection<ProfesseurHasModule> professeurHasModuleCollection;
+    @OneToMany(targetEntity=Surveillant.class, mappedBy="surveillantCollectionProfesseur")
+    private Collection<Surveillant> surveillantCollectionProfesseur;
 }
