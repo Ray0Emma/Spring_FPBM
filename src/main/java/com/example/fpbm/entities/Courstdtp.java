@@ -1,4 +1,4 @@
-package com.example.fpbm.entity;
+package com.example.fpbm.entities;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
