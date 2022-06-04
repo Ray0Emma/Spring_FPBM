@@ -1,4 +1,4 @@
-package com.example.fpbm.entity;
+package com.example.fpbm.entities;
 
 import javax.persistence.*;
 import java.util.Collection;
