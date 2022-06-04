@@ -30,4 +30,8 @@ public class Professeur {
     private Collection<ProfesseurHasModule> professeurHasModuleCollection;
     @OneToMany(targetEntity = Surveillant.class, mappedBy = "surveillantCollectionProfesseur")
     private Collection<Surveillant> surveillantCollectionProfesseur;
+    @ManyToOne(targetEntity = Extern.class)
+    private Extern professeurCollectionExtern;
+    @ManyToOne(targetEntity = LieuDeTravail.class)
+    private LieuDeTravail professeurCollectionLieu;
 }
