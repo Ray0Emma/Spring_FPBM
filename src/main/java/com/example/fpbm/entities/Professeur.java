@@ -1,6 +1,5 @@
 package com.example.fpbm.entities;
 
-
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -25,10 +24,14 @@ public class Professeur {
     private String cin;
     @Column(name = "telephone")
     private String telephone;
-    @OneToMany(targetEntity=Filiere.class, mappedBy="filiereCollectionProfesseur")
+    @OneToMany(targetEntity = Filiere.class, mappedBy = "filiereCollectionProfesseur")
     private Collection<Filiere> filiereCollectionProfesseur;
-    @OneToMany(targetEntity=ProfesseurHasModule.class, mappedBy="professeurHasModuleCollectionProfesseur")
+    @OneToMany(targetEntity = ProfesseurHasModule.class, mappedBy = "professeurHasModuleCollectionProfesseur")
     private Collection<ProfesseurHasModule> professeurHasModuleCollection;
-    @OneToMany(targetEntity=Surveillant.class, mappedBy="surveillantCollectionProfesseur")
+    @OneToMany(targetEntity = Surveillant.class, mappedBy = "surveillantCollectionProfesseur")
     private Collection<Surveillant> surveillantCollectionProfesseur;
+    @ManyToOne(targetEntity = Extern.class)
+    private Extern professeurCollectionExtern;
+    @ManyToOne(targetEntity = LieuDeTravail.class)
+    private LieuDeTravail professeurCollectionLieu;
 }
