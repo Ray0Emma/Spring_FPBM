@@ -8,7 +8,7 @@ import java.util.Collection;
 public class Annee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idannee;
+    private long id;
     @Column(name = "annee")
     private String annee;
     @OneToMany( targetEntity=ProfesseurHasModule.class, mappedBy="professeurHasModuleCollectionAnnee" )

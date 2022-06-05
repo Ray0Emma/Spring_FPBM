@@ -4,19 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
-@Table(name = "surveillant")
+@Table(name = "extern")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Surveillant {
+public class Extern {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne(targetEntity=Examen.class)
-    private Examen surveillantCollectionExamen;
-    @ManyToOne(targetEntity=Professeur.class)
-    private Professeur surveillantCollectionProfesseur;
-
-
+    @OneToMany(targetEntity=Professeur.class, mappedBy="professeurCollectionExtern")
+    private Collection<Professeur> professeurCollectionExtern ;
 }

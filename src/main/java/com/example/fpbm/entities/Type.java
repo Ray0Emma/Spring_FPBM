@@ -15,9 +15,9 @@ import java.util.Collection;
 public class Type {
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private long idtype;
+	    private long id;
 	    @Column(name = "name")
 	    private String name;
-	    @OneToMany(targetEntity = Filiere.class, mappedBy = "type_idtype1")
-	    private Collection<Filiere> filiereCollection;
+	    @OneToMany(targetEntity = Filiere.class, mappedBy = "filiereCollectionType")
+	    private Collection<Filiere> filiereCollectionType;
 }

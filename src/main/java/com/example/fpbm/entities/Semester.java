@@ -14,9 +14,11 @@ import java.util.Collection;
 public class Semester {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idsemester;
+    private long id;
     @Column(name = "name_semester")
     private String name_semester;
-    @OneToMany( targetEntity=Filiere.class, mappedBy="filiere_idfiliere" )
-    private Collection<Filiere> filiereCollection;
+    @OneToMany(targetEntity= Module.class, mappedBy="moduleCollectionSemester")
+    private Collection<Module> moduleCollectionSemester;
+    @ManyToOne(targetEntity=Filiere.class)
+    private Filiere filiereCollectionSemester;
 }

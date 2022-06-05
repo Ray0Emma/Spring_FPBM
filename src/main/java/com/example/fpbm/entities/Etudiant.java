@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "etudiant")
@@ -13,7 +14,7 @@ import javax.persistence.*;
 public class Etudiant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idetudiant;
+    private long id;
     @Column(name = "cne")
     private String cne;
     @Column(name = "nom")
@@ -23,5 +24,7 @@ public class Etudiant {
     @Column(name = "date_naissance")
     private String date_naissance;
     @ManyToOne(targetEntity=Filiere.class)
-    private Filiere etudiantList;
+    private Filiere etudiantCollectionFiliere;
+    @OneToMany(targetEntity=ProfesseurHasModuleHasEtudiant.class, mappedBy="professeurHasModuleHasEtudiantCollectionEtudiant")
+    private Collection<ProfesseurHasModuleHasEtudiant> professeurHasModuleHasEtudiantCollectionEtudiant;
 }

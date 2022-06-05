@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "professeur_has_module")
@@ -12,9 +13,20 @@ import javax.persistence.*;
 public class ProfesseurHasModule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long professeur_has_modulecol;
+    private long id;
     @ManyToOne(targetEntity=Annee.class)
     private Annee professeurHasModuleCollectionAnnee;
     @ManyToOne(targetEntity=Courstdtp.class)
     private Courstdtp professeurHasModuleCollectionCoursTDTP;
+    @ManyToOne(targetEntity=Section.class)
+    private Section professeurHasModuleCollectionSection;
+    @OneToMany( targetEntity=Examen.class, mappedBy="examen_prof" )
+    private Collection<Examen> examen_prof;
+    @ManyToOne(targetEntity=Professeur.class)
+    private Professeur prof_module;
+    @ManyToOne(targetEntity=Module.class)
+    private Module professeurHasModuleCollection;
+    @OneToMany(targetEntity=ProfesseurHasModuleHasEtudiant.class, mappedBy="professeurHasModule")
+    private Collection<ProfesseurHasModuleHasEtudiant> professeurHasModule;
+
 }

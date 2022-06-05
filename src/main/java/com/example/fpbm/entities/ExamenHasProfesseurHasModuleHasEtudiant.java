@@ -12,5 +12,10 @@ import javax.persistence.*;
 public class ExamenHasProfesseurHasModuleHasEtudiant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_examen_has_professeur_has_module_has_etudiant;
+    private long id;
+    @ManyToOne(targetEntity=ProfesseurHasModuleHasEtudiant.class)
+    private ProfesseurHasModuleHasEtudiant examens;
+    @ManyToOne(targetEntity=Examen.class)
+    private Examen examenHasProfesseur;
+
 }

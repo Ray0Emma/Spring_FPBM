@@ -16,11 +16,11 @@ public class Departement {
     @Autowired
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long iddepartement;
+    private long id;
     @Column(name = "name")
     private String name;
     @OneToMany( targetEntity=Filiere.class, mappedBy="departement_iddepartement" )
-    private List<Filiere> filiereList = new ArrayList<>();
+    private List<Filiere> departement_iddepartement = new ArrayList<>();
 
 
 }
