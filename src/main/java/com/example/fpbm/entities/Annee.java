@@ -1,10 +1,15 @@
 package com.example.fpbm.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "annee")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Annee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
