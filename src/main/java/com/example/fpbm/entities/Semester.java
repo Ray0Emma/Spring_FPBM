@@ -1,10 +1,10 @@
 package com.example.fpbm.entities;
 
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
 import java.util.Collection;
 
 @Entity
@@ -22,3 +22,4 @@ public class Semester {
     @ManyToOne(targetEntity=Filiere.class)
     private Filiere filiereCollectionSemester;
 }
+

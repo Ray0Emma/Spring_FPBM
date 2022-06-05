@@ -1,5 +1,7 @@
 package com.example.fpbm.entities;
 
+
+import com.example.fpbm.entities.Professeur;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 

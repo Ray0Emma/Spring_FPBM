@@ -1,11 +1,13 @@
 package com.example.fpbm.entities;
 
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -21,6 +23,4 @@ public class Departement {
     private String name;
     @OneToMany( targetEntity=Filiere.class, mappedBy="departement_iddepartement" )
     private List<Filiere> departement_iddepartement = new ArrayList<>();
-
-
 }

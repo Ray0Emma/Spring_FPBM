@@ -1,5 +1,6 @@
 package com.example.fpbm.entities;
 
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -20,3 +21,4 @@ public class Salle {
     @OneToMany( targetEntity=Examen.class, mappedBy="examen_module" )
     private Collection<Examen> examen_module;
 }
+

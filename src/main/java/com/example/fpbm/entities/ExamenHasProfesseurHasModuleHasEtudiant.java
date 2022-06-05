@@ -1,12 +1,13 @@
 package com.example.fpbm.entities;
 
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "examen_has_professeur_has_module_has_etudiant")
+@Table(name = "examen_group")
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExamenHasProfesseurHasModuleHasEtudiant {
@@ -17,5 +18,4 @@ public class ExamenHasProfesseurHasModuleHasEtudiant {
     private ProfesseurHasModuleHasEtudiant examens;
     @ManyToOne(targetEntity=Examen.class)
     private Examen examenHasProfesseur;
-
 }

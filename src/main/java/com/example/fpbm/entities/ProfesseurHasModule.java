@@ -28,5 +28,4 @@ public class ProfesseurHasModule {
     private Module professeurHasModuleCollection;
     @OneToMany(targetEntity=ProfesseurHasModuleHasEtudiant.class, mappedBy="professeurHasModule")
     private Collection<ProfesseurHasModuleHasEtudiant> professeurHasModule;
-
 }

@@ -17,4 +17,5 @@ public class LieuDeTravail {
     private long id;
     @OneToMany(targetEntity=Professeur.class, mappedBy="professeurCollectionLieu")
     private Collection<Professeur> professeurCollectionLieu ;
+
 }

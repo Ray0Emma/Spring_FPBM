@@ -3,7 +3,6 @@ package com.example.fpbm.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -13,7 +12,6 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Filiere {
-    @Autowired
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

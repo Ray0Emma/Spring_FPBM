@@ -1,5 +1,6 @@
 package com.example.fpbm.entities;
 
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,5 @@ public class Surveillant {
     private Examen surveillantCollectionExamen;
     @ManyToOne(targetEntity=Professeur.class)
     private Professeur surveillantCollectionProfesseur;
-
 
 }
