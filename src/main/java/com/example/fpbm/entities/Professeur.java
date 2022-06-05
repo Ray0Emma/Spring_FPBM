@@ -10,20 +10,10 @@ import java.util.Collection;
 @Table(name = "professeur")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Professeur {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column(name = "nom")
-    private String nom;
-    @Column(name = "prenom")
-    private String prenom;
+public class Professeur extends Personne{
+
     @Column(name = "grade")
     private String grade;
-    @Column(name = "cin")
-    private String cin;
-    @Column(name = "telephone")
-    private String telephone;
 
     @OneToMany(targetEntity=Filiere.class, mappedBy="filiereCollectionProfesseur")
     private Collection<Filiere> filiereCollectionProfesseur;
