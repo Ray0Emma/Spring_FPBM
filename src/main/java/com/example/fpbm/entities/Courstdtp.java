@@ -1,6 +1,8 @@
 package com.example.fpbm.entities;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
@@ -8,6 +10,8 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "courstdtp")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Courstdtp {
     @Autowired
     @Id
