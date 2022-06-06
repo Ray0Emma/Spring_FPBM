@@ -8,12 +8,10 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "phdstudent")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @NoArgsConstructor
 @AllArgsConstructor
-public class PHDStudent {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class PHDStudent extends Etudiant{
     @OneToMany(targetEntity = InInscription.class, mappedBy = "student_idPHDstudent")
     private Collection<InInscription> student_idPHDstudent;
     @OneToMany(targetEntity = Soutenance.class, mappedBy = "soutenance_idPHDstudent")
