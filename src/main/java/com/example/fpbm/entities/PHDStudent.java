@@ -8,7 +8,6 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "phdstudent")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @NoArgsConstructor
 @AllArgsConstructor
 public class PHDStudent extends Etudiant{
