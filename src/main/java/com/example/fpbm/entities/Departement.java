@@ -2,6 +2,7 @@ package com.example.fpbm.entities;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "departement")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Departement {
