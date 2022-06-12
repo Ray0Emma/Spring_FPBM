@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Data
 @Table(name = "professeur")
 @Data
 @NoArgsConstructor
