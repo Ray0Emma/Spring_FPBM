@@ -12,12 +12,13 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExamenHasProfesseurHasModuleHasEtudiant {
+// ExamenHasProfesseurHasModuleHasEtudiant == ExamenGroup
+public class ExamenGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne(targetEntity=ProfesseurHasModuleHasEtudiant.class)
-    private ProfesseurHasModuleHasEtudiant examens;
+    @ManyToOne(targetEntity= ModuleGroup.class)
+    private ModuleGroup examens;
     @ManyToOne(targetEntity=Examen.class)
     private Examen examenHasProfesseur;
 }

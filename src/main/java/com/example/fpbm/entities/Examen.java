@@ -25,8 +25,8 @@ public class Examen {
     private Salle examen_module;
     @ManyToOne(targetEntity=ProfesseurHasModule.class)
     private Salle examen_prof;
-    @OneToMany(targetEntity=ExamenHasProfesseurHasModuleHasEtudiant.class, mappedBy="examenHasProfesseur")
-    private Collection<ExamenHasProfesseurHasModuleHasEtudiant> examenHasProfesseur;
+    @OneToMany(targetEntity= ExamenGroup.class, mappedBy="examenHasProfesseur")
+    private Collection<ExamenGroup> examenHasProfesseur;
     @OneToMany(targetEntity=Surveillant.class, mappedBy="surveillantCollectionExamen")
     private Collection<Surveillant> surveillantCollectionExamen;
 }
