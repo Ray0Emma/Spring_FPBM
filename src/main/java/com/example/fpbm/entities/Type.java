@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+@Data
 @Table(name = "type")
 @Data
 @NoArgsConstructor
