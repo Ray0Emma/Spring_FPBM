@@ -12,10 +12,7 @@ import java.util.Collection;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PHDStudent {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class PHDStudent extends Etudiant{
     @OneToMany(targetEntity = InInscription.class, mappedBy = "student_idPHDstudent")
     private Collection<InInscription> student_idPHDstudent;
     @OneToMany(targetEntity = Soutenance.class, mappedBy = "soutenance_idPHDstudent")
