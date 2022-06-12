@@ -13,7 +13,8 @@ import java.util.Collection;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProfesseurHasModuleHasEtudiant {
+// ProfesseurHasModuleHasEtudiant == ModuleGroup
+public class ModuleGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -21,6 +22,6 @@ public class ProfesseurHasModuleHasEtudiant {
     private ProfesseurHasModule professeurHasModule;
     @ManyToOne(targetEntity=Etudiant.class)
     private Etudiant professeurHasModuleHasEtudiantCollectionEtudiant;
-    @OneToMany(targetEntity=ExamenHasProfesseurHasModuleHasEtudiant.class, mappedBy="examens")
-    private Collection<ExamenHasProfesseurHasModuleHasEtudiant> examens ;
+    @OneToMany(targetEntity= ExamenGroup.class, mappedBy="examens")
+    private Collection<ExamenGroup> examens ;
 }

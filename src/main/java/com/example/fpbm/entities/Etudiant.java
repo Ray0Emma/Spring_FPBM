@@ -18,6 +18,6 @@ public class Etudiant extends Personne{
     private String nbApogee;
     @ManyToOne(targetEntity=Filiere.class)
     private Filiere etudiantCollectionFiliere;
-    @OneToMany(targetEntity=ProfesseurHasModuleHasEtudiant.class, mappedBy="professeurHasModuleHasEtudiantCollectionEtudiant")
-    private Collection<ProfesseurHasModuleHasEtudiant> professeurHasModuleHasEtudiantCollectionEtudiant;
+    @OneToMany(targetEntity= ModuleGroup.class, mappedBy="professeurHasModuleHasEtudiantCollectionEtudiant")
+    private Collection<ModuleGroup> professeurHasModuleHasEtudiantCollectionEtudiant;
 }

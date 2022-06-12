@@ -28,6 +28,6 @@ public class ProfesseurHasModule {
     private Professeur prof_module;
     @ManyToOne(targetEntity=Module.class)
     private Module professeurHasModuleCollection;
-    @OneToMany(targetEntity=ProfesseurHasModuleHasEtudiant.class, mappedBy="professeurHasModule")
-    private Collection<ProfesseurHasModuleHasEtudiant> professeurHasModule;
+    @OneToMany(targetEntity= ModuleGroup.class, mappedBy="professeurHasModule")
+    private Collection<ModuleGroup> professeurHasModule;
 }
