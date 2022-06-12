@@ -10,6 +10,7 @@ import java.util.Collection;
 @Entity
 @Data
 @Table(name = "type")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Type {

@@ -10,6 +10,7 @@ import java.util.Collection;
 @Entity
 @Data
 @Table(name = "professeur")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Professeur extends Personne{
