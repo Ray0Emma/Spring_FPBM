@@ -2,10 +2,12 @@ package com.example.fpbm.entities;
 
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {

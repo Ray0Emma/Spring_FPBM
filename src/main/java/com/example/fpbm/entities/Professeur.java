@@ -1,12 +1,14 @@
 package com.example.fpbm.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+@Data
 @Table(name = "professeur")
 @NoArgsConstructor
 @AllArgsConstructor
