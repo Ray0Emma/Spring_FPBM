@@ -8,6 +8,8 @@ public interface DepartementService {
 
     Departement saveDepartement(Departement departement);
 
+    List<Departement> saveListDepartement(List<Departement> departements);
+
     List<Departement> fetchDepartementAll();
 
     Departement fetchOneDepartement(Long departementId);

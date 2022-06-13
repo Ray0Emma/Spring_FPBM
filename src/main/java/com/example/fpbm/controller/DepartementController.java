@@ -31,6 +31,11 @@ public class DepartementController {
         return departementService.saveDepartement(departement);
     }
 
+    @PostMapping("/list")
+    public List<Departement> saveListDepartement(@RequestBody List<Departement> departements){
+        return departementService.saveListDepartement(departements);
+    }
+
     @PutMapping("/{id}")
     public Departement updateDepartement(@RequestBody Departement departement, @PathVariable(name = "id") Long departementId){
         return departementService.updateDepartement(departement,departementId);

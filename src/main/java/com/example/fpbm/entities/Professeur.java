@@ -1,5 +1,6 @@
 package com.example.fpbm.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,10 +22,12 @@ public class Professeur extends Personne{
     private Collection<Filiere> filiereCollectionProfesseur;
     @OneToMany(targetEntity=Jury.class, mappedBy="membrejury_idprofesseur")
     private Collection<Jury> membrejury_idprofesseur;
+    @JsonIgnore
     @ManyToOne(targetEntity = LieuDeTravail.class)
     private LieuDeTravail professeurCollectionLieu;
     @OneToMany(targetEntity=ProfesseurHasModule.class, mappedBy="prof_module")
     private Collection<ProfesseurHasModule> prof_module;
+    @JsonIgnore
     @ManyToOne(targetEntity = Extern.class)
     private Extern professeurCollectionExtern;
     @OneToMany(targetEntity = Surveillant.class, mappedBy = "surveillantCollectionProfesseur")

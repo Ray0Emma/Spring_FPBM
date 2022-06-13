@@ -21,6 +21,11 @@ public class DepartementServiceImpl implements DepartementService{
     }
 
     @Override
+    public List<Departement> saveListDepartement(List<Departement> departements) {
+        return departementRepository.saveAll(departements);
+    }
+
+    @Override
     public List<Departement> fetchDepartementAll() {
         return (List<Departement>) departementRepository.findAll();
     }

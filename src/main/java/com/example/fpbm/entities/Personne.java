@@ -14,7 +14,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Personne extends User{
+public abstract class Personne extends User{
 
     private String cin;
     private String cne;

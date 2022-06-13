@@ -14,13 +14,18 @@ public class ProfesseurController {
     @Autowired
     private ProfesseurService professeurService;
 
-    @PostMapping
+    @PostMapping()
     public Professeur saveProfesseur(@RequestBody Professeur professeur){
         return professeurService.saveProfesseur(professeur);
     }
 
+    @PostMapping("/list")
+    public List<Professeur> saveListProfesseur(@RequestBody List<Professeur> professeurs){
+        return professeurService.saveListProfesseur(professeurs);
+    }
+
     @GetMapping("/{id}")
-    public Professeur fetchOneProfesseur(@PathVariable Long professeurId){
+    public Professeur fetchOneProfesseur(@PathVariable(name = "id") Long professeurId){
         return professeurService.fetchOneProfesseur(professeurId);
     }
 
@@ -28,5 +33,16 @@ public class ProfesseurController {
     @GetMapping()
     public List<Professeur> fetchAllProfesseur(){
         return professeurService.fetchAllProfesseur();
+    }
+
+    @PutMapping("/{id}")
+    public Professeur updateProfesseur(@RequestBody Professeur professeur, @PathVariable(name = "id") Long professeurId){
+        return professeurService.updateProfesseur(professeur,professeurId);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteProfesseur(@PathVariable(name = "id") Long professeurId){
+        professeurService.deleteProfesseur(professeurId);
+        return "Deleted Successfully";
     }
 }
