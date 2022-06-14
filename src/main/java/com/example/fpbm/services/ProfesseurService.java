@@ -8,6 +8,8 @@ public interface ProfesseurService {
 
     Professeur saveProfesseur(Professeur professeur);
 
+    List<Professeur> saveListProfesseur(List<Professeur> professeurs);
+
     Professeur fetchOneProfesseur(Long professeurId);
 
     List<Professeur> fetchAllProfesseur();

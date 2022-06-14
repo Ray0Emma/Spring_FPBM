@@ -19,6 +19,11 @@ public class ProfesseurServiceImpl implements ProfesseurService{
     }
 
     @Override
+    public List<Professeur> saveListProfesseur(List<Professeur> professeurs) {
+        return professeurRepository.saveAll(professeurs);
+    }
+
+    @Override
     public Professeur fetchOneProfesseur(Long professeurId) {
         return professeurRepository.findById(professeurId).get();
     }
