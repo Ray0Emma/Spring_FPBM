@@ -33,7 +33,7 @@ public class LaboController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteEquipe(@PathVariable(name = "id") Long id){
+    public String deleteLabo(@PathVariable(name = "id") Long id){
         laboService.deleteLabo(id);
         return "Deleted Successfully";
     }
