@@ -37,7 +37,7 @@ public class FiliereController {
         return filiereService.fetchAllFiliere();
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public Filiere updateFiliere(@RequestBody Filiere filiere, @PathVariable(name = "id") Long filiereId){
         return filiereService.updateFiliere(filiere,filiereId);
     }

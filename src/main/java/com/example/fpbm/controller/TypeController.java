@@ -29,7 +29,7 @@ public class TypeController {
         return typeService.fetchOneType(typeId);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public Type updateType(@RequestBody Type type, @PathVariable(name = "id") Long typeId){
         return typeService.updateType(type, typeId);
     }

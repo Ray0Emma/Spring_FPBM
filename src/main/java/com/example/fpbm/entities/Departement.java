@@ -2,6 +2,7 @@ package com.example.fpbm.entities;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class Departement {
     private long id;
     @Column(name = "name")
     private String name;
+    @JsonIgnore
     @OneToMany( targetEntity=Filiere.class, mappedBy="departement_iddepartement" )
     private List<Filiere> departement_iddepartement = new ArrayList<>();
 }
