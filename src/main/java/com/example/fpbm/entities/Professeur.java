@@ -18,6 +18,7 @@ public class Professeur extends Personne{
     @Column(name = "grade")
     private String grade;
 
+    @JsonIgnore
     @OneToMany(targetEntity=Filiere.class, mappedBy="filiereCollectionProfesseur")
     private Collection<Filiere> filiereCollectionProfesseur;
     @OneToMany(targetEntity=Jury.class, mappedBy="membrejury_idprofesseur")

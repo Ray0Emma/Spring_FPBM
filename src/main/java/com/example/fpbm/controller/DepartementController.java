@@ -36,7 +36,7 @@ public class DepartementController {
         return departementService.saveListDepartement(departements);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public Departement updateDepartement(@RequestBody Departement departement, @PathVariable(name = "id") Long departementId){
         return departementService.updateDepartement(departement,departementId);
     }

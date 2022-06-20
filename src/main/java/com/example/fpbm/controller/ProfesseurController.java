@@ -35,7 +35,7 @@ public class ProfesseurController {
         return professeurService.fetchAllProfesseur();
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public Professeur updateProfesseur(@RequestBody Professeur professeur, @PathVariable(name = "id") Long professeurId){
         return professeurService.updateProfesseur(professeur,professeurId);
     }
