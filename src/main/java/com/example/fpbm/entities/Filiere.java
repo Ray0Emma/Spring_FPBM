@@ -1,6 +1,7 @@
 package com.example.fpbm.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,16 +23,19 @@ public class Filiere {
     private String name;
 
     // May be this <name = "iddepartement"> will make a problem
+
     @ManyToOne(targetEntity=Departement.class)
     private Departement departement_iddepartement;
 
     @ManyToOne( targetEntity=Type.class)
     private Type filiereCollectionType;
 
+
     @ManyToOne(targetEntity=Professeur.class)
     private Professeur filiereCollectionProfesseur;
 
 
+    @JsonIgnore
     @OneToMany( targetEntity=Semester.class, mappedBy="filiereCollectionSemester" )
     private Collection<Semester> filiereCollectionSemester;
 

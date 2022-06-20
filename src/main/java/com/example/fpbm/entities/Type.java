@@ -1,5 +1,6 @@
 package com.example.fpbm.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,8 @@ public class Type {
 	    private long id;
 	    @Column(name = "name")
 	    private String name;
+
+	    @JsonIgnore
 	    @OneToMany(targetEntity = Filiere.class, mappedBy = "filiereCollectionType")
 	    private Collection<Filiere> filiereCollectionType;
 }
