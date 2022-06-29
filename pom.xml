@@ -10,8 +10,8 @@
 	<groupId>com.example</groupId>
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>FPBM management system</name>
+	<description>FPBM Spring Boot Project</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>11</java.version>
@@ -46,33 +46,59 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-	</dependencies>
+		<!--  Reading and writing of POI excel file -->
+       <dependency>
+           <groupId>org.apache.poi</groupId>
+           <artifactId>poi</artifactId>
+           <version>4.1.2</version>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.poi</groupId>
+           <artifactId>poi-excelant</artifactId>
+           <version>4.1.2</version>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.poi</groupId>
+           <artifactId>poi-ooxml</artifactId>
+           <version>4.1.2</version>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.poi</groupId>
+           <artifactId>poi-ooxml-schemas</artifactId>
+           <version>4.1.2</version>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.poi</groupId>
+           <artifactId>poi-scratchpad</artifactId>
+           <version>4.1.2</version>
+       </dependency>
+   </dependencies>
 
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.8.1</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+   <build>
+       <pluginManagement>
+           <plugins>
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-compiler-plugin</artifactId>
+                   <version>3.8.1</version>
+               </plugin>
+           </plugins>
+       </pluginManagement>
+       <plugins>
+           <plugin>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-maven-plugin</artifactId>
+               <configuration>
+                   <excludes>
+                       <exclude>
+                           <groupId>org.projectlombok</groupId>
+                           <artifactId>lombok</artifactId>
+                       </exclude>
+                   </excludes>
+               </configuration>
+           </plugin>
+       </plugins>
+   </build>
 
 
 </project>
