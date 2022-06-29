@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 @Table(name = "professeur")
@@ -36,4 +37,15 @@ public class Professeur extends Personne{
     @OneToMany(targetEntity = Soutenance.class, mappedBy = "soutenanceCollectionProfesseur")
     private Collection<Soutenance> soutenanceCollectionProfesseur;
 
+    public Professeur(long id, String email, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone, String grade, Collection<Filiere> filiereCollectionProfesseur, Collection<Jury> membrejury_idprofesseur, LieuDeTravail professeurCollectionLieu, Collection<ProfesseurHasModule> prof_module, Extern professeurCollectionExtern, Collection<Surveillant> surveillantCollectionProfesseur, Collection<Soutenance> soutenanceCollectionProfesseur) {
+        super(id, email, password, cin, cne, nom, prenom, dateDeNaissance, address, telephone);
+        this.grade = grade;
+        this.filiereCollectionProfesseur = filiereCollectionProfesseur;
+        this.membrejury_idprofesseur = membrejury_idprofesseur;
+        this.professeurCollectionLieu = professeurCollectionLieu;
+        this.prof_module = prof_module;
+        this.professeurCollectionExtern = professeurCollectionExtern;
+        this.surveillantCollectionProfesseur = surveillantCollectionProfesseur;
+        this.soutenanceCollectionProfesseur = soutenanceCollectionProfesseur;
+    }
 }

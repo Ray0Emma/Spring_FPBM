@@ -9,7 +9,7 @@ public interface LieuDeTravailService {
 
     LieuDeTravail saveLieuDeTravail(LieuDeTravail lieuDeTravail);
 
-    LieuDeTravail fetchOneLieuDeTravail(Long LieuDeTravailId);
+    LieuDeTravail fetchOneLieuDeTravail(Long lieuDeTravailId);
 
     List<LieuDeTravail> fetchAllLieuDeTravail();
 
