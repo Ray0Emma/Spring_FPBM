@@ -44,4 +44,8 @@ public class FiliereServiceImpl implements FiliereService{
     public void deleteFiliere(Long filiereId) {
         filiereRepository.deleteById(filiereId);
     }
+
+    public Filiere getFiliere(Long id) {
+        return filiereRepository.findById(id).orElse(null);
+    }
 }

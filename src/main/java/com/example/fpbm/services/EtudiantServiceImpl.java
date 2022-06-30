@@ -38,4 +38,7 @@ public class EtudiantServiceImpl implements EtudiantService{
     public void deleteEtudiant(Long id) {
         etudiantRepository.deleteById(id);
     }
+    public void saveAll(List<Etudiant> etudiants) {
+        etudiantRepository.saveAll(etudiants);
+    }
 }

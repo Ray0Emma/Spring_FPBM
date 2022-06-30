@@ -1,5 +1,6 @@
 package com.example.fpbm.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,8 +17,10 @@ import java.util.Collection;
 public class Etudiant extends Personne{
     @Column(name = "nbApogee")
     private String nbApogee;
+
     @ManyToOne(targetEntity=Filiere.class)
     private Filiere etudiantCollectionFiliere;
+    @JsonIgnore
     @OneToMany(targetEntity= ModuleGroup.class, mappedBy="professeurHasModuleHasEtudiantCollectionEtudiant")
     private Collection<ModuleGroup> professeurHasModuleHasEtudiantCollectionEtudiant;
 }
