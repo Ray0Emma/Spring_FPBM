@@ -19,7 +19,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Departement {
-    @Autowired
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -28,4 +27,5 @@ public class Departement {
     @JsonIgnore
     @OneToMany( targetEntity=Filiere.class, mappedBy="departement_iddepartement" )
     private List<Filiere> departement_iddepartement = new ArrayList<>();
+
 }

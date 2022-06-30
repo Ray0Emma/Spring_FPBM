@@ -1,6 +1,7 @@
 package com.example.fpbm.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class Module {
     private long id;
     @Column(name = "Groupe")
     private String Groupe;
+
     @OneToMany(targetEntity=ProfesseurHasModule.class, mappedBy="professeurHasModuleCollection")
     private Collection<ProfesseurHasModule> professeurHasModuleCollection;
     @ManyToOne(targetEntity=Semester.class)
