@@ -38,8 +38,10 @@ public class Filiere {
     @JsonIgnore
     @OneToMany( targetEntity=Semester.class, mappedBy="filiereCollectionSemester" )
     private Collection<Semester> filiereCollectionSemester;
+
     @JsonIgnore
-    @OneToMany( targetEntity=Etudiant.class, mappedBy="etudiantCollectionFiliere" )
+    @OneToMany( targetEntity=Etudiant.class, mappedBy="filiere" )
+
     private Collection<Etudiant> etudiantCollectionFiliere;
 
 
