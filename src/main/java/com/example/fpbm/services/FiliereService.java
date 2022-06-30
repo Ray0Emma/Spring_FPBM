@@ -17,4 +17,5 @@ public interface FiliereService {
     Filiere updateFiliere(Filiere filiere, Long filiereId);
 
     void deleteFiliere(Long filiereId);
+    Filiere getFiliere(Long id);
 }

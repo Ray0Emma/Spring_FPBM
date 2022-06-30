@@ -15,4 +15,6 @@ public interface EtudiantService {
     Etudiant updateEtudiant(Etudiant etudiant, Long id);
 
     void deleteEtudiant(Long id);
+
+    void saveAll(List<Etudiant> etudiants);
 }
