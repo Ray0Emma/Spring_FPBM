@@ -1,9 +1,7 @@
 package com.example.fpbm.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -19,16 +17,18 @@ public class Etudiant extends Personne{
     @Column(name = "nbApogee")
     private String nbApogee;
 
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity=Filiere.class)
     private Filiere filiere;
 
-    @OneToMany(targetEntity= ModuleGroup.class, mappedBy="professeurHasModuleHasEtudiantCollectionEtudiant")
-    private Collection<ModuleGroup> professeurHasModuleHasEtudiantCollectionEtudiant;
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @OneToMany(targetEntity= ModuleGroup.class, mappedBy="etudiant")
+    private Collection<ModuleGroup> moduleGroups;
 
-    public Etudiant(long id, String email, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone, String nbApogee, Filiere filiere, Collection<ModuleGroup> professeurHasModuleHasEtudiantCollectionEtudiant) {
+    public Etudiant(long id, String email, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone, String nbApogee, Filiere filiere, Collection<ModuleGroup> moduleGroups) {
         super(id, email, password, cin, cne, nom, prenom, dateDeNaissance, address, telephone);
         this.nbApogee = nbApogee;
         this.filiere = filiere;
-        this.professeurHasModuleHasEtudiantCollectionEtudiant = professeurHasModuleHasEtudiantCollectionEtudiant;
+        this.moduleGroups = moduleGroups;
     }
 }

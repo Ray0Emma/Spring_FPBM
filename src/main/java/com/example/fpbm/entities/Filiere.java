@@ -2,9 +2,7 @@ package com.example.fpbm.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -24,25 +22,30 @@ public class Filiere {
 
     // May be this <name = "iddepartement"> will make a problem
 
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity=Departement.class)
-    private Departement departement_iddepartement;
+    private Departement departement;
 
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne( targetEntity=Type.class)
-    private Type filiereCollectionType;
+    private Type type;
 
 
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity=Professeur.class)
-    private Professeur filiereCollectionProfesseur;
+    private Professeur professeur;
 
 
     @JsonIgnore
-    @OneToMany( targetEntity=Semester.class, mappedBy="filiereCollectionSemester" )
-    private Collection<Semester> filiereCollectionSemester;
-   
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @OneToMany( targetEntity=Semester.class, mappedBy="filiere" )
+    private Collection<Semester> semesters;
+
     @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany( targetEntity=Etudiant.class, mappedBy="filiere" )
-
-    private Collection<Etudiant> etudiantCollectionFiliere;
+    private Collection<Etudiant> etudiants;
 
 
 }
+

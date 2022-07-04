@@ -20,32 +20,32 @@ public class Professeur extends Personne{
     private String grade;
 
     @JsonIgnore
-    @OneToMany(targetEntity=Filiere.class, mappedBy="filiereCollectionProfesseur")
-    private Collection<Filiere> filiereCollectionProfesseur;
-    @OneToMany(targetEntity=Jury.class, mappedBy="membrejury_idprofesseur")
-    private Collection<Jury> membrejury_idprofesseur;
+    @OneToMany(targetEntity=Filiere.class, mappedBy="professeur")
+    private Collection<Filiere> filieres;
+    @OneToMany(targetEntity=Jury.class, mappedBy="professeur")
+    private Collection<Jury> juries;
     @JsonIgnore
     @ManyToOne(targetEntity = LieuDeTravail.class)
-    private LieuDeTravail professeurCollectionLieu;
-    @OneToMany(targetEntity=ProfesseurHasModule.class, mappedBy="prof_module")
-    private Collection<ProfesseurHasModule> prof_module;
+    private LieuDeTravail lieuDeTravail;
+    @OneToMany(targetEntity=ProfesseurHasModule.class, mappedBy="professeur")
+    private Collection<ProfesseurHasModule> professeurHasModules;
     @JsonIgnore
     @ManyToOne(targetEntity = Extern.class)
-    private Extern professeurCollectionExtern;
-    @OneToMany(targetEntity = Surveillant.class, mappedBy = "surveillantCollectionProfesseur")
-    private Collection<Surveillant> surveillantCollectionProfesseur;
-    @OneToMany(targetEntity = Soutenance.class, mappedBy = "soutenanceCollectionProfesseur")
-    private Collection<Soutenance> soutenanceCollectionProfesseur;
+    private Extern extern;
+    @OneToMany(targetEntity = Surveillant.class, mappedBy = "professeur")
+    private Collection<Surveillant> surveillants;
+    @OneToMany(targetEntity = Soutenance.class, mappedBy = "professeur")
+    private Collection<Soutenance> soutenances;
 
-    public Professeur(long id, String email, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone, String grade, Collection<Filiere> filiereCollectionProfesseur, Collection<Jury> membrejury_idprofesseur, LieuDeTravail professeurCollectionLieu, Collection<ProfesseurHasModule> prof_module, Extern professeurCollectionExtern, Collection<Surveillant> surveillantCollectionProfesseur, Collection<Soutenance> soutenanceCollectionProfesseur) {
+    public Professeur(long id, String email, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone, String grade, Collection<Filiere> filieres, Collection<Jury> juries, LieuDeTravail lieuDeTravail, Collection<ProfesseurHasModule> professeurHasModules, Extern extern, Collection<Surveillant> surveillants, Collection<Soutenance> soutenances) {
         super(id, email, password, cin, cne, nom, prenom, dateDeNaissance, address, telephone);
         this.grade = grade;
-        this.filiereCollectionProfesseur = filiereCollectionProfesseur;
-        this.membrejury_idprofesseur = membrejury_idprofesseur;
-        this.professeurCollectionLieu = professeurCollectionLieu;
-        this.prof_module = prof_module;
-        this.professeurCollectionExtern = professeurCollectionExtern;
-        this.surveillantCollectionProfesseur = surveillantCollectionProfesseur;
-        this.soutenanceCollectionProfesseur = soutenanceCollectionProfesseur;
+        this.filieres = filieres;
+        this.juries = juries;
+        this.lieuDeTravail = lieuDeTravail;
+        this.professeurHasModules = professeurHasModules;
+        this.extern = extern;
+        this.surveillants = surveillants;
+        this.soutenances = soutenances;
     }
 }

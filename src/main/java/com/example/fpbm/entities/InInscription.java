@@ -20,6 +20,8 @@ public class InInscription {
     private String dateInscription;
 
     @ManyToOne(targetEntity= PHDStudent.class)
-    private PHDStudent student_idPHDstudent;
+    private PHDStudent phdStudent;
 }
+
+
 

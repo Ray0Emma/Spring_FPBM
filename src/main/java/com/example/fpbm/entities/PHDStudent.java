@@ -13,10 +13,10 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PHDStudent extends Etudiant{
-    @OneToMany(targetEntity = InInscription.class, mappedBy = "student_idPHDstudent")
-    private Collection<InInscription> student_idPHDstudent;
-    @OneToMany(targetEntity = Soutenance.class, mappedBy = "soutenance_idPHDstudent")
-    private Collection<Soutenance> soutenance_idPHDstudent;
+    @OneToMany(targetEntity = InInscription.class, mappedBy = "phdStudent")
+    private Collection<InInscription> inInscriptions;
+    @OneToMany(targetEntity = Soutenance.class, mappedBy = "phdStudent")
+    private Collection<Soutenance> soutenances;
     @ManyToOne(targetEntity = CED.class)
-    private CED ced_idphdstudent;
+    private CED ced;
 }

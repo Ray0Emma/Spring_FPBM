@@ -25,7 +25,7 @@ public class Departement {
     @Column(name = "name")
     private String name;
     @JsonIgnore
-    @OneToMany( targetEntity=Filiere.class, mappedBy="departement_iddepartement" )
-    private List<Filiere> departement_iddepartement = new ArrayList<>();
+    @OneToMany( targetEntity=Filiere.class, mappedBy="departement" )
+    private List<Filiere> filieres;
 
 }

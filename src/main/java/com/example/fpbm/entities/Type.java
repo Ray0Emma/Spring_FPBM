@@ -14,13 +14,13 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Type {
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private long id;
-	    @Column(name = "name")
-	    private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	@Column(name = "name")
+	private String name;
 
-	    @JsonIgnore
-	    @OneToMany(targetEntity = Filiere.class, mappedBy = "filiereCollectionType")
-	    private Collection<Filiere> filiereCollectionType;
+	@JsonIgnore
+	@OneToMany(targetEntity = Filiere.class, mappedBy = "type")
+	private Collection<Filiere> filieres;
 }

@@ -17,12 +17,12 @@ public class Jury {
     private long id;
 
     @ManyToOne(targetEntity=Professeur.class)
-    private Professeur membrejury_idprofesseur;
+    private Professeur professeur;
 
     @ManyToOne( targetEntity=TypeJury.class)
-    private TypeJury type_idtypejury;
+    private TypeJury typeJury;
 
     @ManyToOne( targetEntity=Soutenance.class)
-    private Soutenance jury_idjury;
+    private Soutenance soutenance;
 
 }

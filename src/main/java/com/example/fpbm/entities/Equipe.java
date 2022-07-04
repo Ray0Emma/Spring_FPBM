@@ -15,5 +15,5 @@ public class Equipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne( targetEntity=CED.class)
-    private CED equipe_idequipe;
+    private CED ced;
 }

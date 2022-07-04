@@ -21,6 +21,6 @@ public class Courstdtp {
     private long id;
     @Column(name = "name")
     private String name;
-    @OneToMany( targetEntity=ProfesseurHasModule.class, mappedBy="professeurHasModuleCollectionCoursTDTP" )
-    private Collection<ProfesseurHasModule> professeurHasModuleCollectionCoursTDTP;
+    @OneToMany( targetEntity=ProfesseurHasModule.class, mappedBy="courstdtp" )
+    private Collection<ProfesseurHasModule> professeurHasModules;
 }

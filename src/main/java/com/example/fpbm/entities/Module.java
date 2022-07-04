@@ -2,9 +2,7 @@ package com.example.fpbm.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -23,8 +21,11 @@ public class Module {
     @Column(name = "Groupe")
     private String Groupe;
 
-    @OneToMany(targetEntity=ProfesseurHasModule.class, mappedBy="professeurHasModuleCollection")
-    private Collection<ProfesseurHasModule> professeurHasModuleCollection;
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @OneToMany(targetEntity=ProfesseurHasModule.class, mappedBy="module")
+    private Collection<ProfesseurHasModule> professeurHasModules;
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity=Semester.class)
-    private Semester moduleCollectionSemester;
+    private Semester semester;
 }

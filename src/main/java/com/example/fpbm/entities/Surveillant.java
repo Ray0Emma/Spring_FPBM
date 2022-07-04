@@ -1,9 +1,7 @@
 package com.example.fpbm.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -16,9 +14,11 @@ public class Surveillant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity=Examen.class)
-    private Examen surveillantCollectionExamen;
+    private Examen examen;
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity=Professeur.class)
-    private Professeur surveillantCollectionProfesseur;
+    private Professeur professeur;
 
 }

@@ -17,17 +17,17 @@ public class ProfesseurHasModule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne(targetEntity=Annee.class)
-    private Annee professeurHasModuleCollectionAnnee;
+    private Annee annee;
     @ManyToOne(targetEntity=Courstdtp.class)
-    private Courstdtp professeurHasModuleCollectionCoursTDTP;
+    private Courstdtp courstdtp;
     @ManyToOne(targetEntity=Section.class)
-    private Section professeurHasModuleCollectionSection;
-    @OneToMany( targetEntity=Examen.class, mappedBy="examen_prof" )
-    private Collection<Examen> examen_prof;
+    private Section section;
+    @OneToMany( targetEntity=Examen.class, mappedBy="professeurHasModule" )
+    private Collection<Examen> examens;
     @ManyToOne(targetEntity=Professeur.class)
-    private Professeur prof_module;
+    private Professeur professeur;
     @ManyToOne(targetEntity=Module.class)
-    private Module professeurHasModuleCollection;
+    private Module module;
     @OneToMany(targetEntity= ModuleGroup.class, mappedBy="professeurHasModule")
-    private Collection<ModuleGroup> professeurHasModule;
+    private Collection<ModuleGroup> moduleGroups;
 }
