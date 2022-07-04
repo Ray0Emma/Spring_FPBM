@@ -22,11 +22,11 @@ public class Examen {
     @Column(name = "heure")
     private String heure;
     @ManyToOne(targetEntity=Salle.class)
-    private Salle examen_module;
+    private Salle salle;
     @ManyToOne(targetEntity=ProfesseurHasModule.class)
-    private Salle examen_prof;
-    @OneToMany(targetEntity= ExamenGroup.class, mappedBy="examenHasProfesseur")
-    private Collection<ExamenGroup> examenHasProfesseur;
-    @OneToMany(targetEntity=Surveillant.class, mappedBy="surveillantCollectionExamen")
-    private Collection<Surveillant> surveillantCollectionExamen;
+    private ProfesseurHasModule professeurHasModule;
+    @OneToMany(targetEntity= ExamenGroup.class, mappedBy="examen")
+    private Collection<ExamenGroup> examenGroups;
+    @OneToMany(targetEntity=Surveillant.class, mappedBy="examen")
+    private Collection<Surveillant> surveillants;
 }

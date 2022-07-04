@@ -20,13 +20,12 @@ public class Semester {
     private long id;
     @Column(name = "name_semester")
     private String name_semester;
-
-    @ToString.Exclude @EqualsAndHashCode.Exclude
     @JsonIgnore
-    @OneToMany(targetEntity= Module.class, mappedBy="moduleCollectionSemester")
-    private Collection<Module> moduleCollectionSemester;
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @OneToMany(targetEntity= Module.class, mappedBy="semester")
+    private Collection<Module> modules;
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity=Filiere.class)
-    private Filiere filiereCollectionSemester;
+    private Filiere filiere;
 }
 

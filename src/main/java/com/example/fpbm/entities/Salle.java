@@ -1,9 +1,7 @@
 package com.example.fpbm.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -23,9 +21,11 @@ public class Salle {
     private long capaciteEtudiant;
     @Column(name = "NombreSurveillant")
     private long NombreSurveillant;
-    @OneToMany( targetEntity=Soutenance.class, mappedBy="soutenance_idsoutenance" )
-    private Collection<Soutenance> soutenance_idsoutenance;
-    @OneToMany( targetEntity=Examen.class, mappedBy="examen_module" )
-    private Collection<Examen> examen_module;
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @OneToMany( targetEntity=Soutenance.class, mappedBy="salle" )
+    private Collection<Soutenance> soutenances;
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @OneToMany( targetEntity=Examen.class, mappedBy="salle" )
+    private Collection<Examen> examens;
 }
 

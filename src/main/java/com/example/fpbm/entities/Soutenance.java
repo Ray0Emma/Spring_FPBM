@@ -25,12 +25,12 @@ public class Soutenance {
     @Column(name = "soutenancecol")
     private String soutenanccol;
     @ManyToOne(targetEntity = Professeur.class)
-    private Professeur soutenanceCollectionProfesseur;
-    @OneToMany(targetEntity = Jury.class, mappedBy = "jury_idjury")
-    private Collection<Jury> jury_idjury;
+    private Professeur professeur;
+    @OneToMany(targetEntity = Jury.class, mappedBy = "soutenance")
+    private Collection<Jury> juries;
     @ManyToOne(targetEntity = Salle.class)
-    private Salle soutenance_idsoutenance;
+    private Salle salle;
     @ManyToOne(targetEntity = PHDStudent.class)
-    private PHDStudent soutenance_idPHDstudent ;
+    private PHDStudent phdStudent ;
 }
 

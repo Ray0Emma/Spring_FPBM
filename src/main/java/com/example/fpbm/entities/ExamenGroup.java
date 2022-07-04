@@ -18,7 +18,8 @@ public class ExamenGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne(targetEntity= ModuleGroup.class)
-    private ModuleGroup examens;
+    private ModuleGroup moduleGroup;
     @ManyToOne(targetEntity=Examen.class)
-    private Examen examenHasProfesseur;
+    private Examen examen;
 }
+

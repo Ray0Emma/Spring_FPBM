@@ -21,7 +21,7 @@ public class ModuleGroup {
     @ManyToOne(targetEntity=ProfesseurHasModule.class)
     private ProfesseurHasModule professeurHasModule;
     @ManyToOne(targetEntity=Etudiant.class)
-    private Etudiant professeurHasModuleHasEtudiantCollectionEtudiant;
-    @OneToMany(targetEntity= ExamenGroup.class, mappedBy="examens")
-    private Collection<ExamenGroup> examens ;
+    private Etudiant etudiant;
+    @OneToMany(targetEntity= ExamenGroup.class, mappedBy="moduleGroup")
+    private Collection<ExamenGroup> examenGroups ;
 }

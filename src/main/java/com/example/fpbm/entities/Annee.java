@@ -1,8 +1,6 @@
 package com.example.fpbm.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -18,6 +16,9 @@ public class Annee {
     private long id;
     @Column(name = "annee")
     private String annee;
-    @OneToMany( targetEntity=ProfesseurHasModule.class, mappedBy="professeurHasModuleCollectionAnnee" )
-    private Collection<ProfesseurHasModule> professeurHasModuleCollectionAnnee;
+
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @OneToMany( targetEntity=ProfesseurHasModule.class, mappedBy="annee" )
+    private Collection<ProfesseurHasModule> professeurHasModules;
 }
+
