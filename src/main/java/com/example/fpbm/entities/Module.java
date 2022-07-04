@@ -18,6 +18,8 @@ public class Module {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "name")
+    private String name;
     @Column(name = "Groupe")
     private String Groupe;
 

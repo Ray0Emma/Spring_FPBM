@@ -2,8 +2,13 @@ package com.example.fpbm.repositories;
 
 import com.example.fpbm.entities.Etudiant;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
+    @Query("select e from Etudiant e join e.filiere f join f.filiereCollectionSemester s join s.moduleCollectionSemester m where f.name=?1 and s.name_semester=?2 and m.name=?3 ")
+    List<Etudiant> getEtudiantsByFiliere(String f, String s, String m);
 }
