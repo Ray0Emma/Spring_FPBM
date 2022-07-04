@@ -31,11 +31,12 @@ public class EtudiantController {
     @Autowired
     private EtudiantService etudiantService;
 
-    @PostMapping(path="/uploadFile", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path="/uploadFile")
 //    @ResponseBody
     public String importTransactionsFromExcelToDb(@RequestParam("file") List<MultipartFile> file) {
         if(file.isEmpty()){
             System.out.println("Empty File");
+            return "empty";
         }
         EtudiantExcelImport a= new EtudiantExcelImport(etudiantService,filiereService);
         a.importToDb(file);

@@ -3,6 +3,7 @@ package com.example.fpbm.services.ExcelServices;
 import com.example.fpbm.entities.Etudiant;
 import com.example.fpbm.repositories.EtudiantRepository;
 import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,6 +37,8 @@ public class ExcelDataServiceImpl implements IExcelDataService{
             workbook = WorkbookFactory.create(new File(EXCEL_FILE_PATH));
         } catch (EncryptedDocumentException | IOException e) {
             e.printStackTrace();
+        } catch (InvalidFormatException e) {
+            throw new RuntimeException(e);
         }
 
         // Retrieving the number of sheets in the Workbook

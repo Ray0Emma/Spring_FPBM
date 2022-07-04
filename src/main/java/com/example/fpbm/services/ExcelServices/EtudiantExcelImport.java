@@ -61,6 +61,16 @@ public class EtudiantExcelImport {
             if (!etudiants.isEmpty()) {
                 // save to database
                 etudiantService.saveAll(etudiants);
+            }else {
+                Etudiant etudiant = new Etudiant();
+                etudiant.setNom("farah");
+                etudiant.setPrenom("prenom");
+                etudiant.setCne("cne");
+                etudiant.setCin("cin");
+//                        etudiant.setEtudiantCollectionFiliere(filiereService.getFiliere(filiere));
+
+                etudiants.add(etudiant);
+                etudiantService.saveAll(etudiants);
             }
         }
     }
