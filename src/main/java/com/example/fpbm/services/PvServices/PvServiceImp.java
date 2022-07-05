@@ -39,12 +39,12 @@ public class PvServiceImp implements PvService{
     public List<Pv> makePv(String filiere,String semestre, String module){
         int nbEtudiantsCourants=0;
         int nbSurveillantsCourants=0;
-        Filiere f= (Filiere) filiereService.getFilaireByName(filiere);
-        Semester s= (Semester) semestreService.getSemesterByName(semestre);
-        Module m= (Module) moduleService.getModuleByName(module);
+        Filiere f=  filiereService.getFilaireByName(filiere);
+        Semester s= semestreService.getSemesterByName(semestre);
+        Module m= moduleService.getModuleByName(module);
         List<Salle> salles=salleService.fetchAllSalle();
         List<Pv> pvs=new ArrayList<Pv>();
-        //List<Surveillant> surveillants=surveillantService.getSurveillantNames();
+        List<Surveillant> surveillants=surveillantService.getSurveillantNames();
 
         List<Etudiant> etudiants=etudiantService.getEtudiantsByFiliere(f.getName(),s.getName(),m.getName());
         //Le nombre d'etudiants qui pas encore affecter à une salle d'examen
@@ -53,9 +53,9 @@ public class PvServiceImp implements PvService{
         int index=0;
 
         //Le nombre d'etudiants qui pas encore affecter à une salle d'examen
-       // int restSurveillants=surveillants.size();
+         int restSurveillants=surveillants.size();
 
-        while(restEtud>0 /*&& restSurveillants>0*/){
+        while(restEtud>0 && restSurveillants>0){
 
             Pv pv=new Pv();
             pv.setLocal(salles.get(index).getName());
@@ -71,17 +71,18 @@ public class PvServiceImp implements PvService{
 
             }
             //distrubier les surveillants dans les salles disponibles
-           /* if(restSurveillants>salles.get(index).getNombreSurveillant()){
-                pv.setSurveillants(surveillants.subList(nbSurveillantsCourants, (int) (salles.get(index).getNombreSurveillant()+nbSurveillantsCourants)));
+            if(restSurveillants>salles.get(index).getNombreSurveillant()){
+                pv.setSurveillants(surveillants.subList(nbSurveillantsCourants, (salles.get(index).getNombreSurveillant()+nbSurveillantsCourants)));
                 nbSurveillantsCourants+=salles.get(index).getNombreSurveillant();
             }
             else{
                 pv.setSurveillants(surveillants.subList(nbSurveillantsCourants,surveillants.size()));
 
-            }*/
+            }
 
             //restSurveillants-=salles.get(index).getNombreSurveillant();
             restEtud -=salles.get(index).getCapaciteEtudiant();
+            restSurveillants -= salles.get(index).getNombreSurveillant();
 
             index++;
 

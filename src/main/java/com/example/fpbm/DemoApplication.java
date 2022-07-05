@@ -26,6 +26,12 @@ public class DemoApplication implements CommandLineRunner {
 	private SemesterRepository semesterRepository;
 
 	@Autowired
+	private SalleRepository salleRepository;
+
+	@Autowired
+	private SurveillantRepository surveillantRepository;
+
+	@Autowired
 	private TypeRepository typeRepository;
 
 	@Autowired
@@ -72,7 +78,12 @@ public class DemoApplication implements CommandLineRunner {
 		Semester semester1 = semesterRepository.save(new Semester(1,"S1",null,filiere1));
 		Semester semester2 = semesterRepository.save(new Semester(2,"S2",null,filiere1));
 
+		Salle salle1 = salleRepository.save(new Salle(1,"B01",3,4,null,null));
+		Salle salle2 = salleRepository.save(new Salle(2,"B02",3,4,null,null));
 		Module model1 = moduleRepository.save(new Module(1,"Spring","kk",null,semester1));
 
+		Surveillant surveillant1 = surveillantRepository.save(new Surveillant(1,"koliche","vd",null,professeur1));
+		Surveillant surveillant2 = surveillantRepository.save(new Surveillant(2,"robiz","we",null,professeur2));
+		Surveillant surveillant3 = surveillantRepository.save(new Surveillant(3,"mee","vvx",null,professeur1));
 	}
 }

@@ -17,8 +17,9 @@ public class Etudiant extends Personne{
     @Column(name = "nbApogee")
     private String nbApogee;
 
+    @JsonIgnore
     @ToString.Exclude @EqualsAndHashCode.Exclude
-    @ManyToOne(targetEntity=Filiere.class)
+    @ManyToOne(targetEntity=Filiere.class, fetch = FetchType.EAGER)
     private Filiere filiere;
 
     @JsonIgnore
