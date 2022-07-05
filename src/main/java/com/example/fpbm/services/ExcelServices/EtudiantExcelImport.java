@@ -15,7 +15,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class EtudiantExcelImport {
     private EtudiantService etudiantService;
@@ -48,7 +50,8 @@ public class EtudiantExcelImport {
                         String address = row.getCell(2).getStringCellValue();
                         String cin = row.getCell(3).getStringCellValue();
                         String cne = row.getCell(4).getStringCellValue();
-//                        String birthdate = formatter.formatCellValue(row.getCell(5));
+                        System.out.println(formatter.formatCellValue(row.getCell(5)));
+//                        Date birthdate =  new Date("2002-07-05 15:17:06");
                         String nom = row.getCell(6).getStringCellValue();
                         String prenom = row.getCell(7).getStringCellValue();
                         String tel = formatter.formatCellValue(row.getCell(8));
@@ -61,7 +64,7 @@ public class EtudiantExcelImport {
                         etudiant.setAddress(address);
                         etudiant.setCin(cin);
                         etudiant.setCne(cne);
-//                        etudiant.setDateDeNaissance(new SimpleDateFormat("yyyy-MM-dd").parse(birthdate));
+//                        etudiant.setDateDeNaissance(birthdate);
                         etudiant.setNom(nom);
                         etudiant.setPrenom(prenom);
                         etudiant.setTelephone(tel);
