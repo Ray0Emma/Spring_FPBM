@@ -1,9 +1,7 @@
 package com.example.fpbm.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -20,20 +18,33 @@ public class Professeur extends Personne{
     private String grade;
 
     @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany(targetEntity=Filiere.class, mappedBy="professeur")
     private Collection<Filiere> filieres;
+
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany(targetEntity=Jury.class, mappedBy="professeur")
     private Collection<Jury> juries;
-    @JsonIgnore
+
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity = LieuDeTravail.class)
     private LieuDeTravail lieuDeTravail;
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany(targetEntity=ProfesseurHasModule.class, mappedBy="professeur")
     private Collection<ProfesseurHasModule> professeurHasModules;
-    @JsonIgnore
+
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity = Extern.class)
     private Extern extern;
+
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany(targetEntity = Surveillant.class, mappedBy = "professeur")
     private Collection<Surveillant> surveillants;
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany(targetEntity = Soutenance.class, mappedBy = "professeur")
     private Collection<Soutenance> soutenances;
 

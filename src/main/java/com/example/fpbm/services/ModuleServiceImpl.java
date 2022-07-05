@@ -26,6 +26,11 @@ public class ModuleServiceImpl implements ModuleService{
     }
 
     @Override
+    public Module getModuleByName(String moduleName) {
+        return moduleRepository.findByName(moduleName);
+    }
+
+    @Override
     public Module updateModule(Module module, Long id) {
         module.setId(id);
         return moduleRepository.save(module);

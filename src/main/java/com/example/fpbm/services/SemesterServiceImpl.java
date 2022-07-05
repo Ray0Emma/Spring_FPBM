@@ -37,6 +37,11 @@ public class SemesterServiceImpl implements SemesterService{
     }
 
     @Override
+    public Semester getSemesterByName(String semesterName) {
+        return semesterRepository.findByName(semesterName);
+    }
+
+    @Override
     public Semester updateSemester(Semester semester, Long semesterId) {
         semester.setId(semesterId);
         return semesterRepository.save(semester);

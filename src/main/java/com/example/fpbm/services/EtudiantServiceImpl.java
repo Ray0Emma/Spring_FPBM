@@ -38,6 +38,12 @@ public class EtudiantServiceImpl implements EtudiantService{
     public void deleteEtudiant(Long id) {
         etudiantRepository.deleteById(id);
     }
+
+    @Override
+    public List<Etudiant> getEtudiantsByFiliere(String f, String s, String m) {
+        return etudiantRepository.getEtudiantsByFiliere(f,s,m);
+    }
+
     public void saveAll(List<Etudiant> etudiants) {
         etudiantRepository.saveAll(etudiants);
     }
