@@ -14,6 +14,13 @@ public class Surveillant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "lastname")
+    private String lastname;
+
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity=Examen.class)
     private Examen examen;

@@ -35,6 +35,11 @@ public class FiliereServiceImpl implements FiliereService{
     }
 
     @Override
+    public Filiere getFilaireByName(String filiereName) {
+        return filiereRepository.findByName(filiereName);
+    }
+
+    @Override
     public Filiere updateFiliere(Filiere filiere, Long filiereId) {
         filiere.setId(filiereId);
         return filiereRepository.save(filiere);

@@ -16,5 +16,7 @@ public interface EtudiantService {
 
     void deleteEtudiant(Long id);
 
+    List<Etudiant> getEtudiantsByFiliere(String f,String s,String m);
+
     void saveAll(List<Etudiant> etudiants);
 }

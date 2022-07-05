@@ -10,4 +10,6 @@ public interface SurveillantService {
     Surveillant fetchOneSurveillant(Long id);
     Surveillant updateSurveillant(Surveillant surveillant, Long id);
     void deleteSurveillant(Long id);
+
+    List<Surveillant> getSurveillantNames();
 }

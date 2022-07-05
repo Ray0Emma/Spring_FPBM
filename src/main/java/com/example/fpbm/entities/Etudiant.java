@@ -21,6 +21,7 @@ public class Etudiant extends Personne{
     @ManyToOne(targetEntity=Filiere.class)
     private Filiere filiere;
 
+    @JsonIgnore
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany(targetEntity= ModuleGroup.class, mappedBy="etudiant")
     private Collection<ModuleGroup> moduleGroups;

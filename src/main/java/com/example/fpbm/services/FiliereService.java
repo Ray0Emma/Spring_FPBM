@@ -14,6 +14,8 @@ public interface FiliereService {
 
     List<Filiere> fetchAllFiliere();
 
+    Filiere getFilaireByName(String filiereName);
+
     Filiere updateFiliere(Filiere filiere, Long filiereId);
 
     void deleteFiliere(Long filiereId);

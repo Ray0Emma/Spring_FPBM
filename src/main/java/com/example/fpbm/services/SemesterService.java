@@ -1,5 +1,6 @@
 package com.example.fpbm.services;
 
+import com.example.fpbm.entities.Filiere;
 import com.example.fpbm.entities.Semester;
 
 import java.util.List;
@@ -13,6 +14,8 @@ public interface SemesterService {
     Semester fetchOneSemester(Long semesterId);
 
     List<Semester> fetchAllSemester();
+
+    Semester getSemesterByName(String semesterName);
 
     Semester updateSemester(Semester semester, Long semesterId);
 
