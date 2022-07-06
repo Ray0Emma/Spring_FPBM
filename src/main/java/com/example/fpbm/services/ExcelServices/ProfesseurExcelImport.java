@@ -67,8 +67,8 @@ public class ProfesseurExcelImport {
                         String cin = row.getCell(3).getStringCellValue();
                         String cne = row.getCell(4).getStringCellValue();
                         System.out.println(formatter.formatCellValue(row.getCell(5)));
-                        String myDate = formatter.formatCellValue(row.getCell(5));
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        String myDate = String.valueOf(formatter.formatCellValue(row.getCell(5)));
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                         Date birthdate =  sdf.parse(myDate);
                         String nom = row.getCell(6).getStringCellValue();
                         String prenom = row.getCell(7).getStringCellValue();
