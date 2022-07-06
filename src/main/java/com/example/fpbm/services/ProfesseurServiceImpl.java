@@ -43,4 +43,9 @@ public class ProfesseurServiceImpl implements ProfesseurService{
     public void deleteProfesseur(Long professeurId) {
         professeurRepository.deleteById(professeurId);
     }
+
+    @Override
+    public void saveAll(List<Professeur> professeurs) {
+        professeurRepository.saveAll(professeurs);
+    }
 }

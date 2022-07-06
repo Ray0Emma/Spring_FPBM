@@ -15,4 +15,6 @@ public interface ExternService {
     Extern updateExtern(Extern extern, Long externId);
 
     void deleteExtern(Long externId);
-}
+    Extern getExtern(Long id) ;
+
+    }

@@ -20,14 +20,11 @@ import java.util.List;
 @RequestMapping("/Etudiant")
 public class EtudiantController {
 
-    @Autowired
-    IFileUploaderService fileService;
+
 
     @Autowired
     private FiliereService filiereService;
 
-    @Autowired
-    IExcelDataService excelservice;
     @Autowired
     private EtudiantService etudiantService;
 

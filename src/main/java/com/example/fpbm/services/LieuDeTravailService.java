@@ -1,5 +1,6 @@
 package com.example.fpbm.services;
 
+import com.example.fpbm.entities.Extern;
 import com.example.fpbm.entities.LieuDeTravail;
 
 
@@ -16,4 +17,6 @@ public interface LieuDeTravailService {
     LieuDeTravail updateLieuDeTravail(LieuDeTravail lieuDeTravail, Long lieuDeTravailId);
 
     void deleteLieuDeTravail(Long lieuDeTravailId);
+
+    LieuDeTravail getLieuDeTravail(Long id) ;
 }

@@ -50,8 +50,9 @@ public class EtudiantExcelImport {
                         String address = row.getCell(2).getStringCellValue();
                         String cin = row.getCell(3).getStringCellValue();
                         String cne = row.getCell(4).getStringCellValue();
-                        System.out.println(formatter.formatCellValue(row.getCell(5)));
-//                        Date birthdate =  new Date("2002-07-05 15:17:06");
+                        String myDate = String.valueOf(formatter.formatCellValue(row.getCell(5)));
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                        Date birthdate =  sdf.parse(myDate);
                         String nom = row.getCell(6).getStringCellValue();
                         String prenom = row.getCell(7).getStringCellValue();
                         String tel = formatter.formatCellValue(row.getCell(8));
@@ -64,7 +65,7 @@ public class EtudiantExcelImport {
                         etudiant.setAddress(address);
                         etudiant.setCin(cin);
                         etudiant.setCne(cne);
-//                        etudiant.setDateDeNaissance(birthdate);
+                        etudiant.setDateDeNaissance(birthdate);
                         etudiant.setNom(nom);
                         etudiant.setPrenom(prenom);
                         etudiant.setTelephone(tel);
@@ -76,9 +77,9 @@ public class EtudiantExcelImport {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-//                catch (ParseException e) {
-//                    throw new RuntimeException(e);
-//                }
+                catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
             });
 
             if (!etudiants.isEmpty()) {
@@ -91,7 +92,7 @@ public class EtudiantExcelImport {
 
     public static int getNumberOfNonEmptyCells(XSSFSheet sheet, int columnIndex) {
         int numOfNonEmptyCells = 0;
-        for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+        for (int i = 0; i < sheet.getLastRowNum(); i++) {
             XSSFRow row = sheet.getRow(i);
             if (row != null) {
                 XSSFCell cell = row.getCell(columnIndex);
