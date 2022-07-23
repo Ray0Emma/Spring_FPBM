@@ -56,7 +56,7 @@ public class EtudiantController {
         return etudiantService.saveEtudiant(etudiant);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public Etudiant updateEtudiant(@RequestBody Etudiant etudiant, @PathVariable(name = "id") Long id){
         return etudiantService.updateEtudiant(etudiant,id);
     }
