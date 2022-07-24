@@ -1,6 +1,7 @@
 package com.example.fpbm.services;
 
 import com.example.fpbm.entities.Extern;
+import com.example.fpbm.entities.Filiere;
 import com.example.fpbm.repositories.ExternRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,8 @@ public class ExternServiceImpl implements ExternService{
     @Override
     public void deleteExtern(Long externId) {
         externRepository.deleteById(externId);
+    }
+    public Extern getExtern(Long id) {
+        return externRepository.findById(id).orElse(null);
     }
 }

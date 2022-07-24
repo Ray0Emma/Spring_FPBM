@@ -38,4 +38,9 @@ public class LieuDeTravailServiceImpl implements LieuDeTravailService{
     public void deleteLieuDeTravail(Long lieuDeTravailId) {
         lieuDeTravailRepository.deleteById(lieuDeTravailId);
     }
+
+    @Override
+    public LieuDeTravail getLieuDeTravail(Long id) {
+        return lieuDeTravailRepository.findById(id).orElse(null);
+    }
 }

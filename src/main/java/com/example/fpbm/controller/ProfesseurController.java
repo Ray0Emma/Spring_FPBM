@@ -1,9 +1,13 @@
 package com.example.fpbm.controller;
 
 import com.example.fpbm.entities.Professeur;
-import com.example.fpbm.services.ProfesseurService;
+import com.example.fpbm.entities.ProfesseurHasModule;
+import com.example.fpbm.services.*;
+import com.example.fpbm.services.ExcelServices.EtudiantExcelImport;
+import com.example.fpbm.services.ExcelServices.ProfesseurExcelImport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -12,10 +16,35 @@ import java.util.List;
 @CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200", "http://localhost:8081" })
 @RequestMapping("/professeur")
 public class ProfesseurController {
+    @Autowired
+    private FiliereService filiereService;
+    @Autowired
+    private JuryService juryService;
+    @Autowired
+    private LieuDeTravailService lieuDeTravailService;
 
+    private ProfesseurHasModule professeurHasModule;
+    @Autowired
+    private ExternService externService;
+    @Autowired
+    private SurveillantService surveillantService;
+    @Autowired
+    private SoutenanceService soutenanceService;
     @Autowired
     private ProfesseurService professeurService;
 
+    @PostMapping(path="/uploadFile")
+//    @ResponseBody
+    public String importTransactionsFromExcelToDb(@RequestParam("file") List<MultipartFile> file) {
+        if(file.isEmpty()){
+            System.out.println("Empty File");
+            return "empty";
+        }
+        ProfesseurExcelImport a= new ProfesseurExcelImport( filiereService,  juryService,  lieuDeTravailService,  professeurHasModule,  externService,  surveillantService,  soutenanceService);
+        a.importToDb(file);
+        return "redirect:/";
+
+    }
     @PostMapping()
     public Professeur saveProfesseur(@RequestBody Professeur professeur){
         return professeurService.saveProfesseur(professeur);

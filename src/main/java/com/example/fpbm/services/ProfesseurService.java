@@ -1,5 +1,6 @@
 package com.example.fpbm.services;
 
+import com.example.fpbm.entities.Etudiant;
 import com.example.fpbm.entities.Professeur;
 
 import java.util.List;
@@ -17,4 +18,7 @@ public interface ProfesseurService {
     Professeur updateProfesseur(Professeur professeur, Long professeurId);
 
     void deleteProfesseur(Long professeurId);
+
+    void saveAll(List<Professeur> professeurs);
+
 }

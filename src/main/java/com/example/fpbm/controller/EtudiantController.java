@@ -20,14 +20,11 @@ import java.util.List;
 @RequestMapping("/Etudiant")
 public class EtudiantController {
 
-    @Autowired
-    IFileUploaderService fileService;
+
 
     @Autowired
     private FiliereService filiereService;
 
-    @Autowired
-    IExcelDataService excelservice;
     @Autowired
     private EtudiantService etudiantService;
 
@@ -59,7 +56,7 @@ public class EtudiantController {
         return etudiantService.saveEtudiant(etudiant);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public Etudiant updateEtudiant(@RequestBody Etudiant etudiant, @PathVariable(name = "id") Long id){
         return etudiantService.updateEtudiant(etudiant,id);
     }
