@@ -1,9 +1,8 @@
 package com.example.fpbm.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -17,6 +16,8 @@ public class LieuDeTravail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany(targetEntity=Professeur.class, mappedBy="lieuDeTravail")
     private Collection<Professeur> professeurs ;
 
