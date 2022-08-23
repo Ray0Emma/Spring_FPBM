@@ -33,6 +33,8 @@ public class Salle {
     @OneToMany( targetEntity=Examen.class, mappedBy="salle" )
     private Collection<Examen> examens;
 
+
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToMany
     @JoinTable( name = "Salle_ExamenTime_Associations",
             joinColumns = @JoinColumn( name = "id" ),
