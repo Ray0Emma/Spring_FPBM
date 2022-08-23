@@ -43,8 +43,8 @@ public class SalleController {
         return "Deleted Successfully";
     }
 
-    @GetMapping("/salle")
-    public List<Salle> fetchSalle(){
-        return salleRepository.demandeDocByPersonne();
+    @GetMapping("/occuper/{time}")
+    public List<Salle> fetchSalle(@PathVariable(name = "time") String time){
+        return salleRepository.demandeDocByPersonne(time);
     }
 }

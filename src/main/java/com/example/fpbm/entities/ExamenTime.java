@@ -1,9 +1,7 @@
 package com.example.fpbm.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,6 +19,7 @@ public class ExamenTime {
     private String time;
 
     @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToMany
     @JoinTable( name = "Salle_ExamenTime_Associations",
             joinColumns = @JoinColumn( name = "idTime" ),
