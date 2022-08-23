@@ -4,6 +4,9 @@ import com.example.fpbm.entities.*;
 import com.example.fpbm.entities.Module;
 import com.example.fpbm.modeles.Pv;
 import com.example.fpbm.repositories.EtudiantRepository;
+import com.example.fpbm.repositories.FiliereRepository;
+import com.example.fpbm.repositories.ModuleRepository;
+import com.example.fpbm.repositories.SemesterRepository;
 import com.example.fpbm.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +32,15 @@ public class PvServiceImp implements PvService{
     @Autowired
     private ModuleService moduleService;
 
+    @Autowired
+    private FiliereRepository filiereRepository;
+
+    @Autowired
+    private SemesterRepository semesterRepository;
+
+    @Autowired
+    private ModuleRepository moduleRepository;
+
 
 
     @Override
@@ -39,23 +51,28 @@ public class PvServiceImp implements PvService{
     public List<Pv> makePv(String filiere,String semestre, String module){
         int nbEtudiantsCourants=0;
         int nbSurveillantsCourants=0;
-        Filiere f=  filiereService.getFilaireByName(filiere);
-        Semester s= semestreService.getSemesterByName(semestre);
-        Module m= moduleService.getModuleByName(module);
+
+        Filiere f=  filiereRepository.findByName(filiere);
+        Semester s= semesterRepository.findByName(semestre);
+        Module m= moduleRepository.findByName(module);
         List<Salle> salles=salleService.fetchAllSalle();
         List<Pv> pvs=new ArrayList<Pv>();
         List<Surveillant> surveillants=surveillantService.getSurveillantNames();
+        System.out.println(f.getName()+"   "+s.getName()+"  "+m.getName());
+        List<Etudiant> etudiants=etudiantService.getEtudiantsByFiliere(f.getName(), s.getName(),m.getName());
 
-        List<Etudiant> etudiants=etudiantService.getEtudiantsByFiliere(f.getName(),s.getName(),m.getName());
         //Le nombre d'etudiants qui pas encore affecter à une salle d'examen
         int restEtud=etudiants.size();
         // indice de la salle dans la base
         int index=0;
 
-        //Le nombre d'etudiants qui pas encore affecter à une salle d'examen
-         int restSurveillants=surveillants.size();
+        //Le nombre des Surveillants qui pas encore affecter à une salle d'examen
+         //int restSurveillants=surveillants.size();
 
-        while(restEtud>0 && restSurveillants>0){
+        // rest sale
+        int restSalles = salles.size();
+
+        while(restEtud>0 && restSalles>0 ){
 
             Pv pv=new Pv();
             pv.setLocal(salles.get(index).getName());
@@ -71,7 +88,7 @@ public class PvServiceImp implements PvService{
 
             }
             //distrubier les surveillants dans les salles disponibles
-            if(restSurveillants>salles.get(index).getNombreSurveillant()){
+            /*if(restSurveillants>salles.get(index).getNombreSurveillant()){
                 pv.setSurveillants(surveillants.subList(nbSurveillantsCourants, (salles.get(index).getNombreSurveillant()+nbSurveillantsCourants)));
                 nbSurveillantsCourants+=salles.get(index).getNombreSurveillant();
             }
@@ -80,9 +97,14 @@ public class PvServiceImp implements PvService{
 
             }
 
+             */
+
+
+
             //restSurveillants-=salles.get(index).getNombreSurveillant();
             restEtud -=salles.get(index).getCapaciteEtudiant();
-            restSurveillants -= salles.get(index).getNombreSurveillant();
+            restSalles-= 1;
+            //restSurveillants -= salles.get(index).getNombreSurveillant();
 
             index++;
 
@@ -95,6 +117,8 @@ public class PvServiceImp implements PvService{
         if(restEtud>0){
             System.out.println("affecter : "+restEtud+" étudinats à la salle X sont: "+etudiants.subList(nbEtudiantsCourants,etudiants.size()));
         }
+
+
 
 
         return pvs;

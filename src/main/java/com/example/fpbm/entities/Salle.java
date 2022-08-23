@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "salle")
@@ -30,5 +32,11 @@ public class Salle {
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany( targetEntity=Examen.class, mappedBy="salle" )
     private Collection<Examen> examens;
+
+    @ManyToMany
+    @JoinTable( name = "Salle_ExamenTime_Associations",
+            joinColumns = @JoinColumn( name = "id" ),
+            inverseJoinColumns = @JoinColumn( name = "idTime" ) )
+    private List<ExamenTime> examenTimes = new ArrayList<>();
 }
 

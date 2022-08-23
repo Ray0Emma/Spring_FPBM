@@ -16,6 +16,6 @@ public class Pv {
     private String local;
     private String module;
     private LocalDateTime localDateTime;
-    private List<Surveillant> surveillants;
+    //private List<Surveillant> surveillants;
     private List<Etudiant> etudiants;
 }

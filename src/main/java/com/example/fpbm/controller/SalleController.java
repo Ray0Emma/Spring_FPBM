@@ -1,5 +1,6 @@
 package com.example.fpbm.controller;
 import com.example.fpbm.entities.Salle;
+import com.example.fpbm.repositories.SalleRepository;
 import com.example.fpbm.services.SalleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ import java.util.List;
 public class SalleController {
     @Autowired
     private SalleService salleService;
+
+    @Autowired
+    private SalleRepository salleRepository;
     @GetMapping()
     public List<Salle> fetchAllSalle(){
         return salleService.fetchAllSalle();
@@ -37,5 +41,10 @@ public class SalleController {
     public String deleteSalle(@PathVariable(name = "id") Long id){
         salleService.deleteSalle(id);
         return "Deleted Successfully";
+    }
+
+    @GetMapping("/salle")
+    public List<Salle> fetchSalle(){
+        return salleRepository.demandeDocByPersonne();
     }
 }
