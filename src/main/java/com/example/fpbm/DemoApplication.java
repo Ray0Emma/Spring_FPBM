@@ -9,7 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
@@ -49,6 +51,8 @@ public class DemoApplication implements CommandLineRunner {
 	@Autowired
 	private EtudiantRepository etudiantRepository;
 
+	@Autowired
+	private ExamenTimeRepository examenTimeRepository;
 
 
 	@Override
@@ -68,22 +72,60 @@ public class DemoApplication implements CommandLineRunner {
 
 		Professeur professeur1 = professeurRepository.save(new Professeur(1,"anour@gmail.com","123456","P345667","D12334555","Salhi","Anouar",new Date(),"beni","0612345678","MR",null,null,travail1,null,extern1,null,null));
 		Professeur professeur2 = professeurRepository.save(new Professeur(2,"khadija@gmail.com","123456","P544666","D3456666","Bbirri","khadija",new Date(),"Ouarzazate","06345665456","MS",null,null,travail2,null,extern1,null,null));
+		Professeur professeur3 = professeurRepository.save(new Professeur(3,"ayoub@gmail.com","123456","P544116","D234556","Robiz","Ayoub",new Date(),"Ouarzazate","06345665456","MR",null,null,travail1,null,extern1,null,null));
 
 		Filiere filiere1 = filiereRepository.save(new Filiere(1,"ISI",d2,type1,professeur1,null,null));
 		Filiere filiere2 = filiereRepository.save(new Filiere(2,"STRI",d2,type1,professeur1,null,null));
+
 		Etudiant etudiant1 = etudiantRepository.save(new Etudiant(1, "mohamed@gmail.com", "1234567", "P23456", "D12345678", "Koliche", "mohamed", new Date(), "Ouarzazate", "0634567776", "12345644", filiere1, null));
 		Etudiant etudiant2 = etudiantRepository.save(new Etudiant(2, "mohaayou@gmail.com", "12367", "P23459", "D12345678", "effg", "mohamed", new Date(), "Ouarzazate", "0634567776", "12345644", filiere1, null));
-		Etudiant etudiant3 = etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "0000", "0000", new Date(), "0000", "000", "000", filiere2, null));
+		Etudiant etudiant3 = etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "0000", "0000", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "ait fal", "ossama", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "kasmi", "wafi", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "narin", "ftah", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "kali", "hakim", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "hhdhd", "mohamed", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere1, null));
+		etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere1, null));
 
 		Semester semester1 = semesterRepository.save(new Semester(1,"S1",null,filiere1));
 		Semester semester2 = semesterRepository.save(new Semester(2,"S2",null,filiere1));
 
-		Salle salle1 = salleRepository.save(new Salle(1,"B01",3,4,null,null));
-		Salle salle2 = salleRepository.save(new Salle(2,"B02",3,4,null,null));
+		ExamenTime examenTime1 = examenTimeRepository.save(new ExamenTime(1,"8", null));
+		ExamenTime examenTime2 = examenTimeRepository.save(new ExamenTime(2,"10",null));
+		ExamenTime examenTime3 = examenTimeRepository.save(new ExamenTime(3,"2",null));
+		ExamenTime examenTime4 = examenTimeRepository.save(new ExamenTime(4,"4",null));
+
+		List<ExamenTime> examenTimeList =new ArrayList<>();
+		examenTimeList.add(examenTime1);
+		examenTimeList.add(examenTime2);
+
+		List<ExamenTime> examenTimeList2 =new ArrayList<>();
+		examenTimeList2.add(examenTime3);
+		examenTimeList2.add(examenTime4);
+
+
+		Salle salle1 = salleRepository.save(new Salle(1,"B01",3,1,null,null,examenTimeList));
+		Salle salle2 = salleRepository.save(new Salle(2,"B02",3,1,null,null,examenTimeList));
+		Salle salle3 = salleRepository.save(new Salle(3,"B03",3,1,null,null,examenTimeList2));
+		Salle salle4 = salleRepository.save(new Salle(4,"B04",5,1,null,null,examenTimeList2));
+
+
+
+
+
 		Module model1 = moduleRepository.save(new Module(1,"Spring","kk",null,semester1));
 
 		Surveillant surveillant1 = surveillantRepository.save(new Surveillant(1,"koliche","vd",null,professeur1));
 		Surveillant surveillant2 = surveillantRepository.save(new Surveillant(2,"robiz","we",null,professeur2));
-		Surveillant surveillant3 = surveillantRepository.save(new Surveillant(3,"mee","vvx",null,professeur1));
+		Surveillant surveillant3 = surveillantRepository.save(new Surveillant(3,"mee","vvx",null,professeur3));
 	}
 }

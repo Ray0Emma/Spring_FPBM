@@ -22,8 +22,8 @@ public class Departement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "name")
-    private String name;
+    @Column(name = "nom")
+    private String nom;
     @JsonIgnore
     @OneToMany( targetEntity=Filiere.class, mappedBy="departement" )
     private List<Filiere> filieres;
