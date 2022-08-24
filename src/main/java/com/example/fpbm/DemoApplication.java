@@ -112,11 +112,14 @@ public class DemoApplication implements CommandLineRunner {
 		examenTimeList2.add(examenTime3);
 		examenTimeList2.add(examenTime4);
 
+		List<ExamenTime> examenTimeList3 = new ArrayList<>();
+		examenTimeList3.add(examenTime4);
 
-		Salle salle1 = salleRepository.save(new Salle(1,"B01",3,1,null,null,examenTimeList));
-		Salle salle2 = salleRepository.save(new Salle(2,"B02",3,1,null,null,examenTimeList));
-		Salle salle3 = salleRepository.save(new Salle(3,"B03",3,1,null,null,examenTimeList2));
-		Salle salle4 = salleRepository.save(new Salle(4,"B04",5,1,null,null,examenTimeList2));
+
+		Salle salle1 = salleRepository.save(new Salle(1,"B01",16,1,null,null,null));
+		Salle salle2 = salleRepository.save(new Salle(2,"B02",3,1,null,null,null));
+		Salle salle3 = salleRepository.save(new Salle(3,"B03",3,1,null,null,null));
+		Salle salle4 = salleRepository.save(new Salle(4,"B04",5,1,null,null,null));
 
 
 

@@ -3,10 +3,7 @@ package com.example.fpbm.services.PvServices;
 import com.example.fpbm.entities.*;
 import com.example.fpbm.entities.Module;
 import com.example.fpbm.modeles.Pv;
-import com.example.fpbm.repositories.EtudiantRepository;
-import com.example.fpbm.repositories.FiliereRepository;
-import com.example.fpbm.repositories.ModuleRepository;
-import com.example.fpbm.repositories.SemesterRepository;
+import com.example.fpbm.repositories.*;
 import com.example.fpbm.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +38,12 @@ public class PvServiceImp implements PvService{
     @Autowired
     private ModuleRepository moduleRepository;
 
+    @Autowired
+    private SalleRepository salleRepository;
+
+    @Autowired
+    private ExamenTimeRepository examenTimeRepository;
+
 
 
     @Override
@@ -48,14 +51,18 @@ public class PvServiceImp implements PvService{
         return etudiantRepository.getEtudiantsByFiliere(f,s, m);
     }
 
-    public List<Pv> makePv(String filiere,String semestre, String module){
+
+
+    public List<Pv> makePv(String filiere,String semestre, String module, String time){
         int nbEtudiantsCourants=0;
         int nbSurveillantsCourants=0;
 
         Filiere f=  filiereRepository.findByName(filiere);
         Semester s= semesterRepository.findByName(semestre);
         Module m= moduleRepository.findByName(module);
-        List<Salle> salles=salleService.fetchAllSalle();
+        List<Salle> salles=getFreeSalle(time);
+        ExamenTime examenTime = examenTimeRepository.findByTime(time);
+        System.out.println("time: "+examenTime.getTime());
         List<Pv> pvs=new ArrayList<Pv>();
         List<Surveillant> surveillants=surveillantService.getSurveillantNames();
         System.out.println(f.getName()+"   "+s.getName()+"  "+m.getName());
@@ -72,6 +79,10 @@ public class PvServiceImp implements PvService{
         // rest sale
         int restSalles = salles.size();
 
+        // time list
+        List<ExamenTime> timeList = new ArrayList<>();
+        timeList.add(examenTime);
+
         while(restEtud>0 && restSalles>0 ){
 
             Pv pv=new Pv();
@@ -82,10 +93,18 @@ public class PvServiceImp implements PvService{
             if(restEtud>salles.get(index).getCapaciteEtudiant()){
                 pv.setEtudiants(etudiants.subList(nbEtudiantsCourants, (int) (salles.get(index).getCapaciteEtudiant()+nbEtudiantsCourants)));
                 nbEtudiantsCourants+=salles.get(index).getCapaciteEtudiant();
+                System.out.println("salle id"+salles.get(index).getId());
+                System.out.println("salle time"+salles.get(index).getExamenTimes());
+                System.out.println("list time"+timeList);
+                salles.get(index).setExamenTimes(timeList);
+                salleService.updateSalle(salles.get(index),salles.get(index).getId());
+                System.out.println("salle time 2"+salles.get(index).getExamenTimes());
 
             }else{
                 pv.setEtudiants(etudiants.subList(nbEtudiantsCourants,etudiants.size()));
-
+                salles.get(index).setExamenTimes(timeList);
+                salleService.updateSalle(salles.get(index),salles.get(index).getId());
+                System.out.println("or salle id"+salles.get(index).getId());
             }
             //distrubier les surveillants dans les salles disponibles
             /*if(restSurveillants>salles.get(index).getNombreSurveillant()){
@@ -125,5 +144,37 @@ public class PvServiceImp implements PvService{
 
 
 
+    }
+
+    @Override
+    public List<Salle> getFreeSalle(String time) {
+        List<Salle> salles=salleService.fetchAllSalle();
+        List<Salle> salleOcup=salleRepository.demandeDocByPersonne(time);
+
+        List<Salle> sallesFree =new ArrayList<>();
+
+        for (int i = 0; i < salles.size(); i++) {
+
+            Boolean isEptey=true;
+            Long salleid = salles.get(i).getId();
+            //System.out.println("totale salle id: "+salleid);
+            for (int j = 0; j < salleOcup.size(); j++) {
+               // System.out.println("salle occp id:"+salleOcup.get(j).getId());
+                if (salleid==salleOcup.get(j).getId()){
+                   // System.out.println("bhal bhal");
+                    isEptey=false;
+                    //sallesFree.add(salles.get(j));
+                }
+            }
+            if (isEptey){
+                //System.out.println("salle empty");
+                sallesFree.add(salles.get(i));
+            }else {
+                //System.out.println("salle not empty");
+            }
+
+        }
+
+        return sallesFree;
     }
 }
