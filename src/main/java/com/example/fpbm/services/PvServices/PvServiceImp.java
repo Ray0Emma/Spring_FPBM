@@ -3,11 +3,17 @@ package com.example.fpbm.services.PvServices;
 import com.example.fpbm.entities.*;
 import com.example.fpbm.entities.Module;
 import com.example.fpbm.modeles.Pv;
+import com.example.fpbm.repositories.EtudiantRepository;
+import com.example.fpbm.repositories.FiliereRepository;
+import com.example.fpbm.repositories.ModuleRepository;
+import com.example.fpbm.repositories.SemesterRepository;
+import com.example.fpbm.repositories.pvRepository.PvRepository;
 import com.example.fpbm.repositories.*;
 import com.example.fpbm.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +43,8 @@ public class PvServiceImp implements PvService{
 
     @Autowired
     private ModuleRepository moduleRepository;
+    @Autowired
+    private PvRepository pvRepository;
 
     @Autowired
     private SalleRepository salleRepository;
@@ -51,9 +59,13 @@ public class PvServiceImp implements PvService{
         return etudiantRepository.getEtudiantsByFiliere(f,s, m);
     }
 
+    @Override
+    public List<Pv> getAllPv() {
+        return pvRepository.findAll();
+    }
 
-
-    public List<Pv> makePv(String filiere,String semestre, String module, String time){
+    @Override
+    public List<Pv> makePv(String filiere, String semestre, String module, String time) {
         int nbEtudiantsCourants=0;
         int nbSurveillantsCourants=0;
 
@@ -74,7 +86,7 @@ public class PvServiceImp implements PvService{
         int index=0;
 
         //Le nombre des Surveillants qui pas encore affecter à une salle d'examen
-         //int restSurveillants=surveillants.size();
+        //int restSurveillants=surveillants.size();
 
         // rest sale
         int restSalles = salles.size();
@@ -85,13 +97,17 @@ public class PvServiceImp implements PvService{
 
         while(restEtud>0 && restSalles>0 ){
 
-            Pv pv=new Pv();
+            Pv pv = new Pv();
             pv.setLocal(salles.get(index).getName());
 
             pv.setModule(m.getName());
+            pv.setFilier(f.getName());
+            pv.setSemester(s.getName());
+            pv.setLocalDateTime(time);
             //distrubier les etudiants dans les salles disponibles
             if(restEtud>salles.get(index).getCapaciteEtudiant()){
                 pv.setEtudiants(etudiants.subList(nbEtudiantsCourants, (int) (salles.get(index).getCapaciteEtudiant()+nbEtudiantsCourants)));
+                List<Etudiant> etuds = etudiants.subList(nbEtudiantsCourants, (int) (salles.get(index).getCapaciteEtudiant()+nbEtudiantsCourants));
                 nbEtudiantsCourants+=salles.get(index).getCapaciteEtudiant();
                 System.out.println("salle id"+salles.get(index).getId());
                 System.out.println("salle time"+salles.get(index).getExamenTimes());
@@ -99,12 +115,21 @@ public class PvServiceImp implements PvService{
                 salles.get(index).setExamenTimes(timeList);
                 salleService.updateSalle(salles.get(index),salles.get(index).getId());
                 System.out.println("salle time 2"+salles.get(index).getExamenTimes());
+                for (Etudiant et:etuds
+                     ) {
+                    et.setPv(pv);
+                }
 
             }else{
                 pv.setEtudiants(etudiants.subList(nbEtudiantsCourants,etudiants.size()));
+                List<Etudiant> etuds = etudiants.subList(nbEtudiantsCourants,etudiants.size());
                 salles.get(index).setExamenTimes(timeList);
                 salleService.updateSalle(salles.get(index),salles.get(index).getId());
                 System.out.println("or salle id"+salles.get(index).getId());
+                for (Etudiant et:etuds
+                ) {
+                    et.setPv(pv);
+                }
             }
             //distrubier les surveillants dans les salles disponibles
             /*if(restSurveillants>salles.get(index).getNombreSurveillant()){
@@ -128,22 +153,13 @@ public class PvServiceImp implements PvService{
             index++;
 
             pvs.add(pv);
-
-
-
+            pvRepository.save(pv);
         }
         //si les salles ne sont pas suffisantes
         if(restEtud>0){
             System.out.println("affecter : "+restEtud+" étudinats à la salle X sont: "+etudiants.subList(nbEtudiantsCourants,etudiants.size()));
         }
-
-
-
-
         return pvs;
-
-
-
     }
 
     @Override
