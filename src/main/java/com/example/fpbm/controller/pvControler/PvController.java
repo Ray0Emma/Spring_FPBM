@@ -31,8 +31,8 @@ public class PvController {
     }
 
     @GetMapping("/{filiere}/{semestre}/{module}/{time}")
-    public List<Pv> makePv(@PathVariable String filiere,@PathVariable String semestre,@PathVariable String module,@PathVariable(name = "time") String time){
-            return  pvService.makePv(filiere,semestre,module,time);
+    public List<Pv> generatePvs(@PathVariable String filiere,@PathVariable String semestre,@PathVariable String module,@PathVariable(name = "time") String time){
+            return  pvService.generatePvs(filiere,semestre,module,time);
     }
 
     @GetMapping("/{time}")

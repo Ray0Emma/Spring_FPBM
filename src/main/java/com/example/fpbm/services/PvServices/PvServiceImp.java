@@ -139,13 +139,6 @@ public class PvServiceImp implements PvService{
                 pv.setSurveillants(null);
 
             }
-
-
-
-
-
-
-
             restSurveillants-=salles.get(index).getNombreSurveillant();
             restEtud -=salles.get(index).getCapaciteEtudiant();
             restSalles-= 1;
@@ -225,5 +218,18 @@ public class PvServiceImp implements PvService{
         }
 
         return surveillantsFree;
+    }
+
+    @Override
+    public List<Pv> generatePvs(String filiere, String semestre, String module, String time) {
+        List<Pv> pvsResult = pvRepository.getAllByFilierAndSemesterAndModuleAndLocalDateTime(filiere,semestre,module,time);
+        if (!pvsResult.isEmpty()){
+            System.out.println("I get an existe PV :::::::::::::");
+            return pvsResult;
+        }
+        else {
+            System.out.println("I get create new PV :::::::::::::");
+            return makePv(filiere, semestre, module, time);
+        }
     }
 }

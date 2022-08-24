@@ -15,4 +15,8 @@ public interface PvService {
      List<Salle> getFreeSalle(String time);
 
     List<Surveillant> getFreeSurveillant(String time);
+
+    List<Pv> generatePvs(String filiere, String semestre, String module, String time);
+
+
 }
