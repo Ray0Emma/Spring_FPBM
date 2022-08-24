@@ -16,7 +16,8 @@ public class PlanningController {
     @Autowired
     private PlanningService planningService;
     @GetMapping()
-    public List<TimeTable> allExamPlanning(@RequestBody String[] examDate){
+    public List<TimeTable> allExamPlanning(){
+        String[] examDate = {"12/01/2022","13/01/2022","14/01/2022","15/01/2022"};
         return planningService.examPlanning(examDate);
     }
 }

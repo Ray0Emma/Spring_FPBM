@@ -1,5 +1,6 @@
 package com.example.fpbm.entities;
 
+import com.example.fpbm.modeles.Pv;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -26,11 +27,16 @@ public class Etudiant extends Personne{
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany(targetEntity= ModuleGroup.class, mappedBy="etudiant")
     private Collection<ModuleGroup> moduleGroups;
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @ManyToOne(targetEntity = Pv.class,fetch = FetchType.EAGER)
+    private Pv pv;
 
-    public Etudiant(long id, String email, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone, String nbApogee, Filiere filiere, Collection<ModuleGroup> moduleGroups) {
+    public Etudiant(long id, String email, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone, String nbApogee, Filiere filiere, Collection<ModuleGroup> moduleGroups,Pv pv) {
         super(id, email, password, cin, cne, nom, prenom, dateDeNaissance, address, telephone);
         this.nbApogee = nbApogee;
         this.filiere = filiere;
         this.moduleGroups = moduleGroups;
+        this.pv = pv;
     }
 }
