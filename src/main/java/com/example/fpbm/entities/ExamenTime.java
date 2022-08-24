@@ -26,5 +26,7 @@ public class ExamenTime {
             inverseJoinColumns = @JoinColumn( name = "id" ) )
     private List<Salle> salles = new ArrayList<>();
 
+    @ManyToMany
+    private List<Surveillant> surveillants;
 
 }

@@ -7,6 +7,8 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Entity
@@ -29,14 +31,14 @@ public class Etudiant extends Personne{
     private Collection<ModuleGroup> moduleGroups;
     @JsonIgnore
     @ToString.Exclude @EqualsAndHashCode.Exclude
-    @ManyToOne(targetEntity = Pv.class,fetch = FetchType.EAGER)
-    private Pv pv;
+    @ManyToMany
+    private List<Pv> pvs;
 
-    public Etudiant(long id, String email, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone, String nbApogee, Filiere filiere, Collection<ModuleGroup> moduleGroups,Pv pv) {
+    public Etudiant(long id, String email, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone, String nbApogee, Filiere filiere, Collection<ModuleGroup> moduleGroups, List<Pv> pv) {
         super(id, email, password, cin, cne, nom, prenom, dateDeNaissance, address, telephone);
         this.nbApogee = nbApogee;
         this.filiere = filiere;
         this.moduleGroups = moduleGroups;
-        this.pv = pv;
+        this.pvs = pv;
     }
 }

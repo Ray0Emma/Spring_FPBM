@@ -99,21 +99,11 @@ public class DemoApplication implements CommandLineRunner {
 		Semester semester1 = semesterRepository.save(new Semester(1,"S1",null,filiere1));
 		Semester semester2 = semesterRepository.save(new Semester(2,"S2",null,filiere1));
 
-		ExamenTime examenTime1 = examenTimeRepository.save(new ExamenTime(1,"8", null));
-		ExamenTime examenTime2 = examenTimeRepository.save(new ExamenTime(2,"10",null));
-		ExamenTime examenTime3 = examenTimeRepository.save(new ExamenTime(3,"2",null));
-		ExamenTime examenTime4 = examenTimeRepository.save(new ExamenTime(4,"4",null));
+		ExamenTime examenTime1 = examenTimeRepository.save(new ExamenTime(1,"8", null, null));
+		ExamenTime examenTime2 = examenTimeRepository.save(new ExamenTime(2,"10",null, null));
+		ExamenTime examenTime3 = examenTimeRepository.save(new ExamenTime(3,"2",null, null));
+		ExamenTime examenTime4 = examenTimeRepository.save(new ExamenTime(4,"4",null, null));
 
-		List<ExamenTime> examenTimeList =new ArrayList<>();
-		examenTimeList.add(examenTime1);
-		examenTimeList.add(examenTime2);
-
-		List<ExamenTime> examenTimeList2 =new ArrayList<>();
-		examenTimeList2.add(examenTime3);
-		examenTimeList2.add(examenTime4);
-
-		List<ExamenTime> examenTimeList3 = new ArrayList<>();
-		examenTimeList3.add(examenTime4);
 
 
 		Salle salle1 = salleRepository.save(new Salle(1,"B01",16,1,null,null,null));
@@ -127,8 +117,8 @@ public class DemoApplication implements CommandLineRunner {
 
 		Module model1 = moduleRepository.save(new Module(1,"Spring","kk",null,semester1));
 
-		Surveillant surveillant1 = surveillantRepository.save(new Surveillant(1,"koliche","vd",null,professeur1));
-		Surveillant surveillant2 = surveillantRepository.save(new Surveillant(2,"robiz","we",null,professeur2));
-		Surveillant surveillant3 = surveillantRepository.save(new Surveillant(3,"mee","vvx",null,professeur3));
+		Surveillant surveillant1 = surveillantRepository.save(new Surveillant(1,"koliche","mohamed",null,professeur1, null,null));
+		Surveillant surveillant2 = surveillantRepository.save(new Surveillant(2,"robiz","ayoub",null,professeur2, null,null));
+		Surveillant surveillant3 = surveillantRepository.save(new Surveillant(3,"khadija","farah",null,professeur3, null,null));
 	}
 }
