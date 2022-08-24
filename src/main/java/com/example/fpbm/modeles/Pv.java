@@ -7,6 +7,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -21,8 +22,10 @@ public class Pv {
     private String semester;
     private String module;
     private String localDateTime;
-    //private List<Surveillant> surveillants;
     @ToString.Exclude @EqualsAndHashCode.Exclude
-    @OneToMany(targetEntity = Etudiant.class,mappedBy = "pv")
+    @ManyToMany
+    private List<Surveillant> surveillants;
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @ManyToMany
     private List<Etudiant> etudiants;
 }

@@ -52,6 +52,9 @@ public class PvServiceImp implements PvService{
     @Autowired
     private ExamenTimeRepository examenTimeRepository;
 
+    @Autowired
+    private SurveillantRepository surveillantRepository;
+
 
 
     @Override
@@ -76,7 +79,7 @@ public class PvServiceImp implements PvService{
         ExamenTime examenTime = examenTimeRepository.findByTime(time);
         System.out.println("time: "+examenTime.getTime());
         List<Pv> pvs=new ArrayList<Pv>();
-        List<Surveillant> surveillants=surveillantService.getSurveillantNames();
+        List<Surveillant> surveillants=getFreeSurveillant(time);
         System.out.println(f.getName()+"   "+s.getName()+"  "+m.getName());
         List<Etudiant> etudiants=etudiantService.getEtudiantsByFiliere(f.getName(), s.getName(),m.getName());
 
@@ -86,7 +89,7 @@ public class PvServiceImp implements PvService{
         int index=0;
 
         //Le nombre des Surveillants qui pas encore affecter à une salle d'examen
-        //int restSurveillants=surveillants.size();
+        int restSurveillants=surveillants.size();
 
         // rest sale
         int restSalles = salles.size();
@@ -95,6 +98,7 @@ public class PvServiceImp implements PvService{
         List<ExamenTime> timeList = new ArrayList<>();
         timeList.add(examenTime);
 
+        
         while(restEtud>0 && restSalles>0 ){
 
             Pv pv = new Pv();
@@ -107,45 +111,42 @@ public class PvServiceImp implements PvService{
             //distrubier les etudiants dans les salles disponibles
             if(restEtud>salles.get(index).getCapaciteEtudiant()){
                 pv.setEtudiants(etudiants.subList(nbEtudiantsCourants, (int) (salles.get(index).getCapaciteEtudiant()+nbEtudiantsCourants)));
-                List<Etudiant> etuds = etudiants.subList(nbEtudiantsCourants, (int) (salles.get(index).getCapaciteEtudiant()+nbEtudiantsCourants));
                 nbEtudiantsCourants+=salles.get(index).getCapaciteEtudiant();
-                System.out.println("salle id"+salles.get(index).getId());
-                System.out.println("salle time"+salles.get(index).getExamenTimes());
-                System.out.println("list time"+timeList);
                 salles.get(index).setExamenTimes(timeList);
                 salleService.updateSalle(salles.get(index),salles.get(index).getId());
-                System.out.println("salle time 2"+salles.get(index).getExamenTimes());
-                for (Etudiant et:etuds
-                     ) {
-                    et.setPv(pv);
-                }
+
 
             }else{
                 pv.setEtudiants(etudiants.subList(nbEtudiantsCourants,etudiants.size()));
-                List<Etudiant> etuds = etudiants.subList(nbEtudiantsCourants,etudiants.size());
                 salles.get(index).setExamenTimes(timeList);
                 salleService.updateSalle(salles.get(index),salles.get(index).getId());
-                System.out.println("or salle id"+salles.get(index).getId());
-                for (Etudiant et:etuds
-                ) {
-                    et.setPv(pv);
-                }
             }
             //distrubier les surveillants dans les salles disponibles
-            /*if(restSurveillants>salles.get(index).getNombreSurveillant()){
-                pv.setSurveillants(surveillants.subList(nbSurveillantsCourants, (salles.get(index).getNombreSurveillant()+nbSurveillantsCourants)));
-                nbSurveillantsCourants+=salles.get(index).getNombreSurveillant();
-            }
-            else{
-                pv.setSurveillants(surveillants.subList(nbSurveillantsCourants,surveillants.size()));
+
+            if (restSurveillants>0){
+                if(restSurveillants>salles.get(index).getNombreSurveillant()){
+                    pv.setSurveillants(surveillants.subList(nbSurveillantsCourants, (salles.get(index).getNombreSurveillant()+nbSurveillantsCourants)));
+                    nbSurveillantsCourants+=salles.get(index).getNombreSurveillant();
+                    surveillants.get(index).setExamenTimes(timeList);
+                    surveillantService.updateSurveillant(surveillants.get(index),surveillants.get(index).getId());
+                }
+                else{
+                    pv.setSurveillants(surveillants.subList(nbSurveillantsCourants,surveillants.size()));
+                    surveillants.get(index).setExamenTimes(timeList);
+                    surveillantService.updateSurveillant(surveillants.get(index),surveillants.get(index).getId());
+                }
+            }else {
+                pv.setSurveillants(null);
 
             }
 
-             */
 
 
 
-            //restSurveillants-=salles.get(index).getNombreSurveillant();
+
+
+
+            restSurveillants-=salles.get(index).getNombreSurveillant();
             restEtud -=salles.get(index).getCapaciteEtudiant();
             restSalles-= 1;
             //restSurveillants -= salles.get(index).getNombreSurveillant();
@@ -192,5 +193,37 @@ public class PvServiceImp implements PvService{
         }
 
         return sallesFree;
+    }
+
+    @Override
+    public List<Surveillant> getFreeSurveillant(String time) {
+        List<Surveillant> surveillants=surveillantService.fetchAllSurveillant();
+        List<Surveillant> surveillantsOcup=surveillantRepository.getSurveillantOcup(time);
+
+        List<Surveillant> surveillantsFree =new ArrayList<>();
+
+        for (int i = 0; i < surveillants.size(); i++) {
+
+            Boolean isEptey=true;
+            Long surveillantid = surveillants.get(i).getId();
+            //System.out.println("totale salle id: "+salleid);
+            for (int j = 0; j < surveillantsOcup.size(); j++) {
+                // System.out.println("salle occp id:"+salleOcup.get(j).getId());
+                if (surveillantid==surveillantsOcup.get(j).getId()){
+                    // System.out.println("bhal bhal");
+                    isEptey=false;
+                    //sallesFree.add(salles.get(j));
+                }
+            }
+            if (isEptey){
+                //System.out.println("salle empty");
+                surveillantsFree.add(surveillants.get(i));
+            }else {
+                //System.out.println("salle not empty");
+            }
+
+        }
+
+        return surveillantsFree;
     }
 }

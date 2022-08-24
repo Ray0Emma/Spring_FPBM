@@ -2,7 +2,9 @@ package com.example.fpbm.controller.pvControler;
 
 import com.example.fpbm.entities.Etudiant;
 import com.example.fpbm.entities.Salle;
+import com.example.fpbm.entities.Surveillant;
 import com.example.fpbm.modeles.Pv;
+import com.example.fpbm.repositories.SurveillantRepository;
 import com.example.fpbm.services.PvServices.PvService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,9 @@ import java.util.List;
 public class PvController {
     @Autowired
     private PvService pvService;
+
+    @Autowired
+    private SurveillantRepository surveillantRepository;
 
     @GetMapping("all")
     public List<Pv> getAllPv(){
@@ -31,7 +36,7 @@ public class PvController {
     }
 
     @GetMapping("/{time}")
-    public List<Salle> getFreeSalle(@PathVariable(name = "time") String time){
-        return pvService.getFreeSalle(time);
+    public List<Surveillant> getFreeSurveillant(@PathVariable(name = "time") String time){
+        return pvService.getFreeSurveillant(time);
     }
 }

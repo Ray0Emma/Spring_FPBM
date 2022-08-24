@@ -1,10 +1,12 @@
 package com.example.fpbm.entities;
 
 
+import com.example.fpbm.modeles.Pv;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "surveillant")
@@ -30,5 +32,15 @@ public class Surveillant {
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity=Professeur.class)
     private Professeur professeur;
+
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @ManyToMany
+    private List<ExamenTime> examenTimes;
+
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @ManyToMany
+    private List<Pv> pvs;
 
 }
