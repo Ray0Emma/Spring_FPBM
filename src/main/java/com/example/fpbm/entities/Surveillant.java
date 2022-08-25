@@ -28,15 +28,16 @@ public class Surveillant {
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity=Examen.class)
     private Examen examen;
+    
     @JsonIgnore
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity=Professeur.class)
     private Professeur professeur;
 
-    @JsonIgnore
+
     @ToString.Exclude @EqualsAndHashCode.Exclude
-    @ManyToMany
-    private List<ExamenTime> examenTimes;
+    @ManyToMany(mappedBy = "surveillants")
+    private List<ExamenTime> examenTimes;;
 
     @JsonIgnore
     @ToString.Exclude @EqualsAndHashCode.Exclude

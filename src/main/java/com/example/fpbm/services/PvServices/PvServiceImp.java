@@ -102,6 +102,8 @@ public class PvServiceImp implements PvService{
         while(restEtud>0 && restSalles>0 ){
 
             Pv pv = new Pv();
+            ExamenTime examenTime1 = new ExamenTime();
+
             pv.setLocal(salles.get(index).getName());
 
             pv.setModule(m.getName());
@@ -112,13 +114,17 @@ public class PvServiceImp implements PvService{
             if(restEtud>salles.get(index).getCapaciteEtudiant()){
                 pv.setEtudiants(etudiants.subList(nbEtudiantsCourants, (int) (salles.get(index).getCapaciteEtudiant()+nbEtudiantsCourants)));
                 nbEtudiantsCourants+=salles.get(index).getCapaciteEtudiant();
-                salles.get(index).setExamenTimes(timeList);
+                List<ExamenTime> examenTimes = examenTimeRepository.getSalleTimes(salles.get(index).getId());
+                examenTimes.add(examenTime);
+                salles.get(index).setExamenTimes(examenTimes);
                 salleService.updateSalle(salles.get(index),salles.get(index).getId());
 
 
             }else{
                 pv.setEtudiants(etudiants.subList(nbEtudiantsCourants,etudiants.size()));
-                salles.get(index).setExamenTimes(timeList);
+                List<ExamenTime> examenTimes = examenTimeRepository.getSalleTimes(salles.get(index).getId());
+                examenTimes.add(examenTime);
+                salles.get(index).setExamenTimes(examenTimes);
                 salleService.updateSalle(salles.get(index),salles.get(index).getId());
             }
             //distrubier les surveillants dans les salles disponibles
@@ -126,14 +132,27 @@ public class PvServiceImp implements PvService{
             if (restSurveillants>0){
                 if(restSurveillants>salles.get(index).getNombreSurveillant()){
                     pv.setSurveillants(surveillants.subList(nbSurveillantsCourants, (salles.get(index).getNombreSurveillant()+nbSurveillantsCourants)));
+                    examenTime1.setSurveillants(surveillants.subList(nbSurveillantsCourants, (salles.get(index).getNombreSurveillant()+nbSurveillantsCourants)));
+                    examenTime1.setIdTime(examenTime.getIdTime());
+                    examenTime1.setSalles(examenTime.getSalles());
+                    examenTime1.setTime(examenTime.getTime());
+                    //examenTime.setSurveillants(surveillants2);
                     nbSurveillantsCourants+=salles.get(index).getNombreSurveillant();
-                    surveillants.get(index).setExamenTimes(timeList);
-                    surveillantService.updateSurveillant(surveillants.get(index),surveillants.get(index).getId());
+                    //surveillants.get(index).setExamenTimes(timeList);
+                    System.out.println("srv "+examenTime1);
+                    examenTimeRepository.save(examenTime1);
                 }
                 else{
                     pv.setSurveillants(surveillants.subList(nbSurveillantsCourants,surveillants.size()));
-                    surveillants.get(index).setExamenTimes(timeList);
-                    surveillantService.updateSurveillant(surveillants.get(index),surveillants.get(index).getId());
+                    examenTime1.setSurveillants(surveillants.subList(nbSurveillantsCourants, (salles.get(index).getNombreSurveillant()+nbSurveillantsCourants)));
+                    examenTime1.setIdTime(examenTime.getIdTime());
+                    examenTime1.setSalles(examenTime.getSalles());
+                    examenTime1.setTime(examenTime.getTime());
+                    //examenTime.setSurveillants(surveillants2);
+                    nbSurveillantsCourants+=salles.get(index).getNombreSurveillant();
+                    //surveillants.get(index).setExamenTimes(timeList);
+                    System.out.println("srv "+examenTime1);
+                    examenTimeRepository.save(examenTime1);
                 }
             }else {
                 pv.setSurveillants(null);
@@ -142,7 +161,7 @@ public class PvServiceImp implements PvService{
             restSurveillants-=salles.get(index).getNombreSurveillant();
             restEtud -=salles.get(index).getCapaciteEtudiant();
             restSalles-= 1;
-            //restSurveillants -= salles.get(index).getNombreSurveillant();
+            restSurveillants -= salles.get(index).getNombreSurveillant();
 
             index++;
 
