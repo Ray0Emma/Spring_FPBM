@@ -104,8 +104,8 @@ public class DemoApplication implements CommandLineRunner {
 		ExamenTime examenTime3 = examenTimeRepository.save(new ExamenTime(3,"2",null, null));
 		ExamenTime examenTime4 = examenTimeRepository.save(new ExamenTime(4,"4",null, null));
 
-
-
+		List<ExamenTime> examenTimes = new ArrayList<>();
+		examenTimes.add(examenTime1);
 
 
 		Salle salle1 = salleRepository.save(new Salle(1,"B01",16,1,null,null,null));
