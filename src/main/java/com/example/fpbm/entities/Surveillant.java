@@ -34,14 +34,23 @@ public class Surveillant {
     @ManyToOne(targetEntity=Professeur.class)
     private Professeur professeur;
 
-
+    @JsonIgnore
     @ToString.Exclude @EqualsAndHashCode.Exclude
-    @ManyToMany(mappedBy = "surveillants")
-    private List<ExamenTime> examenTimes;;
+    @ManyToMany
+    @JoinTable(
+            name = "Surveillant_ExamenTime",
+            joinColumns = @JoinColumn(name = "surveillant_id"),
+            inverseJoinColumns = @JoinColumn(name = "examenTime_id"))
+    private List<ExamenTime> examenTimes;
+
 
     @JsonIgnore
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToMany
+    @JoinTable(
+            name = "Pv_Surveillant",
+            joinColumns = @JoinColumn(name = "surveillant_id"),
+            inverseJoinColumns = @JoinColumn(name = "pv_id"))
     private List<Pv> pvs;
 
 }

@@ -22,10 +22,21 @@ public class Pv {
     private String semester;
     private String module;
     private String localDateTime;
+
+
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToMany
+    @JoinTable(
+            name = "Pv_Surveillant",
+            joinColumns = @JoinColumn(name = "pv_id"),
+            inverseJoinColumns = @JoinColumn(name = "surveillant_id"))
     private List<Surveillant> surveillants;
+
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToMany
+    @JoinTable(
+            name = "Pv_Etudiant",
+            joinColumns = @JoinColumn(name = "pv_id"),
+            inverseJoinColumns = @JoinColumn(name = "etudiant_id"))
     private List<Etudiant> etudiants;
 }

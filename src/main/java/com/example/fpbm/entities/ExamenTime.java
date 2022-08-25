@@ -26,7 +26,7 @@ public class ExamenTime {
             inverseJoinColumns = @JoinColumn( name = "id" ) )
     private List<Salle> salles = new ArrayList<>();
 
-    @JsonIgnore
+
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToMany
     @JoinTable(

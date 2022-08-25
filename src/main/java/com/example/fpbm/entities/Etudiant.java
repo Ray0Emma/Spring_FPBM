@@ -32,6 +32,10 @@ public class Etudiant extends Personne{
     @JsonIgnore
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToMany
+    @JoinTable(
+            name = "Pv_Etudiant",
+            joinColumns = @JoinColumn(name = "etudiant_id"),
+            inverseJoinColumns = @JoinColumn(name = "pv_id"))
     private List<Pv> pvs;
 
     public Etudiant(long id, String email, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone, String nbApogee, Filiere filiere, Collection<ModuleGroup> moduleGroups, List<Pv> pv) {

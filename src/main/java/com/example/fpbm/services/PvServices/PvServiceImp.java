@@ -102,7 +102,7 @@ public class PvServiceImp implements PvService{
         while(restEtud>0 && restSalles>0 ){
 
             Pv pv = new Pv();
-            ExamenTime examenTime1 = new ExamenTime();
+            //ExamenTime examenTime1 = new ExamenTime();
 
             pv.setLocal(salles.get(index).getName());
 
@@ -132,27 +132,28 @@ public class PvServiceImp implements PvService{
             if (restSurveillants>0){
                 if(restSurveillants>salles.get(index).getNombreSurveillant()){
                     pv.setSurveillants(surveillants.subList(nbSurveillantsCourants, (salles.get(index).getNombreSurveillant()+nbSurveillantsCourants)));
-                    examenTime1.setSurveillants(surveillants.subList(nbSurveillantsCourants, (salles.get(index).getNombreSurveillant()+nbSurveillantsCourants)));
-                    examenTime1.setIdTime(examenTime.getIdTime());
-                    examenTime1.setSalles(examenTime.getSalles());
-                    examenTime1.setTime(examenTime.getTime());
-                    //examenTime.setSurveillants(surveillants2);
+                    List<Surveillant> surveillantList =surveillants.subList(nbSurveillantsCourants, (salles.get(index).getNombreSurveillant()+nbSurveillantsCourants));
+                    for (Surveillant sv: surveillantList
+                         ) {
+                        List<ExamenTime> times = examenTimeRepository.getSurveillantTimes(sv.getId());
+                        times.add(examenTime);
+                        sv.setExamenTimes(times);
+                        surveillantService.updateSurveillant(sv,sv.getId());
+                    }
                     nbSurveillantsCourants+=salles.get(index).getNombreSurveillant();
-                    //surveillants.get(index).setExamenTimes(timeList);
-                    System.out.println("srv "+examenTime1);
-                    examenTimeRepository.save(examenTime1);
                 }
                 else{
                     pv.setSurveillants(surveillants.subList(nbSurveillantsCourants,surveillants.size()));
-                    examenTime1.setSurveillants(surveillants.subList(nbSurveillantsCourants, (salles.get(index).getNombreSurveillant()+nbSurveillantsCourants)));
-                    examenTime1.setIdTime(examenTime.getIdTime());
-                    examenTime1.setSalles(examenTime.getSalles());
-                    examenTime1.setTime(examenTime.getTime());
-                    //examenTime.setSurveillants(surveillants2);
+                    List<Surveillant> surveillantList =surveillants.subList(nbSurveillantsCourants,surveillants.size());
+                    for (Surveillant sv: surveillantList
+                    ) {
+                        List<ExamenTime> times = examenTimeRepository.getSurveillantTimes(sv.getId());
+                        times.add(examenTime);
+                        sv.setExamenTimes(times);
+                        surveillantService.updateSurveillant(sv,sv.getId());
+                    }
                     nbSurveillantsCourants+=salles.get(index).getNombreSurveillant();
-                    //surveillants.get(index).setExamenTimes(timeList);
-                    System.out.println("srv "+examenTime1);
-                    examenTimeRepository.save(examenTime1);
+
                 }
             }else {
                 pv.setSurveillants(null);
