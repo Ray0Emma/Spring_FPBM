@@ -106,6 +106,8 @@ public class DemoApplication implements CommandLineRunner {
 
 
 
+
+
 		Salle salle1 = salleRepository.save(new Salle(1,"B01",16,1,null,null,null));
 		Salle salle2 = salleRepository.save(new Salle(2,"B02",3,1,null,null,null));
 		Salle salle3 = salleRepository.save(new Salle(3,"B03",3,1,null,null,null));
@@ -116,6 +118,7 @@ public class DemoApplication implements CommandLineRunner {
 
 
 		Module model1 = moduleRepository.save(new Module(1,"Spring","kk",null,semester1));
+		Module model2 = moduleRepository.save(new Module(2,"VueJs","kk",null,semester1));
 
 		Surveillant surveillant1 = surveillantRepository.save(new Surveillant(1,"koliche","mohamed",null,professeur1, null,null));
 		Surveillant surveillant2 = surveillantRepository.save(new Surveillant(2,"robiz","ayoub",null,professeur2, null,null));
