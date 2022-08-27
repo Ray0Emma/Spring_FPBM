@@ -1,5 +1,6 @@
 package com.example.fpbm.services.PvServices;
 
+import com.example.fpbm.components.UploadUtil;
 import com.example.fpbm.entities.*;
 import com.example.fpbm.entities.Module;
 import com.example.fpbm.modeles.Pv;
@@ -10,12 +11,22 @@ import com.example.fpbm.repositories.SemesterRepository;
 import com.example.fpbm.repositories.pvRepository.PvRepository;
 import com.example.fpbm.repositories.*;
 import com.example.fpbm.services.*;
+import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toMap;
 
 @Service
 public class PvServiceImp implements PvService{
@@ -25,6 +36,9 @@ public class PvServiceImp implements PvService{
     private SurveillantService surveillantService;
     @Autowired
     private SalleService salleService;
+
+    @Autowired
+    private UploadUtil uploadUtil;
 
     @Autowired
     private EtudiantService etudiantService;
@@ -105,7 +119,6 @@ public class PvServiceImp implements PvService{
             //ExamenTime examenTime1 = new ExamenTime();
 
             pv.setLocal(salles.get(index).getName());
-
             pv.setModule(m.getName());
             pv.setFilier(f.getName());
             pv.setSemester(s.getName());
@@ -252,4 +265,49 @@ public class PvServiceImp implements PvService{
             return makePv(filiere, semestre, module, time);
         }
     }
+
+    @Override
+    public List<Map<String, String>> convertXslToMap(MultipartFile file) throws Exception {
+        Path tempDir = Files.createTempDirectory("");
+
+        File tempFile = tempDir.resolve(file.getOriginalFilename()).toFile();
+
+        file.transferTo(tempFile);
+
+        Workbook workbook = WorkbookFactory.create(tempFile);
+
+        Sheet sheet = workbook.getSheetAt(0);
+
+        Supplier<Stream<Row>> rowStreamSupplier = uploadUtil.getRowStreamSupplier(sheet);
+
+        Row headerRow = rowStreamSupplier.get().findFirst().get();
+
+        List<String> headerCells = uploadUtil.getStream(headerRow)
+                .map(Cell::getNumericCellValue)
+                .map(String::valueOf)
+                .collect(Collectors.toList());
+
+        int colCount = headerCells.size();
+
+        return rowStreamSupplier.get()
+                .skip(1)
+                .map(row -> {
+
+                    List<String> cellList = uploadUtil.getStream(row)
+                            .map(Cell::getStringCellValue)
+                            .collect(Collectors.toList());
+
+                    return uploadUtil.cellIteratorSupplier(colCount)
+                            .get()
+                            .collect(toMap(headerCells::get, cellList::get));
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Pv> xslToPvs(MultipartFile file) throws Exception {
+        return null;
+    }
+
+
 }
