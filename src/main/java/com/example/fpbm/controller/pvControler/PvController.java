@@ -2,23 +2,28 @@ package com.example.fpbm.controller.pvControler;
 
 import com.example.fpbm.entities.Etudiant;
 import com.example.fpbm.entities.ExamenTime;
-import com.example.fpbm.entities.Salle;
 import com.example.fpbm.entities.Surveillant;
 import com.example.fpbm.modeles.Pv;
 import com.example.fpbm.repositories.ExamenTimeRepository;
-import com.example.fpbm.repositories.SurveillantRepository;
+import com.example.fpbm.services.ExcelServices.ProfesseurExcelImport;
+import com.example.fpbm.services.ExcelServices.PvExcelImpl;
 import com.example.fpbm.services.PvServices.PvService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/pv")
 public class PvController {
     @Autowired
     private PvService pvService;
+    @Autowired
+    private PvExcelImpl pvExcelpv;
 
    @Autowired
    private ExamenTimeRepository examenTimeRepository;
@@ -44,5 +49,28 @@ public class PvController {
     @GetMapping("/salleTimes/{id}")
     public List<ExamenTime> getSalleTimes(@PathVariable(name = "id") Long id){
         return examenTimeRepository.getSurveillantTimes(id);
+    }
+
+    @SneakyThrows
+    @PostMapping(value = "/xmap/pv", consumes = "multipart/form-data")
+    public void convertXslToMap(@RequestParam(name = "file") MultipartFile file){
+        if(file.isEmpty()) {
+            System.out.println(":::::::::::::::::::: Empty File ::::::::::::::::::");
+            return;
+        }
+        System.out.println(":::::::::::::::::::: Converting File ::::::::::::::::::");
+        pvService.convertXslToMap(file);
+    }
+
+    @PostMapping(path="/uploadFile")
+//    @ResponseBody
+    public String importTransactionsFromExcelToDb(@RequestParam("file") List<MultipartFile> file) {
+        if(file.isEmpty()){
+            System.out.println("Empty File");
+            return "empty";
+        }
+        pvExcelpv.importToDb(file);
+        return "redirect:/";
+
     }
 }
