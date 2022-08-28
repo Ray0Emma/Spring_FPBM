@@ -52,7 +52,8 @@ public class PvController {
     }
 
     @SneakyThrows
-    @PostMapping(value = "/xmap/pv", consumes = "multipart/form-data")
+//    @RequestMapping(value = "/xmap/pv", method = RequestMethod.POST, consumes = "multipart/form-data")
+    @PostMapping(path = "/xmap/pv")
     public void convertXslToMap(@RequestParam(name = "file") MultipartFile file){
         if(file.isEmpty()) {
             System.out.println(":::::::::::::::::::: Empty File ::::::::::::::::::");
