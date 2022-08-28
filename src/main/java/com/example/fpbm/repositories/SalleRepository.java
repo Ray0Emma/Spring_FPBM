@@ -1,5 +1,6 @@
 package com.example.fpbm.repositories;
 
+import com.example.fpbm.entities.ExamenTime;
 import com.example.fpbm.entities.Salle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +15,8 @@ public interface SalleRepository extends JpaRepository<Salle, Long> {
 
     @Query("select s from Salle s join s.examenTimes ex where ex.time=:time")
     public List<Salle> demandeDocByPersonne(@PathVariable(name = "time") String time);
+
+    List<Salle> getAllByExamenTimesNotContains(ExamenTime examenTime);
 
 
 

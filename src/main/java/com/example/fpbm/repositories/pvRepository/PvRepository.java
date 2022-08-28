@@ -1,7 +1,10 @@
 package com.example.fpbm.repositories.pvRepository;
 
+import com.example.fpbm.entities.Etudiant;
+import com.example.fpbm.entities.Surveillant;
 import com.example.fpbm.modeles.Pv;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,5 +13,11 @@ import java.util.List;
 public interface PvRepository extends JpaRepository<Pv, Long> {
 
     List<Pv> getAllByFilierAndSemesterAndModuleAndLocalDateTime(String filiere, String semestre, String module, String time);
+    List<Pv> getByEtudiants(Etudiant etudiants);
+
+    List<Pv> getBySurveillants(Surveillant surveillant);
+
+    //@Query(value = "select p from Pv p join p.etudiants e where p.etudiants = e and e=?1")
+    //List<Pv> getEtudian(Etudiant etudiants);
 
 }

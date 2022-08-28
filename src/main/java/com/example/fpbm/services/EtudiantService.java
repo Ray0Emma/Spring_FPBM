@@ -19,4 +19,6 @@ public interface EtudiantService {
     List<Etudiant> getEtudiantsByFiliere(String f,String s,String m);
 
     void saveAll(List<Etudiant> etudiants);
+
+    Etudiant getEtudientByCin(String cin);
 }

@@ -47,4 +47,9 @@ public class EtudiantServiceImpl implements EtudiantService{
     public void saveAll(List<Etudiant> etudiants) {
         etudiantRepository.saveAll(etudiants);
     }
+
+    @Override
+    public Etudiant getEtudientByCin(String cin) {
+        return etudiantRepository.getEtudiantByCin(cin);
+    }
 }
