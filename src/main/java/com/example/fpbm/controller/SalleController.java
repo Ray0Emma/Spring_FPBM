@@ -1,5 +1,7 @@
 package com.example.fpbm.controller;
+import com.example.fpbm.entities.ExamenTime;
 import com.example.fpbm.entities.Salle;
+import com.example.fpbm.repositories.ExamenTimeRepository;
 import com.example.fpbm.repositories.SalleRepository;
 import com.example.fpbm.services.SalleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class SalleController {
 
     @Autowired
     private SalleRepository salleRepository;
+    @Autowired
+    private ExamenTimeRepository examenTimeRepository;
     @GetMapping()
     public List<Salle> fetchAllSalle(){
         return salleService.fetchAllSalle();
@@ -46,5 +50,12 @@ public class SalleController {
     @GetMapping("/occuper/{time}")
     public List<Salle> fetchSalle(@PathVariable(name = "time") String time){
         return salleRepository.demandeDocByPersonne(time);
+    }
+
+    @GetMapping("/salle/time/{time}")
+    public List<Salle> getAllByExamenTimesNotContains(@PathVariable(name = "time") String time){
+        ExamenTime examenTime = examenTimeRepository.findByTime(time);
+        return salleRepository.getAllByExamenTimesNotContains(examenTime);
+
     }
 }

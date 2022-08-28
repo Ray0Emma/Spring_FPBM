@@ -61,9 +61,16 @@ public class PvController {
         }
         System.out.println(":::::::::::::::::::: Converting File ::::::::::::::::::");
         pvService.convertXslToMap(file);
+        System.out.println(":::::::::::::::::::: Fenished Converting File ::::::::::::::::::");
     }
 
-    @PostMapping(path="/uploadFile")
+    @GetMapping(path = "/etudient/{cin}")
+    public List<Pv> getPvsByEtudent(@PathVariable(name = "cin") String cin){
+        return pvService.getPvByEtudient(cin);
+    }
+
+
+    @PostMapping(path="/upload")
 //    @ResponseBody
     public String importTransactionsFromExcelToDb(@RequestParam("file") List<MultipartFile> file) {
         if(file.isEmpty()){

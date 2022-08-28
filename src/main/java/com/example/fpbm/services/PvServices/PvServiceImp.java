@@ -89,11 +89,13 @@ public class PvServiceImp implements PvService{
         Filiere f=  filiereRepository.findByName(filiere);
         Semester s= semesterRepository.findByName(semestre);
         Module m= moduleRepository.findByName(module);
-        List<Salle> salles=getFreeSalle(time);
+
         ExamenTime examenTime = examenTimeRepository.findByTime(time);
+        List<Salle> salles=salleRepository.getAllByExamenTimesNotContains(examenTime);
+
         System.out.println("time: "+examenTime.getTime());
         List<Pv> pvs=new ArrayList<Pv>();
-        List<Surveillant> surveillants=getFreeSurveillant(time);
+        List<Surveillant> surveillants= surveillantRepository.getAllByExamenTimesNotContains(examenTime);
         System.out.println(f.getName()+"   "+s.getName()+"  "+m.getName());
         List<Etudiant> etudiants=etudiantService.getEtudiantsByFiliere(f.getName(), s.getName(),m.getName());
 
@@ -268,7 +270,7 @@ public class PvServiceImp implements PvService{
 
     @Override
     public List<Map<String, String>> convertXslToMap(MultipartFile file) throws Exception {
-        System.out.println(":::::::::::::::::::: Converting File ::::::::::::::::::");
+        System.out.println(":::::::::::::::::::: Converting File is Start ::::::::::::::::::");
         Path tempDir = Files.createTempDirectory("");
 
         File tempFile = tempDir.resolve(file.getOriginalFilename()).toFile();
@@ -284,7 +286,7 @@ public class PvServiceImp implements PvService{
         Row headerRow = rowStreamSupplier.get().findFirst().get();
 
         List<String> headerCells = uploadUtil.getStream(headerRow)
-                .map(Cell::getNumericCellValue)
+                .map(Cell::getStringCellValue)
                 .map(String::valueOf)
                 .collect(Collectors.toList());
 
@@ -308,6 +310,12 @@ public class PvServiceImp implements PvService{
     @Override
     public List<Pv> xslToPvs(MultipartFile file) throws Exception {
         return null;
+    }
+
+    @Override
+    public List<Pv> getPvByEtudient(String etudiantCin) {
+        Etudiant etudiant = etudiantService.getEtudientByCin(etudiantCin);
+        return pvRepository.getByEtudiants(etudiant);
     }
 
 

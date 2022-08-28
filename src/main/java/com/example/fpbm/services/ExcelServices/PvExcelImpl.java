@@ -1,6 +1,7 @@
 package com.example.fpbm.services.ExcelServices;
 
 import com.example.fpbm.entities.Professeur;
+import com.example.fpbm.modeles.Pv;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -20,7 +21,7 @@ import java.util.List;
 public class PvExcelImpl {
     public void importToDb(List<MultipartFile> multipartfiles) {
         if (!multipartfiles.isEmpty()) {
-            List<Professeur> professeurs = new ArrayList<>();
+            List<Pv> pvs = new ArrayList<>();
             DataFormatter formatter = new DataFormatter();
             multipartfiles.forEach(multipartfile -> {
                 try {
@@ -29,40 +30,38 @@ public class PvExcelImpl {
                     XSSFSheet sheet = workBook.getSheetAt(0);
                     // looping through each row
                     for (int rowIndex = 0; rowIndex < getNumberOfNonEmptyCells(sheet, 0) ; rowIndex++) {
+                        Pv pv = new Pv();
                         // current row
                         XSSFRow row = sheet.getRow(rowIndex);
                         // skip the first row because it is a header row
                         if (rowIndex == 0) {
                             continue;
                         }
-                        String email = row.getCell(0).getStringCellValue();
-                        String password = row.getCell(1).getStringCellValue();
-                        String address = row.getCell(2).getStringCellValue();
-                        String cin = row.getCell(3).getStringCellValue();
-                        String cne = row.getCell(4).getStringCellValue();
-                        System.out.println(formatter.formatCellValue(row.getCell(5)));
-                        String myDate = String.valueOf(formatter.formatCellValue(row.getCell(5)));
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                        Date birthdate =  sdf.parse(myDate);
-                        String nom = row.getCell(6).getStringCellValue();
-                        String prenom = row.getCell(7).getStringCellValue();
-                        String tel = formatter.formatCellValue(row.getCell(8));
-                        String grade = formatter.formatCellValue(row.getCell(9));
-                        Long lieudetravail= (long) row.getCell(10).getNumericCellValue();
-                        Long extern= (long) row.getCell(11).getNumericCellValue();
-
-                        System.out.println("Data::::"+password+cin+cin+"::::::::::::::::::");
+                        String dateSessionRattrapage = row.getCell(0).getStringCellValue();
+                        String filier = row.getCell(1).getStringCellValue();
+                        String semester = row.getCell(2).getStringCellValue();
+                        String section = row.getCell(3).getStringCellValue();
+                        String module = row.getCell(4).getStringCellValue();
+                        String responsableDeModule = row.getCell(5).getStringCellValue();
+                        String heur = row.getCell(6).getStringCellValue();
+                        System.out.println("::::::::::::::::: Result index :"+rowIndex+":::::::::::::::::::::::::::::");
+                        System.out.println("0)-Session Date::::"+dateSessionRattrapage+"::::::::::::::::::/n/n");
+                        System.out.println("1)-Filier::::"+filier+"::::::::::::::::::/n/n");
+                        System.out.println("2)-Semester::::"+semester+"::::::::::::::::::/n/n");
+                        System.out.println("3)-Section::::"+section+"::::::::::::::::::/n/n");
+                        System.out.println("4)-Module::::"+module+"::::::::::::::::::/n/n");
+                        System.out.println("4)-Responsable de module::::"+responsableDeModule+"::::::::::::::::::/n/n");
+                        System.out.println("4)-Heur::::"+heur+"::::::::::::::::::/n/n");
+                        System.out.println("!!!!!!!!!!!!!!!!!!!!!! End of Result !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        pvs.add(pv);
 
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
             });
 
-            if (!professeurs.isEmpty()) {
+            if (!pvs.isEmpty()) {
                 // save to database
                 System.out.println("Succes !!!!");
             }

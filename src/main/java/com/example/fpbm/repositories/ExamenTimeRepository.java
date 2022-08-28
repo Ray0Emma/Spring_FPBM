@@ -22,4 +22,5 @@ public interface ExamenTimeRepository extends JpaRepository<ExamenTime, Long> {
 
     @Query("select ex from ExamenTime ex join ex.surveillants s where s.id=:id")
     public List<ExamenTime> getSurveillantTimes(@PathVariable(name = "id") Long id);
+
 }

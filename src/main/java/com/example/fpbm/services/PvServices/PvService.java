@@ -25,4 +25,6 @@ public interface PvService {
 
     List<Pv> xslToPvs(MultipartFile file)throws Exception;
 
+    List<Pv> getPvByEtudient(String etudiantCin);
+
 }
