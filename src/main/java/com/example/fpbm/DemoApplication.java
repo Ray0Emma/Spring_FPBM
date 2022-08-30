@@ -160,8 +160,23 @@ public class DemoApplication implements CommandLineRunner {
 		etudiantRepository.save(new Etudiant(69, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere7, null,null));
 
 		// TODO: Filier in semester should be a collection :
-		Semester semester1 = semesterRepository.save(new Semester(1,"S1",null,filiere1));
-		Semester semester2 = semesterRepository.save(new Semester(2,"S2",null,filiere7));
+		Semester semester1 = semesterRepository.save(new Semester(1,"S1_"+filiere1.getName(),null,filiere1));
+		Semester semester2 = semesterRepository.save(new Semester(2,"S1_"+filiere2.getName(),null,filiere2));
+		Semester semester3 = semesterRepository.save(new Semester(3,"S1_"+filiere3.getName(),null,filiere3));
+		Semester semester4 = semesterRepository.save(new Semester(4,"S1_"+filiere4.getName(),null,filiere4));
+		Semester semester5 = semesterRepository.save(new Semester(5,"S1_"+filiere5.getName(),null,filiere5));
+		Semester semester6 = semesterRepository.save(new Semester(6,"S1_"+filiere6.getName(),null,filiere6));
+		Semester semester7 = semesterRepository.save(new Semester(7,"S1_"+filiere7.getName(),null,filiere7));
+		Semester semester88 = semesterRepository.save(new Semester(20,"S1_"+filiere8.getName(),null,filiere8));
+
+		Semester semester8 = semesterRepository.save(new Semester(8,"S2_"+filiere1.getName(),null,filiere1));
+		Semester semester9 = semesterRepository.save(new Semester(9,"S2_"+filiere2.getName(),null,filiere2));
+		Semester semester10 = semesterRepository.save(new Semester(10,"S2_"+filiere3.getName(),null,filiere3));
+		Semester semester11 = semesterRepository.save(new Semester(11,"S2_"+filiere4.getName(),null,filiere4));
+		Semester semester12 = semesterRepository.save(new Semester(12,"S2_"+filiere5.getName(),null,filiere5));
+		Semester semester13 = semesterRepository.save(new Semester(13,"S2_"+filiere6.getName(),null,filiere6));
+		Semester semester14 = semesterRepository.save(new Semester(14,"S2_"+filiere7.getName(),null,filiere7));
+		Semester semester15 = semesterRepository.save(new Semester(15,"S2_"+filiere8.getName(),null,filiere8));
 
 		ExamenTime examenTime1 = examenTimeRepository.save(new ExamenTime(1,"8", null, null));
 		ExamenTime examenTime2 = examenTimeRepository.save(new ExamenTime(2,"13h30-15h00",null, null));
@@ -172,28 +187,28 @@ public class DemoApplication implements CommandLineRunner {
 		//examenTimes.add(examenTime1);
 
 
-		Salle salle1 = salleRepository.save(new Salle(1,"B01",16,1,null,null,null));
-		Salle salle2 = salleRepository.save(new Salle(2,"B02",3,1,null,null,null));
-		Salle salle3 = salleRepository.save(new Salle(3,"B03",3,1,null,null,null));
-		Salle salle4 = salleRepository.save(new Salle(4,"B04",5,1,null,null,null));
-
-
-
+		Salle salle1 = salleRepository.save(new Salle(1,"B01",18,1,null,null,null));
+		Salle salle2 = salleRepository.save(new Salle(2,"B02",17,1,null,null,null));
+		Salle salle3 = salleRepository.save(new Salle(3,"B03",17,1,null,null,null));
+		Salle salle4 = salleRepository.save(new Salle(4,"B04",17,1,null,null,null));
+		Salle salle5 = salleRepository.save(new Salle(5,"B05",17,1,null,null,null));
+		Salle salle6 = salleRepository.save(new Salle(6,"B06",17,1,null,null,null));
+		Salle salle7 = salleRepository.save(new Salle(7,"B07",17,1,null,null,null));
 
 		//TODO: My be there are a problem in model's name :::
 
 		Module model1 = moduleRepository.save(new Module(1,"Spring","kk",null,semester1));
+		Module model2 = moduleRepository.save(new Module(2,"M33 :Analyse fonctionnelle","kk",null,semester5));
+		Module model3 = moduleRepository.save(new Module(3,"M33 :Procedure Civile","kk",null,semester6));
+		Module model4 = moduleRepository.save(new Module(4,"M08 :Electrostatique et Electrocinetique","kk",null,semester10));
+		Module model5 = moduleRepository.save(new Module(5,"M09 :Droit commercial","kk",null,semester13));
+		Module model6 = moduleRepository.save(new Module(6,"M09 :Biologie des Org. Vegetaux","kk",null,semester2));
+		Module model7 = moduleRepository.save(new Module(7,"M08","kk",null,semester2));
+		Module model8 = moduleRepository.save(new Module(8,"M11 :Physique 3","kk",null,semester9));
+		Module model9 = moduleRepository.save(new Module(9,"M08 :Theorie generale des obligations","kk",null,semester13));
+		Module model10 = moduleRepository.save(new Module(10,"M08 :Biologie des Org. Animaux","kk",null,semester15));
+		Module model11 = moduleRepository.save(new Module(11,"M33 :Base de donnees Oracle","kk",null,semester4));
 		Module model111 = moduleRepository.save(new Module(12,"Vue","kk",null,semester2));
-		Module model2 = moduleRepository.save(new Module(2,"M33 :Analyse fonctionnelle","kk",null,semester1));
-		Module model3 = moduleRepository.save(new Module(3,"M33 :Procédure Civile","kk",null,semester1));
-		Module model4 = moduleRepository.save(new Module(4,"M08 :Electrostatique et Electrocinétique","kk",null,semester2));
-		Module model5 = moduleRepository.save(new Module(5,"M09 :Droit commercial","kk",null,semester2));
-		Module model6 = moduleRepository.save(new Module(6,"M09 :Biologie des Org. Végétaux","kk",null,semester2));
-		Module model7 = moduleRepository.save(new Module(7,"M08 :Théorie générale des obligations","kk",null,semester2));
-		Module model8 = moduleRepository.save(new Module(8,"M11 :Physique 3","kk",null,semester2));
-		Module model9 = moduleRepository.save(new Module(9,"M08 :Théorie générale des obligations","kk",null,semester2));
-		Module model10 = moduleRepository.save(new Module(10,"M08 :Biologie des Org. Animaux","kk",null,semester2));
-		Module model11 = moduleRepository.save(new Module(11,"M33 :Base de données Oracle","kk",null,semester2));
 
 		Surveillant surveillant1 = surveillantRepository.save(new Surveillant(1,"koliche","mohamed",null,professeur1, null,null));
 		Surveillant surveillant2 = surveillantRepository.save(new Surveillant(2,"robiz","ayoub",null,professeur2, null,null));
