@@ -41,17 +41,17 @@ public class PvController {
             return  pvService.generatePvs(filiere,semestre,module,time);
     }
 
-    @GetMapping("/{time}")
+    /*@GetMapping("/{time}")
     public List<Surveillant> getFreeSurveillant(@PathVariable(name = "time") String time){
         return pvService.getFreeSurveillant(time);
-    }
+    }*/
 
     @GetMapping("/salleTimes/{id}")
     public List<ExamenTime> getSalleTimes(@PathVariable(name = "id") Long id){
         return examenTimeRepository.getSurveillantTimes(id);
     }
 
-    @SneakyThrows
+   /* @SneakyThrows
 //    @RequestMapping(value = "/xmap/pv", method = RequestMethod.POST, consumes = "multipart/form-data")
     @PostMapping(path = "/xmap/pv")
     public void convertXslToMap(@RequestParam(name = "file") MultipartFile file){
@@ -62,7 +62,7 @@ public class PvController {
         System.out.println(":::::::::::::::::::: Converting File ::::::::::::::::::");
         pvService.convertXslToMap(file);
         System.out.println(":::::::::::::::::::: Fenished Converting File ::::::::::::::::::");
-    }
+    }*/
 
     @GetMapping(path = "/etudient/{cin}")
     public List<Pv> getPvsByEtudent(@PathVariable(name = "cin") String cin){
