@@ -72,7 +72,7 @@ public class PvController {
 
     @PostMapping(path="/upload")
 //    @ResponseBody
-    public String importTransactionsFromExcelToDb(@RequestParam("file") List<MultipartFile> file) {
+    public String importTransactionsFromExcelToPvGenerater(@RequestParam("file") List<MultipartFile> file) {
         if(file.isEmpty()){
             System.out.println("Empty File");
             return "empty";
