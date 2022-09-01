@@ -307,10 +307,7 @@ public class PvServiceImp implements PvService{
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public List<Pv> xslToPvs(MultipartFile file) throws Exception {
-        return null;
-    }
+
 
     @Override
     public List<Pv> getPvByEtudient(String etudiantCin) {

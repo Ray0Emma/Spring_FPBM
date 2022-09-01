@@ -23,8 +23,6 @@ public interface PvService {
 
     List<Map<String,String>> convertXslToMap(MultipartFile file) throws Exception;
 
-    List<Pv> xslToPvs(MultipartFile file)throws Exception;
-
     List<Pv> getPvByEtudient(String etudiantCin);
 
 }
