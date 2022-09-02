@@ -63,7 +63,7 @@ public class PvExcelImpl {
                         String dateSessionRattrapage = row.getCell(0).getStringCellValue();
                         String filier = row.getCell(1).getStringCellValue();
                         // TODO: semester name is : S1_ISI :
-                        String semestere = row.getCell(2).getStringCellValue()+filier;
+                        String semestere = row.getCell(2).getStringCellValue()+"_"+filier;
                         String section = row.getCell(3).getStringCellValue();
                         String modulee = row.getCell(4).getStringCellValue();
                         String responsableDeModule = row.getCell(5).getStringCellValue();
@@ -92,10 +92,10 @@ public class PvExcelImpl {
                         // TODO: all info above showld be existe in db not hir :::
                         if (filiereRepository.findByName(filier) == null || semesterRepository.findByName(semestere)== null || moduleRepository.findByName(modulee) == null || examenTimeRepository.findByTime(heur) == null){
                             System.out.println("Data NOT FOUND !! For index"+rowIndex+"::: Check the null value !!!");
-                            System.out.println(filier+":::::::::::::"+filiereRepository.findByName(filier)+" ::::::::::::::::::");
-                            System.out.println(modulee+":::::::::::::"+moduleRepository.findByName(modulee)+" ::::::::::::::::::");
-                            System.out.println(heur+":::::::::::::"+examenTimeRepository.findByTime(heur)+"::::::::::::::::::");
-                            System.out.println(semestere+":::::::::::::"+semesterRepository.findByName(semestere)+"::::::::::::::::::");
+                            System.out.println("Filier : "+filier+":::::::::::::"+filiereRepository.findByName(filier)+" ::::::::::::::::::");
+                            System.out.println("Module : "+modulee+":::::::::::::"+moduleRepository.findByName(modulee)+" ::::::::::::::::::");
+                            System.out.println("Heur : "+heur+":::::::::::::"+examenTimeRepository.findByTime(heur)+"::::::::::::::::::");
+                            System.out.println("Semister : "+semestere+":::::::::::::"+semesterRepository.findByName(semestere)+"::::::::::::::::::");
                             ref.result = "Data NOT FOUND ::: For row index "+rowIndex+" ::: Check the null value !!!";
                             return;
                         }
