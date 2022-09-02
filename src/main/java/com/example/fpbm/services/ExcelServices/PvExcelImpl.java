@@ -40,24 +40,19 @@ public class PvExcelImpl {
     private SemesterRepository semesterRepository;
     @Autowired
     private ModuleRepository moduleRepository;
-    public void importToDb(List<MultipartFile> multipartfiles) {
+    public String genaratePvsFromExcel(List<MultipartFile> multipartfiles) {
         if (!multipartfiles.isEmpty()) {
-            List<Pv> pvs = new ArrayList<>();
-            DataFormatter formatter = new DataFormatter();
+            var ref = new Object() {
+                String result = "PVs created Successfully :)";
+            };
             multipartfiles.forEach(multipartfile -> {
                 try {
                     XSSFWorkbook workBook = new XSSFWorkbook(multipartfile.getInputStream());
-
                     XSSFSheet sheet = workBook.getSheetAt(0);
                     String dateS = null;
                     String dateH = null;
                     // looping through each row
                     for (int rowIndex = 0; rowIndex < getNumberOfNonEmptyCells(sheet, 0) ; rowIndex++) {
-
-                        ExamenTime examenTime = new ExamenTime();
-                        Filiere filiere = new Filiere();
-                        Semester semester = new Semester();
-                        Module module = new Module();
                         // current row
                         XSSFRow row = sheet.getRow(rowIndex);
                         // skip the first row because it is a header row
@@ -67,7 +62,8 @@ public class PvExcelImpl {
 
                         String dateSessionRattrapage = row.getCell(0).getStringCellValue();
                         String filier = row.getCell(1).getStringCellValue();
-                        String semestere = row.getCell(2).getStringCellValue();
+                        // TODO: semester name is : S1_ISI :
+                        String semestere = row.getCell(2).getStringCellValue()+"_"+filier;
                         String section = row.getCell(3).getStringCellValue();
                         String modulee = row.getCell(4).getStringCellValue();
                         String responsableDeModule = row.getCell(5).getStringCellValue();
@@ -92,40 +88,29 @@ public class PvExcelImpl {
                         System.out.println("4)-Module::::"+modulee+"::::::::::::::::::/n/n");
                         System.out.println("4)-Responsable de module::::"+responsableDeModule+"::::::::::::::::::/n/n");
                         System.out.println("4)-Heur::::"+heur+"::::::::::::::::::/n/n");
-                        System.out.println("!!!!!!!!!!!!!!!!!!!!!! End of Result !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        System.out.println("!!!!!!!!!!!!!!!!!!!!!! End of Result"+ filiereRepository.findByName(filier)+" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                         // TODO: all info above showld be existe in db not hir :::
-                        if (filiereRepository.findByName(filier).toString().isEmpty() || semesterRepository.findByName(semestere).toString().isEmpty() || moduleRepository.findByName(modulee).toString().isEmpty() || examenTimeRepository.findByTime(heur).toString().isEmpty()){
-                            System.out.println(":::::::::::::"+filiereRepository.findByName(filier)+" ::::::::::::::::::");
-                            System.out.println(":::::::::::::"+moduleRepository.findByName(modulee)+" ::::::::::::::::::");
-                            System.out.println(":::::::::::::"+examenTimeRepository.findByTime(heur)+"::::::::::::::::::");
-                            System.out.println(":::::::::::::"+semesterRepository.findByName(semestere)+"::::::::::::::::::");
+                        if (filiereRepository.findByName(filier) == null || semesterRepository.findByName(semestere)== null || moduleRepository.findByName(modulee) == null || examenTimeRepository.findByTime(heur) == null){
+                            System.out.println("Data NOT FOUND !! For index"+rowIndex+"::: Check the null value !!!");
+                            System.out.println("Filier : "+filier+":::::::::::::"+filiereRepository.findByName(filier)+" ::::::::::::::::::");
+                            System.out.println("Module : "+modulee+":::::::::::::"+moduleRepository.findByName(modulee)+" ::::::::::::::::::");
+                            System.out.println("Heur : "+heur+":::::::::::::"+examenTimeRepository.findByTime(heur)+"::::::::::::::::::");
+                            System.out.println("Semister : "+semestere+":::::::::::::"+semesterRepository.findByName(semestere)+"::::::::::::::::::");
+                            ref.result = "Data NOT FOUND ::: For row index "+rowIndex+" ::: Check the null value !!!";
                             return;
                         }
-                        /*filiere.setName(filier);
-                        semester.setName(semestere);
-                        semester.setFiliere(filiere);
-                        module.setName(modulee);
-                        module.setSemester(semester);
-
-                        filiereRepository.save(filiere);
-                        semesterRepository.save(semester);
-                        moduleRepository.save(module);*/
-                        // TODO: AND ::::
                         pvService.generatePvs(filier,semestere,modulee,heur);
                         System.out.println("::::::::::::::::: PV index Generated :"+rowIndex+":::::::::::::::::::::::::::::");
-
-
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                    ref.result = e.getMessage();
+                    return;
                 }
             });
-
-            if (!pvs.isEmpty()) {
-                // save to database
-                System.out.println("Succes !!!!");
-            }
+            return ref.result;
         }
+        return "file is Empty !";
     }
     public static int getNumberOfNonEmptyCells(XSSFSheet sheet, int columnIndex) {
         int numOfNonEmptyCells = 0;
