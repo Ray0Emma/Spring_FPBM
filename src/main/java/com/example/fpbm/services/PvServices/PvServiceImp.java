@@ -191,7 +191,7 @@ public class PvServiceImp implements PvService{
         return pvs;
     }
 
-    @Override
+    /*@Override
     public List<Salle> getFreeSalle(String time) {
         List<Salle> salles=salleService.fetchAllSalle();
         List<Salle> salleOcup=salleRepository.demandeDocByPersonne(time);
@@ -221,9 +221,9 @@ public class PvServiceImp implements PvService{
         }
 
         return sallesFree;
-    }
+    }*/
 
-    @Override
+    /*@Override
     public List<Surveillant> getFreeSurveillant(String time) {
         List<Surveillant> surveillants=surveillantService.fetchAllSurveillant();
         List<Surveillant> surveillantsOcup=surveillantRepository.getSurveillantOcup(time);
@@ -253,7 +253,7 @@ public class PvServiceImp implements PvService{
         }
 
         return surveillantsFree;
-    }
+    }*/
 
     @Override
     public List<Pv> generatePvs(String filiere, String semestre, String module, String time) {
@@ -268,7 +268,7 @@ public class PvServiceImp implements PvService{
         }
     }
 
-    @Override
+    /*@Override
     public List<Map<String, String>> convertXslToMap(MultipartFile file) throws Exception {
         System.out.println(":::::::::::::::::::: Converting File is Start ::::::::::::::::::");
         Path tempDir = Files.createTempDirectory("");
@@ -305,9 +305,7 @@ public class PvServiceImp implements PvService{
                             .collect(toMap(headerCells::get, cellList::get));
                 })
                 .collect(Collectors.toList());
-    }
-
-
+    }*/
 
     @Override
     public List<Pv> getPvByEtudient(String etudiantCin) {
