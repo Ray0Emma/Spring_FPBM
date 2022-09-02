@@ -77,8 +77,7 @@ public class PvController {
             System.out.println("Empty File");
             return "empty";
         }
-        pvExcelpv.importToDb(file);
-        return "redirect:/";
+        return pvExcelpv.genaratePvsFromExcel(file);
 
     }
 }

@@ -82,8 +82,9 @@ public class DemoApplication implements CommandLineRunner {
 		Filiere filiere6 = filiereRepository.save(new Filiere(6,"DRF",d2,type1,professeur1,null,null));
 		Filiere filiere7 = filiereRepository.save(new Filiere(7,"STRI",d2,type1,professeur1,null,null));
 		Filiere filiere8 = filiereRepository.save(new Filiere(8,"SVI",d2,type1,professeur1,null,null));
-
-
+		Filiere filiere9 = filiereRepository.save(new Filiere(9,"SMC",d2,type1,professeur1,null,null));
+		Filiere filiere10 = filiereRepository.save(new Filiere(10,"SMP",d2,type1,professeur1,null,null));
+		Filiere filiere11 = filiereRepository.save(new Filiere(11,"SEG",d2,type1,professeur1,null,null));
 
 		Etudiant etudiant1 = etudiantRepository.save(new Etudiant(1, "mohamed@gmail.com", "1234567", "P23456", "D12345678", "Koliche", "mohamed", new Date(), "Ouarzazate", "0634567776", "12345644", filiere1, null,null));
 		Etudiant etudiant2 = etudiantRepository.save(new Etudiant(2, "mohaayou@gmail.com", "12367", "P23459", "D12345678", "effg", "mohamed", new Date(), "Ouarzazate", "0634567776", "12345644", filiere1, null,null));
@@ -159,6 +160,46 @@ public class DemoApplication implements CommandLineRunner {
 		etudiantRepository.save(new Etudiant(68, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere7, null,null));
 		etudiantRepository.save(new Etudiant(69, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere7, null,null));
 
+		etudiantRepository.save(new Etudiant(70, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(71, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(72, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(73, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(74, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(75, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(77, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(78, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(79, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(80, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere8, null,null));
+
+		etudiantRepository.save(new Etudiant(81, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(82, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(83, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(84, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(85, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(87, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(88, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(89, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(90, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere9, null,null));
+
+		etudiantRepository.save(new Etudiant(101, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(102, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(103, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(104, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(105, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(107, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(108, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(109, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(110, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere10, null,null));
+
+		etudiantRepository.save(new Etudiant(111, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(112, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(113, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(114, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(115, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(117, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(118, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(119, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(120, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere11, null,null));
 		// TODO: Filier in semester should be a collection :
 		Semester semester1 = semesterRepository.save(new Semester(1,"S1_"+filiere1.getName(),null,filiere1));
 		Semester semester2 = semesterRepository.save(new Semester(2,"S1_"+filiere2.getName(),null,filiere2));
@@ -168,6 +209,9 @@ public class DemoApplication implements CommandLineRunner {
 		Semester semester6 = semesterRepository.save(new Semester(6,"S1_"+filiere6.getName(),null,filiere6));
 		Semester semester7 = semesterRepository.save(new Semester(7,"S1_"+filiere7.getName(),null,filiere7));
 		Semester semester88 = semesterRepository.save(new Semester(20,"S1_"+filiere8.getName(),null,filiere8));
+		Semester semester89 = semesterRepository.save(new Semester(21,"S1_"+filiere9.getName(),null,filiere9));
+		Semester semester91 = semesterRepository.save(new Semester(23,"S1_"+filiere11.getName(),null,filiere11));
+		Semester semester90 = semesterRepository.save(new Semester(22,"S1_"+filiere10.getName(),null,filiere10));
 
 		Semester semester8 = semesterRepository.save(new Semester(8,"S2_"+filiere1.getName(),null,filiere1));
 		Semester semester9 = semesterRepository.save(new Semester(9,"S2_"+filiere2.getName(),null,filiere2));
@@ -177,11 +221,17 @@ public class DemoApplication implements CommandLineRunner {
 		Semester semester13 = semesterRepository.save(new Semester(13,"S2_"+filiere6.getName(),null,filiere6));
 		Semester semester14 = semesterRepository.save(new Semester(14,"S2_"+filiere7.getName(),null,filiere7));
 		Semester semester15 = semesterRepository.save(new Semester(15,"S2_"+filiere8.getName(),null,filiere8));
+		Semester semester16 = semesterRepository.save(new Semester(16,"S2_"+filiere9.getName(),null,filiere9));
+		Semester semester17 = semesterRepository.save(new Semester(17,"S2_"+filiere10.getName(),null,filiere10));
+		Semester semester18 = semesterRepository.save(new Semester(18,"S2_"+filiere11.getName(),null,filiere11));
 
-		ExamenTime examenTime1 = examenTimeRepository.save(new ExamenTime(1,"8", null, null));
+
+		ExamenTime examenTime1 = examenTimeRepository.save(new ExamenTime(1,"9h00-10h30", null, null));
 		ExamenTime examenTime2 = examenTimeRepository.save(new ExamenTime(2,"13h30-15h00",null, null));
 		ExamenTime examenTime3 = examenTimeRepository.save(new ExamenTime(3,"15h30-17h00",null, null));
-		ExamenTime examenTime4 = examenTimeRepository.save(new ExamenTime(4,"9h00-10h30",null, null));
+		ExamenTime examenTime4 = examenTimeRepository.save(new ExamenTime(4,"11h00-12h30",null, null));
+		ExamenTime examenTime5 = examenTimeRepository.save(new ExamenTime(5,"16h30-18h00",null, null));
+		ExamenTime examenTime6 = examenTimeRepository.save(new ExamenTime(6,"14h45-16h15",null, null));
 
 		//List<ExamenTime> examenTimes = new ArrayList<>();
 		//examenTimes.add(examenTime1);
@@ -197,18 +247,27 @@ public class DemoApplication implements CommandLineRunner {
 
 		//TODO: My be there are a problem in model's name :::
 
-		Module model1 = moduleRepository.save(new Module(1,"Spring","kk",null,semester1));
+		Module model1 = moduleRepository.save(new Module(1,"M33 :Procedure Civile","kk",null,semester6));
 		Module model2 = moduleRepository.save(new Module(2,"M33 :Analyse fonctionnelle","kk",null,semester5));
-		Module model3 = moduleRepository.save(new Module(3,"M33 :Procedure Civile","kk",null,semester6));
+		Module model3 = moduleRepository.save(new Module(3,"M34 :Procedure Penal","kk",null,semester6));
 		Module model4 = moduleRepository.save(new Module(4,"M08 :Electrostatique et Electrocinetique","kk",null,semester10));
 		Module model5 = moduleRepository.save(new Module(5,"M09 :Droit commercial","kk",null,semester13));
 		Module model6 = moduleRepository.save(new Module(6,"M09 :Biologie des Org. Vegetaux","kk",null,semester2));
-		Module model7 = moduleRepository.save(new Module(7,"M08","kk",null,semester2));
 		Module model8 = moduleRepository.save(new Module(8,"M11 :Physique 3","kk",null,semester9));
 		Module model9 = moduleRepository.save(new Module(9,"M08 :Theorie generale des obligations","kk",null,semester13));
 		Module model10 = moduleRepository.save(new Module(10,"M08 :Biologie des Org. Animaux","kk",null,semester15));
 		Module model11 = moduleRepository.save(new Module(11,"M33 :Base de donnees Oracle","kk",null,semester4));
-		Module model111 = moduleRepository.save(new Module(12,"Vue","kk",null,semester2));
+		Module model12 = moduleRepository.save(new Module(13,"M34 :Controle de Gestion","kk",null,semester91));
+		Module model13 = moduleRepository.save(new Module(14,"M33 :Relations economiques internationales","kk",null,semester91));
+		Module model14 = moduleRepository.save(new Module(15,"M33 :Audit General","kk",null,semester91));
+		Module model15 = moduleRepository.save(new Module(16,"M33 :Theorie des groupes et ses Applications","kk",null,semester90));
+		Module model16 = moduleRepository.save(new Module(17,"M33 :Transfert de chaleur","kk",null,semester90));
+		Module model17 = moduleRepository.save(new Module(18,"M33 :Electrotechnique","kk",null,semester90));
+		Module model18 = moduleRepository.save(new Module(19,"M34 :Chimie descriptive II et chimie de coordination","kk",null,semester89));
+		Module model19 = moduleRepository.save(new Module(20,"M33 :Les grandes classes des reactions organiques","kk",null,semester89));
+		Module model20 = moduleRepository.save(new Module(21,"M33 :Controle Qualite et Securite Sanitaire des Aliments","kk",null,semester88));
+		Module model22 = moduleRepository.save(new Module(22,"M34 :Nutrition et Sciences des Aliments","kk",null,semester88));
+		Module model23 = moduleRepository.save(new Module(23,"M09 :Droit Commerciale","kk",null,semester6));
 
 		Surveillant surveillant1 = surveillantRepository.save(new Surveillant(1,"koliche","mohamed",null,professeur1, null,null));
 		Surveillant surveillant2 = surveillantRepository.save(new Surveillant(2,"robiz","ayoub",null,professeur2, null,null));
