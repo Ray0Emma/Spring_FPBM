@@ -1,6 +1,8 @@
 package com.example.fpbm.services;
 
+import com.example.fpbm.entities.Filiere;
 import com.example.fpbm.entities.Module;
+import com.example.fpbm.entities.Semester;
 import com.example.fpbm.repositories.ModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,11 @@ public class ModuleServiceImpl implements ModuleService{
     public Module updateModule(Module module, Long id) {
         module.setId(id);
         return moduleRepository.save(module);
+    }
+
+    @Override
+    public List<Module> findBySemester(Semester semester) {
+        return moduleRepository.findBySemester(semester);
     }
 
     @Override

@@ -1,11 +1,13 @@
 package com.example.fpbm.services;
 
+import com.example.fpbm.entities.Filiere;
 import com.example.fpbm.entities.Semester;
 import com.example.fpbm.repositories.SalleRepository;
 import com.example.fpbm.repositories.SemesterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 
@@ -34,6 +36,11 @@ public class SemesterServiceImpl implements SemesterService{
     @Override
     public List<Semester> fetchAllSemester() {
         return semesterRepository.findAll();
+    }
+
+    @Override
+    public List<Semester> fetchAllSemesterByFiliere(Filiere filiereId) {
+        return semesterRepository.findByFiliere(filiereId);
     }
 
     @Override

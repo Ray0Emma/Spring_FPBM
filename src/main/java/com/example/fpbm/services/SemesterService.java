@@ -11,6 +11,8 @@ public interface SemesterService {
 
     List<Semester> saveListSemester(List<Semester> semesters);
 
+    List<Semester> fetchAllSemesterByFiliere(Filiere filiereId);
+
     Semester fetchOneSemester(Long semesterId);
 
     List<Semester> fetchAllSemester();

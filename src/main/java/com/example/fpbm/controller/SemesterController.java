@@ -1,6 +1,7 @@
 package com.example.fpbm.controller;
 
 
+import com.example.fpbm.entities.Filiere;
 import com.example.fpbm.entities.Semester;
 import com.example.fpbm.services.SemesterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,10 @@ public class SemesterController {
         return semesterService.fetchOneSemester(semesterId);
     }
 
+    @GetMapping("filiere/{id}")
+    public List<Semester> SemesterByFiliere(@PathVariable(name = "id") Filiere filiereId){
+        return semesterService.fetchAllSemesterByFiliere(filiereId);
+    }
 
     @GetMapping()
     public List<Semester> fetchAllSemester(){

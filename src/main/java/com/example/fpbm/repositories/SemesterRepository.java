@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface SemesterRepository extends JpaRepository<Semester, Long> {
     Semester findByName(String name);
+    List<Semester> findByFiliere(Filiere filiere);
 }

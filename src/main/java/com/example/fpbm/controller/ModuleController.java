@@ -1,5 +1,7 @@
 package com.example.fpbm.controller;
+import com.example.fpbm.entities.Filiere;
 import com.example.fpbm.entities.Module;
+import com.example.fpbm.entities.Semester;
 import com.example.fpbm.services.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +11,7 @@ import java.util.List;
 @RestController
 
 @CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200", "http://localhost:8081" })
-@RequestMapping("/Module")
+@RequestMapping("/module")
 public class ModuleController {
     @Autowired
     private ModuleService moduleService;
@@ -21,6 +23,11 @@ public class ModuleController {
     @GetMapping("/{id}")
     public Module fetchOneModule(@PathVariable(name = "id") Long id){
         return moduleService.fetchOneModule(id);
+    }
+
+    @GetMapping("filiere/{id}")
+    public List<Module> moduleBySemester(@PathVariable(name = "id") Semester semester){
+        return moduleService.findBySemester(semester);
     }
 
     @PostMapping()
