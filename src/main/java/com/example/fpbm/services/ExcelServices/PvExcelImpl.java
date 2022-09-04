@@ -65,7 +65,7 @@ public class PvExcelImpl {
                         // TODO: semester name is : S1_ISI :
                         String semestere = row.getCell(2).getStringCellValue()+"_"+filier;
                         String section = row.getCell(3).getStringCellValue();
-                        String modulee = row.getCell(4).getStringCellValue();
+                        String module = row.getCell(4).getStringCellValue();
                         String responsableDeModule = row.getCell(5).getStringCellValue();
                         String heur = row.getCell(6).getStringCellValue();
                         if (!dateSessionRattrapage.isEmpty()){
@@ -85,22 +85,22 @@ public class PvExcelImpl {
                         System.out.println("1)-Filier::::"+filier+"::::::::::::::::::/n/n");
                         System.out.println("2)-Semester::::"+semestere+"::::::::::::::::::/n/n");
                         System.out.println("3)-Section::::"+section+"::::::::::::::::::/n/n");
-                        System.out.println("4)-Module::::"+modulee+"::::::::::::::::::/n/n");
+                        System.out.println("4)-Module::::"+module+"::::::::::::::::::/n/n");
                         System.out.println("4)-Responsable de module::::"+responsableDeModule+"::::::::::::::::::/n/n");
                         System.out.println("4)-Heur::::"+heur+"::::::::::::::::::/n/n");
                         System.out.println("!!!!!!!!!!!!!!!!!!!!!! End of Result"+ filiereRepository.findByName(filier)+" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                         // TODO: all info above showld be existe in db not hir :::
-                        if (filiereRepository.findByName(filier) == null || semesterRepository.findByName(semestere)== null || moduleRepository.findByName(modulee) == null || examenTimeRepository.findByTime(heur) == null){
+                        if (filiereRepository.findByName(filier) == null || semesterRepository.findByName(semestere)== null || moduleRepository.findByName(module) == null || examenTimeRepository.findByTime(heur) == null){
                             System.out.println("Data NOT FOUND !! For index"+rowIndex+"::: Check the null value !!!");
                             System.out.println("Filier : "+filier+":::::::::::::"+filiereRepository.findByName(filier)+" ::::::::::::::::::");
-                            System.out.println("Module : "+modulee+":::::::::::::"+moduleRepository.findByName(modulee)+" ::::::::::::::::::");
+                            System.out.println("Module : "+module+":::::::::::::"+moduleRepository.findByName(module)+" ::::::::::::::::::");
                             System.out.println("Heur : "+heur+":::::::::::::"+examenTimeRepository.findByTime(heur)+"::::::::::::::::::");
                             System.out.println("Semister : "+semestere+":::::::::::::"+semesterRepository.findByName(semestere)+"::::::::::::::::::");
                             ref.result = "Data NOT FOUND ::: For row index "+rowIndex+" ::: Check the null value !!!";
                             return;
                         }
-                        pvService.generatePvs(filier,semestere,modulee,heur);
-                        System.out.println("::::::::::::::::: PV index Generated :"+rowIndex+":::::::::::::::::::::::::::::");
+                        pvService.generatePvs(filier,semestere,module,heur);
+                        System.out.println("::::::::::::::::: PV index :=> "+rowIndex+" Generated <=:::::::::::::::::::::::::::::::");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

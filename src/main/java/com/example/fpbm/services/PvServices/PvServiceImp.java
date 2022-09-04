@@ -92,6 +92,16 @@ public class PvServiceImp implements PvService{
 
         ExamenTime examenTime = examenTimeRepository.findByTime(time);
         List<Salle> salles=salleRepository.getAllByExamenTimesNotContains(examenTime);
+        if (f == null || s== null || m == null || examenTime == null || salles == null){
+            System.out.println("Data NOT FOUND !! For index::: Check the null value !!!");
+            System.out.println("Filier : "+f+":::::::::::::"+filiere+" ::::::::::::::::::");
+            System.out.println("Module : "+m+":::::::::::::"+module+" ::::::::::::::::::");
+            System.out.println("Heur : "+examenTime+":::::::::::::"+time+"::::::::::::::::::");
+            System.out.println("Semister : "+s+":::::::::::::"+semestre+"::::::::::::::::::");
+            System.out.println("Semister : "+salles+":::::::::::::"+salles+"::::::::::::::::::");
+            //ref.result = "Data NOT FOUND ::: For row index  ::: Check the null value !!!";
+            return null;
+        }
 
         System.out.println("time: "+examenTime.getTime());
         List<Pv> pvs=new ArrayList<Pv>();
@@ -128,6 +138,7 @@ public class PvServiceImp implements PvService{
             //distrubier les etudiants dans les salles disponibles
             if(restEtud>salles.get(index).getCapaciteEtudiant()){
                 pv.setEtudiants(etudiants.subList(nbEtudiantsCourants, (int) (salles.get(index).getCapaciteEtudiant()+nbEtudiantsCourants)));
+
                 nbEtudiantsCourants+=salles.get(index).getCapaciteEtudiant();
                 List<ExamenTime> examenTimes = examenTimeRepository.getSalleTimes(salles.get(index).getId());
                 examenTimes.add(examenTime);
@@ -257,7 +268,7 @@ public class PvServiceImp implements PvService{
 
     @Override
     public List<Pv> generatePvs(String filiere, String semestre, String module, String time) {
-        List<Pv> pvsResult = pvRepository.getAllByFilierAndSemesterAndModuleAndLocalDateTime(filiere,semestre,module,time);
+        List<Pv> pvsResult = pvRepository.getAllByFilierAndSemesterAndModule(filiere,semestre,module);
         if (!pvsResult.isEmpty()){
             System.out.println("I get an existe PV :::::::::::::");
             return pvsResult;
