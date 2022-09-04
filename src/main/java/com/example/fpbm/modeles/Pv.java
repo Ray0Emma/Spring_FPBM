@@ -1,11 +1,13 @@
 package com.example.fpbm.modeles;
 
 import com.example.fpbm.entities.Etudiant;
+import com.example.fpbm.entities.OrderedPvs;
 import com.example.fpbm.entities.Surveillant;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -39,4 +41,7 @@ public class Pv {
             joinColumns = @JoinColumn(name = "pv_id"),
             inverseJoinColumns = @JoinColumn(name = "etudiant_id"))
     private List<Etudiant> etudiants;
+
+    @OneToMany(targetEntity = OrderedPvs.class, mappedBy = "pv")
+    private Collection<OrderedPvs> orderedPvsCollection;
 }

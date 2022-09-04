@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface PvRepository extends JpaRepository<Pv, Long> {
 
-    List<Pv> getAllByFilierAndSemesterAndModuleAndLocalDateTime(String filiere, String semestre, String module, String time);
+    List<Pv> getAllByFilierAndSemesterAndModule(String filiere, String semestre, String module);
     List<Pv> getByEtudiants(Etudiant etudiants);
 
     List<Pv> getBySurveillants(Surveillant surveillant);
