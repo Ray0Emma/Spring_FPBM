@@ -4,13 +4,9 @@ import com.example.fpbm.components.UploadUtil;
 import com.example.fpbm.entities.*;
 import com.example.fpbm.entities.Module;
 import com.example.fpbm.modeles.Pv;
-import com.example.fpbm.repositories.EtudiantRepository;
-import com.example.fpbm.repositories.FiliereRepository;
-import com.example.fpbm.repositories.ModuleRepository;
-import com.example.fpbm.repositories.SemesterRepository;
+import com.example.fpbm.repositories.entitiesRepository.*;
 import com.example.fpbm.repositories.pvRepository.PvRepository;
-import com.example.fpbm.repositories.*;
-import com.example.fpbm.services.*;
+import com.example.fpbm.services.entitiesServices.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
