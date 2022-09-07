@@ -37,6 +37,8 @@ public class Etudiant extends Personne{
             joinColumns = @JoinColumn(name = "etudiant_id"),
             inverseJoinColumns = @JoinColumn(name = "pv_id"))
     private List<Pv> pvs;
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany(targetEntity = OrderedPvs.class, mappedBy = "etudiant")
     private Collection<OrderedPvs> orderedPvsCollection;
 

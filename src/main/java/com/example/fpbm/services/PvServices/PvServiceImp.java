@@ -11,20 +11,12 @@ import com.example.fpbm.repositories.SemesterRepository;
 import com.example.fpbm.repositories.pvRepository.PvRepository;
 import com.example.fpbm.repositories.*;
 import com.example.fpbm.services.*;
-import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.concurrent.atomic.AtomicLong;
 
 import static java.util.stream.Collectors.toMap;
 
@@ -68,6 +60,8 @@ public class PvServiceImp implements PvService{
 
     @Autowired
     private SurveillantRepository surveillantRepository;
+    @Autowired
+    private OrderedPvsService orderedPvsService;
 
 
 
@@ -123,11 +117,12 @@ public class PvServiceImp implements PvService{
         // time list
         List<ExamenTime> timeList = new ArrayList<>();
         timeList.add(examenTime);
-
+        AtomicLong order = new AtomicLong(1);
         
         while(restEtud>0 && restSalles>0 ){
 
             Pv pv = new Pv();
+
             //ExamenTime examenTime1 = new ExamenTime();
 
             pv.setLocal(salles.get(index).getName());
@@ -194,6 +189,20 @@ public class PvServiceImp implements PvService{
 
             pvs.add(pv);
             pvRepository.save(pv);
+            System.out.println("PV id :::::::::"+pv.getId()+"::::::::::::::::::::::::");
+
+
+
+            pv.getEtudiants().forEach(etudiant -> {
+                OrderedPvs orderedPvs = new OrderedPvs();
+                orderedPvs.setPv(pv);
+                orderedPvs.setEtudiant(etudiant);
+                orderedPvs.setEtudientOrder(order.get());
+                orderedPvsService.saveOrderPv(orderedPvs);
+                order.getAndIncrement();
+
+            });
+
         }
         //si les salles ne sont pas suffisantes
         if(restEtud>0){

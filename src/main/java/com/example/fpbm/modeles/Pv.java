@@ -3,6 +3,7 @@ package com.example.fpbm.modeles;
 import com.example.fpbm.entities.Etudiant;
 import com.example.fpbm.entities.OrderedPvs;
 import com.example.fpbm.entities.Surveillant;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -41,7 +42,8 @@ public class Pv {
             joinColumns = @JoinColumn(name = "pv_id"),
             inverseJoinColumns = @JoinColumn(name = "etudiant_id"))
     private List<Etudiant> etudiants;
-
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany(targetEntity = OrderedPvs.class, mappedBy = "pv")
     private Collection<OrderedPvs> orderedPvsCollection;
 }

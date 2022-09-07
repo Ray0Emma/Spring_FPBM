@@ -239,7 +239,7 @@ public class DemoApplication implements CommandLineRunner {
 		//examenTimes.add(examenTime1);
 
 
-		Salle salle1 = salleRepository.save(new Salle(1,"B01",18,1,null,null,null));
+		Salle salle1 = salleRepository.save(new Salle(1,"B01",5,1,null,null,null));
 		Salle salle2 = salleRepository.save(new Salle(2,"B02",17,1,null,null,null));
 		Salle salle3 = salleRepository.save(new Salle(3,"B03",17,1,null,null,null));
 		Salle salle4 = salleRepository.save(new Salle(4,"B04",17,1,null,null,null));
