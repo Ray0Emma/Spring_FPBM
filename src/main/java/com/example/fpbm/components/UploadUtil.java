@@ -13,7 +13,6 @@ public class UploadUtil {
     public Supplier<Stream<Row>> getRowStreamSupplier(Iterable<Row> rows) {
         return () -> getStream(rows);
     }
-
     public <T> Stream<T> getStream(Iterable<T> iterable) {
         return StreamSupport.stream(iterable.spliterator(), false);
     }
@@ -21,7 +20,6 @@ public class UploadUtil {
     public Supplier<Stream<Integer>> cellIteratorSupplier(int end) {
         return () -> numberStream(end);
     }
-
     public Stream<Integer> numberStream(int end) {
         return IntStream.range(0, end).boxed();
     }
