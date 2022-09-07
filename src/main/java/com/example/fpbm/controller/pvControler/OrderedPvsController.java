@@ -3,7 +3,7 @@ package com.example.fpbm.controller.pvControler;
 import com.example.fpbm.entities.Etudiant;
 import com.example.fpbm.entities.OrderedPvs;
 import com.example.fpbm.modeles.Pv;
-import com.example.fpbm.services.EtudiantService;
+import com.example.fpbm.services.entitiesServices.EtudiantService;
 import com.example.fpbm.services.PvServices.OrderedPvsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,7 @@
 package com.example.fpbm.services.ExcelServices;
 
 import com.example.fpbm.entities.Etudiant;
-import com.example.fpbm.repositories.EtudiantRepository;
+import com.example.fpbm.repositories.entitiesRepository.EtudiantRepository;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;

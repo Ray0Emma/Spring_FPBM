@@ -2,16 +2,13 @@ package com.example.fpbm;
 
 import com.example.fpbm.entities.*;
 import com.example.fpbm.entities.Module;
-import com.example.fpbm.repositories.*;
-import com.example.fpbm.services.FiliereService;
+import com.example.fpbm.repositories.entitiesRepository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
