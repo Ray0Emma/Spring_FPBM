@@ -8,7 +8,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
@@ -51,9 +53,22 @@ public class DemoApplication implements CommandLineRunner {
 	@Autowired
 	private ExamenTimeRepository examenTimeRepository;
 
+	@Autowired
+	private RoleRepository roleRepository;
+
 
 	@Override
 	public void run(String... args) throws Exception {
+		Role a = roleRepository.save(new Role(1L,"admin"));
+		Role p = roleRepository.save(new Role(2L,"teacher"));
+		Role e = roleRepository.save(new Role(3L,"student"));
+
+		List<Role> professeurRole = new ArrayList<>();
+		List<Role> adminRole = new ArrayList<>();
+		List<Role> etudientRole = new ArrayList<>();
+		professeurRole.add(p);
+		adminRole.add(a);
+		etudientRole.add(e);
 		Departement d1= departementRepository.save(new Departement(1,"IRI",null));
 		Departement d2= departementRepository.save(new Departement(2,"ISI",null));
 		Departement d3= departementRepository.save(new Departement(3,"STRI",null));
@@ -67,9 +82,9 @@ public class DemoApplication implements CommandLineRunner {
 		LieuDeTravail travail1 = lieuDeTravailRepository.save(new LieuDeTravail(1,null));
 		LieuDeTravail travail2 = lieuDeTravailRepository.save(new LieuDeTravail(2,null));
 
-		Professeur professeur1 = professeurRepository.save(new Professeur(1,"anour@gmail.com","123456","P345667","D12334555","Salhi","Anouar",new Date(),"beni","0612345678","MR",null,null,travail1,null,extern1,null,null));
-		Professeur professeur2 = professeurRepository.save(new Professeur(2,"khadija@gmail.com","123456","P544666","D3456666","Bbirri","khadija",new Date(),"Ouarzazate","06345665456","MS",null,null,travail2,null,extern1,null,null));
-		Professeur professeur3 = professeurRepository.save(new Professeur(3,"ayoub@gmail.com","123456","P544116","D234556","Robiz","Ayoub",new Date(),"Ouarzazate","06345665456","MR",null,null,travail1,null,extern1,null,null));
+		Professeur professeur1 = professeurRepository.save(new Professeur(1,"anour@gmail.com",  professeurRole,"prof1","123456","P345667","D12334555","Salhi","Anouar",new Date(),"beni","0612345678","MR",null,null,travail1,null,extern1,null,null));
+		Professeur professeur2 = professeurRepository.save(new Professeur(2,"anour@gmail.com",professeurRole,"prof2","123456","P544666","D3456666","Bbirri","khadija",new Date(),"Ouarzazate","06345665456","MS",null,null,travail2,null,extern1,null,null));
+		Professeur professeur3 = professeurRepository.save(new Professeur(3,"anour@gmail.com",adminRole,"admin","123456","P544116","D234556","Robiz","Ayoub",new Date(),"Ouarzazate","06345665456","MR",null,null,travail1,null,extern1,null,null));
 
 		Filiere filiere1 = filiereRepository.save(new Filiere(1,"ISI",d2,type1,professeur1,null,null));
 		Filiere filiere2 = filiereRepository.save(new Filiere(2,"SMAI",d2,type1,professeur1,null,null));
@@ -83,120 +98,120 @@ public class DemoApplication implements CommandLineRunner {
 		Filiere filiere10 = filiereRepository.save(new Filiere(10,"SMP",d2,type1,professeur1,null,null));
 		Filiere filiere11 = filiereRepository.save(new Filiere(11,"SEG",d2,type1,professeur1,null,null));
 
-		Etudiant etudiant1 = etudiantRepository.save(new Etudiant(1, "mohamed@gmail.com", "1234567", "P23456", "D12345678", "Koliche", "mohamed", new Date(), "Ouarzazate", "0634567776", "12345644", filiere1, null,null));
-		Etudiant etudiant2 = etudiantRepository.save(new Etudiant(2, "mohaayou@gmail.com", "12367", "P23459", "D12345678", "effg", "mohamed", new Date(), "Ouarzazate", "0634567776", "12345644", filiere1, null,null));
-		Etudiant etudiant3 = etudiantRepository.save(new Etudiant(3, "589@gmail.com", "000", "000", "D12345678", "0000", "0000", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(4, "589@gmail.com", "000", "000", "D12345678", "ait fal", "ossama", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(5, "589@gmail.com", "000", "000", "D12345678", "kasmi", "wafi", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(6, "589@gmail.com", "000", "000", "D12345678", "narin", "ftah", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(7, "589@gmail.com", "000", "000", "D12345678", "kali", "hakim", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(8, "589@gmail.com", "000", "000", "D12345678", "hhdhd", "mohamed", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(9, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(10, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(11, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(12, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(13, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(14, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(15, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(16, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(17, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere1, null,null));
-		etudiantRepository.save(new Etudiant(18, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere1, null,null));
+		Etudiant etudiant1 = etudiantRepository.save(new Etudiant(1,"anour@gmail.com",(List<Role>) etudientRole, "etud1", "1234567", "P23456", "D12345678", "Koliche", "mohamed", new Date(), "Ouarzazate", "0634567776", "12345644", filiere1, null,null));
+		Etudiant etudiant2 = etudiantRepository.save(new Etudiant(2,"anour@gmail.com",(List<Role>) etudientRole, "etud2", "12367", "P23459", "D12345678", "effg", "mohamed", new Date(), "Ouarzazate", "0634567776", "12345644", filiere1, null,null));
+		Etudiant etudiant3 = etudiantRepository.save(new Etudiant(3,"anour@gmail.com",(List<Role>) etudientRole, "etud3", "000", "000", "D12345678", "0000", "0000", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(4,"anour@gmail.com",(List<Role>) etudientRole, "etud4", "000", "000", "D12345678", "ait fal", "ossama", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(5,"anour@gmail.com",(List<Role>) etudientRole, "etud5", "000", "000", "D12345678", "kasmi", "wafi", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(6,"anour@gmail.com",(List<Role>) etudientRole, "etud6", "000", "000", "D12345678", "narin", "ftah", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(7,"anour@gmail.com",(List<Role>) etudientRole, "etud7", "000", "000", "D12345678", "kali", "hakim", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(8,"anour@gmail.com",(List<Role>) etudientRole, "etud8", "000", "000", "D12345678", "hhdhd", "mohamed", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(9,"anour@gmail.com",(List<Role>) etudientRole, "etud9", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(10,"anour@gmail.com",(List<Role>) etudientRole, "etud10", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(11,"anour@gmail.com",(List<Role>) etudientRole, "etud11", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(12,"anour@gmail.com",(List<Role>) etudientRole, "etud12", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(13,"anour@gmail.com",(List<Role>) etudientRole, "etud13", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(14,"anour@gmail.com",(List<Role>) etudientRole, "etud14", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(15,"anour@gmail.com",(List<Role>) etudientRole, "etud15", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(16,"anour@gmail.com",(List<Role>) etudientRole, "etud16", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(17,"anour@gmail.com",(List<Role>) etudientRole, "etud17", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere1, null,null));
+		etudiantRepository.save(new Etudiant(18,"anour@gmail.com",(List<Role>) etudientRole, "etud18", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere1, null,null));
 
-		etudiantRepository.save(new Etudiant(19, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere2, null,null));
-		etudiantRepository.save(new Etudiant(20, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere2, null,null));
-		etudiantRepository.save(new Etudiant(21, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere2, null,null));
-		etudiantRepository.save(new Etudiant(22, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere2, null,null));
-		etudiantRepository.save(new Etudiant(23, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere2, null,null));
-		etudiantRepository.save(new Etudiant(24, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere3, null,null));
-		etudiantRepository.save(new Etudiant(25, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere3, null,null));
-		etudiantRepository.save(new Etudiant(26, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere3, null,null));
-		etudiantRepository.save(new Etudiant(27, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere3, null,null));
-		etudiantRepository.save(new Etudiant(28, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere3, null,null));
+		etudiantRepository.save(new Etudiant(19,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere2, null,null));
+		etudiantRepository.save(new Etudiant(20,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere2, null,null));
+		etudiantRepository.save(new Etudiant(21,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere2, null,null));
+		etudiantRepository.save(new Etudiant(22,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere2, null,null));
+		etudiantRepository.save(new Etudiant(23,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere2, null,null));
+		etudiantRepository.save(new Etudiant(24,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere3, null,null));
+		etudiantRepository.save(new Etudiant(25,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere3, null,null));
+		etudiantRepository.save(new Etudiant(26,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere3, null,null));
+		etudiantRepository.save(new Etudiant(27,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere3, null,null));
+		etudiantRepository.save(new Etudiant(28,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere3, null,null));
 
-		etudiantRepository.save(new Etudiant(29, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere4, null,null));
-		etudiantRepository.save(new Etudiant(30, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere4, null,null));
-		etudiantRepository.save(new Etudiant(31, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere4, null,null));
-		etudiantRepository.save(new Etudiant(32, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere4, null,null));
-		etudiantRepository.save(new Etudiant(33, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere4, null,null));
-		etudiantRepository.save(new Etudiant(34, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere4, null,null));
-		etudiantRepository.save(new Etudiant(35, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere4, null,null));
-		etudiantRepository.save(new Etudiant(36, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere4, null,null));
-		etudiantRepository.save(new Etudiant(37, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere4, null,null));
-		etudiantRepository.save(new Etudiant(38, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere4, null,null));
+		etudiantRepository.save(new Etudiant(29,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere4, null,null));
+		etudiantRepository.save(new Etudiant(30,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere4, null,null));
+		etudiantRepository.save(new Etudiant(31,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere4, null,null));
+		etudiantRepository.save(new Etudiant(32,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere4, null,null));
+		etudiantRepository.save(new Etudiant(33,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere4, null,null));
+		etudiantRepository.save(new Etudiant(34,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere4, null,null));
+		etudiantRepository.save(new Etudiant(35,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere4, null,null));
+		etudiantRepository.save(new Etudiant(36,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere4, null,null));
+		etudiantRepository.save(new Etudiant(37,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere4, null,null));
+		etudiantRepository.save(new Etudiant(38,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere4, null,null));
 
-		etudiantRepository.save(new Etudiant(39, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere5, null,null));
-		etudiantRepository.save(new Etudiant(40, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere5, null,null));
-		etudiantRepository.save(new Etudiant(41, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere5, null,null));
-		etudiantRepository.save(new Etudiant(42, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere5, null,null));
-		etudiantRepository.save(new Etudiant(43, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere5, null,null));
-		etudiantRepository.save(new Etudiant(44, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere5, null,null));
-		etudiantRepository.save(new Etudiant(45, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere5, null,null));
-		etudiantRepository.save(new Etudiant(46, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere5, null,null));
-		etudiantRepository.save(new Etudiant(47, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere5, null,null));
-		etudiantRepository.save(new Etudiant(48, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere5, null,null));
+		etudiantRepository.save(new Etudiant(39,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere5, null,null));
+		etudiantRepository.save(new Etudiant(40,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere5, null,null));
+		etudiantRepository.save(new Etudiant(41,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere5, null,null));
+		etudiantRepository.save(new Etudiant(42,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere5, null,null));
+		etudiantRepository.save(new Etudiant(43,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere5, null,null));
+		etudiantRepository.save(new Etudiant(44,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere5, null,null));
+		etudiantRepository.save(new Etudiant(45,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere5, null,null));
+		etudiantRepository.save(new Etudiant(46,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere5, null,null));
+		etudiantRepository.save(new Etudiant(47,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere5, null,null));
+		etudiantRepository.save(new Etudiant(48,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere5, null,null));
 
-		etudiantRepository.save(new Etudiant(49, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere6, null,null));
-		etudiantRepository.save(new Etudiant(50, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere6, null,null));
-		etudiantRepository.save(new Etudiant(51, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere6, null,null));
-		etudiantRepository.save(new Etudiant(52, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere6, null,null));
-		etudiantRepository.save(new Etudiant(53, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere6, null,null));
-		etudiantRepository.save(new Etudiant(54, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere6, null,null));
-		etudiantRepository.save(new Etudiant(55, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere6, null,null));
-		etudiantRepository.save(new Etudiant(56, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere6, null,null));
-		etudiantRepository.save(new Etudiant(57, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere6, null,null));
-		etudiantRepository.save(new Etudiant(58, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere6, null,null));
+		etudiantRepository.save(new Etudiant(49,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere6, null,null));
+		etudiantRepository.save(new Etudiant(50,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere6, null,null));
+		etudiantRepository.save(new Etudiant(51,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere6, null,null));
+		etudiantRepository.save(new Etudiant(52,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere6, null,null));
+		etudiantRepository.save(new Etudiant(53,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere6, null,null));
+		etudiantRepository.save(new Etudiant(54,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere6, null,null));
+		etudiantRepository.save(new Etudiant(55,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere6, null,null));
+		etudiantRepository.save(new Etudiant(56,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere6, null,null));
+		etudiantRepository.save(new Etudiant(57,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere6, null,null));
+		etudiantRepository.save(new Etudiant(58,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere6, null,null));
 
-		etudiantRepository.save(new Etudiant(59, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere7, null,null));
-		etudiantRepository.save(new Etudiant(60, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere7, null,null));
-		etudiantRepository.save(new Etudiant(61, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere7, null,null));
-		etudiantRepository.save(new Etudiant(62, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere7, null,null));
-		etudiantRepository.save(new Etudiant(63, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere7, null,null));
-		etudiantRepository.save(new Etudiant(64, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere7, null,null));
-		etudiantRepository.save(new Etudiant(65, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere7, null,null));
-		etudiantRepository.save(new Etudiant(67, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere7, null,null));
-		etudiantRepository.save(new Etudiant(68, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere7, null,null));
-		etudiantRepository.save(new Etudiant(69, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere7, null,null));
+		etudiantRepository.save(new Etudiant(59,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere7, null,null));
+		etudiantRepository.save(new Etudiant(60,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere7, null,null));
+		etudiantRepository.save(new Etudiant(61,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere7, null,null));
+		etudiantRepository.save(new Etudiant(62,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere7, null,null));
+		etudiantRepository.save(new Etudiant(63,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere7, null,null));
+		etudiantRepository.save(new Etudiant(64,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere7, null,null));
+		etudiantRepository.save(new Etudiant(65,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere7, null,null));
+		etudiantRepository.save(new Etudiant(67,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere7, null,null));
+		etudiantRepository.save(new Etudiant(68,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere7, null,null));
+		etudiantRepository.save(new Etudiant(69,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere7, null,null));
 
-		etudiantRepository.save(new Etudiant(70, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere8, null,null));
-		etudiantRepository.save(new Etudiant(71, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere8, null,null));
-		etudiantRepository.save(new Etudiant(72, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere8, null,null));
-		etudiantRepository.save(new Etudiant(73, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere8, null,null));
-		etudiantRepository.save(new Etudiant(74, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere8, null,null));
-		etudiantRepository.save(new Etudiant(75, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere8, null,null));
-		etudiantRepository.save(new Etudiant(77, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere8, null,null));
-		etudiantRepository.save(new Etudiant(78, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere8, null,null));
-		etudiantRepository.save(new Etudiant(79, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere8, null,null));
-		etudiantRepository.save(new Etudiant(80, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(70,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(71,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(72,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(73,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(74,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(75,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(77,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(78,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(79,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere8, null,null));
+		etudiantRepository.save(new Etudiant(80,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere8, null,null));
 
-		etudiantRepository.save(new Etudiant(81, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere9, null,null));
-		etudiantRepository.save(new Etudiant(82, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere9, null,null));
-		etudiantRepository.save(new Etudiant(83, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere9, null,null));
-		etudiantRepository.save(new Etudiant(84, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere9, null,null));
-		etudiantRepository.save(new Etudiant(85, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere9, null,null));
-		etudiantRepository.save(new Etudiant(87, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere9, null,null));
-		etudiantRepository.save(new Etudiant(88, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere9, null,null));
-		etudiantRepository.save(new Etudiant(89, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere9, null,null));
-		etudiantRepository.save(new Etudiant(90, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(81,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(82,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(83,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(84,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(85,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(87,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(88,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(89,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere9, null,null));
+		etudiantRepository.save(new Etudiant(90,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere9, null,null));
 
-		etudiantRepository.save(new Etudiant(101, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere10, null,null));
-		etudiantRepository.save(new Etudiant(102, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere10, null,null));
-		etudiantRepository.save(new Etudiant(103, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere10, null,null));
-		etudiantRepository.save(new Etudiant(104, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere10, null,null));
-		etudiantRepository.save(new Etudiant(105, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere10, null,null));
-		etudiantRepository.save(new Etudiant(107, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere10, null,null));
-		etudiantRepository.save(new Etudiant(108, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere10, null,null));
-		etudiantRepository.save(new Etudiant(109, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere10, null,null));
-		etudiantRepository.save(new Etudiant(110, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(101,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(102,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(103,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(104,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(105,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(107,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(108,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(109,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere10, null,null));
+		etudiantRepository.save(new Etudiant(110,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere10, null,null));
 
-		etudiantRepository.save(new Etudiant(111, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere11, null,null));
-		etudiantRepository.save(new Etudiant(112, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere11, null,null));
-		etudiantRepository.save(new Etudiant(113, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere11, null,null));
-		etudiantRepository.save(new Etudiant(114, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere11, null,null));
-		etudiantRepository.save(new Etudiant(115, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere11, null,null));
-		etudiantRepository.save(new Etudiant(117, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere11, null,null));
-		etudiantRepository.save(new Etudiant(118, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere11, null,null));
-		etudiantRepository.save(new Etudiant(119, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere11, null,null));
-		etudiantRepository.save(new Etudiant(120, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(111,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(112,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(113,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(114,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(115,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "daysii", "jalal", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(117,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "hayani", "hassan", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(118,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "ggfk", "vitch", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(119,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foazi", "khalid", new Date(), "0000", "000", "000", filiere11, null,null));
+		etudiantRepository.save(new Etudiant(120,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere11, null,null));
 		// TODO: Filier in semester should be a collection :
 		Semester semester1 = semesterRepository.save(new Semester(1,"S1_"+filiere1.getName(),null,filiere1));
 		Semester semester2 = semesterRepository.save(new Semester(2,"S1_"+filiere2.getName(),null,filiere2));

@@ -42,8 +42,8 @@ public class Etudiant extends Personne{
     @OneToMany(targetEntity = OrderedPvs.class, mappedBy = "etudiant")
     private Collection<OrderedPvs> orderedPvsCollection;
 
-    public Etudiant(long id, String email, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone, String nbApogee, Filiere filiere, Collection<ModuleGroup> moduleGroups, List<Pv> pv) {
-        super(id, email, password, cin, cne, nom, prenom, dateDeNaissance, address, telephone);
+    public Etudiant(long id, String email, List<Role> roles, String username, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone, String nbApogee, Filiere filiere, Collection<ModuleGroup> moduleGroups, List<Pv> pv) {
+        super(id, email,roles,username, password, cin, cne, nom, prenom, dateDeNaissance, address, telephone);
         this.nbApogee = nbApogee;
         this.filiere = filiere;
         this.moduleGroups = moduleGroups;
