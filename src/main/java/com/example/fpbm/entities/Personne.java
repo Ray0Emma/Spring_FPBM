@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import java.util.Date;
+import java.util.List;
 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Entity
@@ -24,8 +25,8 @@ public abstract class Personne extends User{
     private String Address;
     private String telephone;
 
-    public Personne(long id, String email, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone) {
-        super(id, email, password);
+    public Personne(long id, String email, List<Role> roles, String username, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone) {
+        super(id,username, email, password,roles);
         this.cin = cin;
         this.cne = cne;
         this.nom = nom;
