@@ -3,10 +3,14 @@ package com.example.fpbm;
 import com.example.fpbm.entities.*;
 import com.example.fpbm.entities.Module;
 import com.example.fpbm.repositories.entitiesRepository.*;
+import com.example.fpbm.services.entitiesServices.ProfesseurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,8 +19,14 @@ import java.util.List;
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
 
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
+	}
+	@Bean
+	PasswordEncoder passwordEncoder(){
+		return new BCryptPasswordEncoder();
 	}
 	 @Autowired
      private DepartementRepository departementRepository;
@@ -57,6 +67,8 @@ public class DemoApplication implements CommandLineRunner {
 	private RoleRepository roleRepository;
 
 
+
+
 	@Override
 	public void run(String... args) throws Exception {
 		Role a = roleRepository.save(new Role(1L,"admin"));
@@ -82,9 +94,9 @@ public class DemoApplication implements CommandLineRunner {
 		LieuDeTravail travail1 = lieuDeTravailRepository.save(new LieuDeTravail(1,null));
 		LieuDeTravail travail2 = lieuDeTravailRepository.save(new LieuDeTravail(2,null));
 
-		Professeur professeur1 = professeurRepository.save(new Professeur(1,"anour@gmail.com",  professeurRole,"prof1","123456","P345667","D12334555","Salhi","Anouar",new Date(),"beni","0612345678","MR",null,null,travail1,null,extern1,null,null));
-		Professeur professeur2 = professeurRepository.save(new Professeur(2,"anour@gmail.com",professeurRole,"prof2","123456","P544666","D3456666","Bbirri","khadija",new Date(),"Ouarzazate","06345665456","MS",null,null,travail2,null,extern1,null,null));
-		Professeur professeur3 = professeurRepository.save(new Professeur(3,"anour@gmail.com",adminRole,"admin","123456","P544116","D234556","Robiz","Ayoub",new Date(),"Ouarzazate","06345665456","MR",null,null,travail1,null,extern1,null,null));
+		Professeur professeur1 = professeurRepository.save(new Professeur(1,"anour@gmail.com",  professeurRole,"koliche",passwordEncoder().encode("123"),"P345667","D12334555","Salhi","Anouar",new Date(),"beni","0612345678","MR",null,null,travail1,null,extern1,null,null));
+		Professeur professeur2 = professeurRepository.save(new Professeur(2,"anour@gmail.com",professeurRole,"prof2","1234","P544666","D3456666","Bbirri","khadija",new Date(),"Ouarzazate","06345665456","MS",null,null,travail2,null,extern1,null,null));
+		Professeur professeur3 = professeurRepository.save(new Professeur(3,"anour@gmail.com",adminRole,"admin",passwordEncoder().encode("123"),"P544116","D234556","Robiz","Ayoub",new Date(),"Ouarzazate","06345665456","MR",null,null,travail1,null,extern1,null,null));
 
 		Filiere filiere1 = filiereRepository.save(new Filiere(1,"ISI",d2,type1,professeur1,null,null));
 		Filiere filiere2 = filiereRepository.save(new Filiere(2,"SMAI",d2,type1,professeur1,null,null));
