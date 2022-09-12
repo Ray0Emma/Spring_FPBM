@@ -2,19 +2,25 @@ package com.example.fpbm.services.entitiesServices;
 
 import com.example.fpbm.entities.Etudiant;
 import com.example.fpbm.repositories.entitiesRepository.EtudiantRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class EtudiantServiceImpl implements EtudiantService{
 
     @Autowired
     private EtudiantRepository  etudiantRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Override
     public Etudiant saveEtudiant(Etudiant etudiant) {
+        etudiant.setPassword(passwordEncoder.encode(etudiant.getPassword()));
         return etudiantRepository.save(etudiant);
     }
 

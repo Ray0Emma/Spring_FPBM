@@ -2,19 +2,25 @@ package com.example.fpbm.services.entitiesServices;
 
 import com.example.fpbm.entities.Professeur;
 import com.example.fpbm.repositories.entitiesRepository.ProfesseurRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProfesseurServiceImpl implements ProfesseurService{
 
     @Autowired
     private ProfesseurRepository professeurRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Override
     public Professeur saveProfesseur(Professeur professeur) {
+        professeur.setPassword(passwordEncoder.encode(professeur.getPassword()));
         return professeurRepository.save(professeur);
     }
 
