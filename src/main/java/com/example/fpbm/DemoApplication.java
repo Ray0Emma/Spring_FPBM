@@ -94,7 +94,7 @@ public class DemoApplication implements CommandLineRunner {
 		LieuDeTravail travail1 = lieuDeTravailRepository.save(new LieuDeTravail(1,null));
 		LieuDeTravail travail2 = lieuDeTravailRepository.save(new LieuDeTravail(2,null));
 
-		Professeur professeur1 = professeurRepository.save(new Professeur(1,"anour@gmail.com",  professeurRole,"koliche",passwordEncoder().encode("123"),"P345667","D12334555","Salhi","Anouar",new Date(),"beni","0612345678","MR",null,null,travail1,null,extern1,null,null));
+		Professeur professeur1 = professeurRepository.save(new Professeur(1,"anour@gmail.com",  professeurRole,"prof",passwordEncoder().encode("123"),"P345667","D12334555","Salhi","Anouar",new Date(),"beni","0612345678","MR",null,null,travail1,null,extern1,null,null));
 		Professeur professeur2 = professeurRepository.save(new Professeur(2,"anour@gmail.com",professeurRole,"prof2","1234","P544666","D3456666","Bbirri","khadija",new Date(),"Ouarzazate","06345665456","MS",null,null,travail2,null,extern1,null,null));
 		Professeur professeur3 = professeurRepository.save(new Professeur(3,"anour@gmail.com",adminRole,"admin",passwordEncoder().encode("123"),"P544116","D234556","Robiz","Ayoub",new Date(),"Ouarzazate","06345665456","MR",null,null,travail1,null,extern1,null,null));
 
