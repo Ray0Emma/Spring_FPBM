@@ -329,5 +329,11 @@ public class PvServiceImp implements PvService{
         return pvRepository.getByEtudiants(etudiant);
     }
 
+    @Override
+    public List<Pv> getPvBySurveillant(Long surveillantId) {
+        Surveillant surveillant = surveillantService.fetchOneSurveillant(surveillantId);
+        return pvRepository.getBySurveillants(surveillant);
+    }
+
 
 }

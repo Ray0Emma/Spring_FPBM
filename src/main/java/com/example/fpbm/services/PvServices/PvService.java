@@ -25,4 +25,6 @@ public interface PvService {
 
     List<Pv> getPvByEtudient(String etudiantCin);
 
+    List<Pv> getPvBySurveillant(Long surveillantId);
+
 }
