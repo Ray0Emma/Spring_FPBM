@@ -2,10 +2,13 @@ package com.example.fpbm.authentification.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -17,8 +20,11 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.DataInput;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,11 +38,21 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     private final AuthenticationManager authenticationManager;
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+
+        String username, password;
+
+        try {
+            Map<String, String> requestMap = new ObjectMapper().readValue(request.getInputStream(), Map.class);
+            username = requestMap.get("username");
+            password = requestMap.get("password");
+        } catch (IOException e) {
+            throw new AuthenticationServiceException(e.getMessage(), e);
+        }
+        log.info("the request is {} ",request.getHeaderNames());
         log.info("the username is {} and the password is {}",username,password);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,password);
         return authenticationManager.authenticate(authenticationToken);
+
     }
 
     @Override
@@ -66,4 +82,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         new ObjectMapper().writeValue(response.getOutputStream(), tokens);
 
     }
+
 }
+
