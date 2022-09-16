@@ -49,6 +49,11 @@ public class PvController {
         return pvService.getPvByEtudient(cin);
     }
 
+    @GetMapping(path = "/surveillant/{id}")
+    public List<Pv> getPvsBySurveillant(@PathVariable(name = "id") Long id){
+        return pvService.getPvBySurveillant(id);
+    }
+
 
     @PostMapping(path="/upload")
 //    @ResponseBody
