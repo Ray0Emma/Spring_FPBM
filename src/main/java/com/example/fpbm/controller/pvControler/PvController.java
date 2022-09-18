@@ -65,4 +65,15 @@ public class PvController {
         return pvExcelpv.genaratePvsFromExcel(file);
 
     }
+
+    @PostMapping(path="/upload/new")
+//    @ResponseBody
+    public String importTransactionsFromExcelToPvGenerater2(@RequestParam("file") List<MultipartFile> file) {
+        if(file.isEmpty()){
+            System.out.println("Empty File");
+            return "empty";
+        }
+        return pvExcelpv.genaratePvsFromExcel2(file);
+
+    }
 }
