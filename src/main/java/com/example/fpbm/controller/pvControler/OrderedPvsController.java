@@ -3,6 +3,7 @@ package com.example.fpbm.controller.pvControler;
 import com.example.fpbm.entities.Etudiant;
 import com.example.fpbm.entities.OrderedPvs;
 import com.example.fpbm.modeles.Pv;
+import com.example.fpbm.services.PvServices.PvService;
 import com.example.fpbm.services.entitiesServices.EtudiantService;
 import com.example.fpbm.services.PvServices.OrderedPvsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class OrderedPvsController {
     private OrderedPvsService orderedPvsService;
     @Autowired
     private EtudiantService etudiantService;
+    @Autowired
+    private PvService pvService;
     @GetMapping()
     public List<OrderedPvs> findAll(){
         return orderedPvsService.fetchAllOrderPvs();

@@ -24,6 +24,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
 
 
 //This @Order is very important to setup the sequence of filter in spring security.
@@ -46,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests().antMatchers("/refreshToken/**").permitAll();
         http.authorizeRequests().antMatchers(GET, "/**").hasAnyAuthority("teacher","admin","student");
+        http.authorizeRequests().antMatchers(POST, "/**").hasAnyAuthority("teacher","admin","student");
         http.authorizeRequests().antMatchers(GET, "/user/**").hasAnyAuthority("teacher");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));

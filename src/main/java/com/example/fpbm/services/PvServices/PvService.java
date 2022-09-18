@@ -15,14 +15,12 @@ public interface PvService {
     List<Pv> getAllPv();
     List<Pv> makePv(String filiere, String semestre, String module, String time);
 
-//     List<Salle> getFreeSalle(String time);
-
-//    List<Surveillant> getFreeSurveillant(String time);
+    List<Pv> makePv2(String filiere, String semestre, String module, String time, String date);
+    Pv findById(long id);
 
     List<Pv> generatePvs(String filiere, String semestre, String module, String time);
 
-//    List<Map<String,String>> convertXslToMap(MultipartFile file) throws Exception;
-
+    List<Pv> generatePvs2(String filiere, String semestre, String module, String time, String date);
     List<Pv> getPvByEtudient(String etudiantCin);
 
     List<Pv> getPvBySurveillant(Long surveillantId);
