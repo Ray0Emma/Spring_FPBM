@@ -7,11 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
-
 @Data
 @Entity
 @AllArgsConstructor
@@ -25,6 +22,7 @@ public class Pv {
     private String semester;
     private String module;
     private String localDateTime;
+    private String localDate;
 
 
     @ToString.Exclude @EqualsAndHashCode.Exclude
