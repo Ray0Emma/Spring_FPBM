@@ -267,7 +267,8 @@ public class PvServiceImp implements PvService{
             pv.setModule(m.getName());
             pv.setFilier(f.getName());
             pv.setSemester(s.getName());
-            pv.setLocalDateTime(time);
+            pv.setLocalDateTime(heur);
+            pv.setLocalDate(date);
             //distrubier les etudiants dans les salles disponibles
             if(restEtud>salles.get(index).getCapaciteEtudiant()){
                 pv.setEtudiants(etudiants.subList(nbEtudiantsCourants, (int) (salles.get(index).getCapaciteEtudiant()+nbEtudiantsCourants)));
@@ -354,70 +355,6 @@ public class PvServiceImp implements PvService{
         return pvRepository.findById(id);
     }
 
-    /*@Override
-    public List<Salle> getFreeSalle(String time) {
-        List<Salle> salles=salleService.fetchAllSalle();
-        List<Salle> salleOcup=salleRepository.demandeDocByPersonne(time);
-
-        List<Salle> sallesFree =new ArrayList<>();
-
-        for (int i = 0; i < salles.size(); i++) {
-
-            Boolean isEptey=true;
-            Long salleid = salles.get(i).getId();
-            //System.out.println("totale salle id: "+salleid);
-            for (int j = 0; j < salleOcup.size(); j++) {
-               // System.out.println("salle occp id:"+salleOcup.get(j).getId());
-                if (salleid==salleOcup.get(j).getId()){
-                   // System.out.println("bhal bhal");
-                    isEptey=false;
-                    //sallesFree.add(salles.get(j));
-                }
-            }
-            if (isEptey){
-                //System.out.println("salle empty");
-                sallesFree.add(salles.get(i));
-            }else {
-                //System.out.println("salle not empty");
-            }
-
-        }
-
-        return sallesFree;
-    }*/
-
-    /*@Override
-    public List<Surveillant> getFreeSurveillant(String time) {
-        List<Surveillant> surveillants=surveillantService.fetchAllSurveillant();
-        List<Surveillant> surveillantsOcup=surveillantRepository.getSurveillantOcup(time);
-
-        List<Surveillant> surveillantsFree =new ArrayList<>();
-
-        for (int i = 0; i < surveillants.size(); i++) {
-
-            Boolean isEptey=true;
-            Long surveillantid = surveillants.get(i).getId();
-            //System.out.println("totale salle id: "+salleid);
-            for (int j = 0; j < surveillantsOcup.size(); j++) {
-                // System.out.println("salle occp id:"+salleOcup.get(j).getId());
-                if (surveillantid==surveillantsOcup.get(j).getId()){
-                    // System.out.println("bhal bhal");
-                    isEptey=false;
-                    //sallesFree.add(salles.get(j));
-                }
-            }
-            if (isEptey){
-                //System.out.println("salle empty");
-                surveillantsFree.add(surveillants.get(i));
-            }else {
-                //System.out.println("salle not empty");
-            }
-
-        }
-
-        return surveillantsFree;
-    }*/
-
     @Override
     public List<Pv> generatePvs(String filiere, String semestre, String module, String time) {
         List<Pv> pvsResult = pvRepository.getAllByFilierAndSemesterAndModule(filiere,semestre,module);
@@ -443,45 +380,6 @@ public class PvServiceImp implements PvService{
             return makePv2(filiere, semestre, module, time, date);
         }
     }
-
-    /*@Override
-    public List<Map<String, String>> convertXslToMap(MultipartFile file) throws Exception {
-        System.out.println(":::::::::::::::::::: Converting File is Start ::::::::::::::::::");
-        Path tempDir = Files.createTempDirectory("");
-
-        File tempFile = tempDir.resolve(file.getOriginalFilename()).toFile();
-
-        file.transferTo(tempFile);
-
-        Workbook workbook = WorkbookFactory.create(tempFile);
-
-        Sheet sheet = workbook.getSheetAt(0);
-
-        Supplier<Stream<Row>> rowStreamSupplier = uploadUtil.getRowStreamSupplier(sheet);
-
-        Row headerRow = rowStreamSupplier.get().findFirst().get();
-
-        List<String> headerCells = uploadUtil.getStream(headerRow)
-                .map(Cell::getStringCellValue)
-                .map(String::valueOf)
-                .collect(Collectors.toList());
-
-        int colCount = headerCells.size();
-
-        return rowStreamSupplier.get()
-                .skip(1)
-                .map(row -> {
-
-                    List<String> cellList = uploadUtil.getStream(row)
-                            .map(Cell::getStringCellValue)
-                            .collect(Collectors.toList());
-
-                    return uploadUtil.cellIteratorSupplier(colCount)
-                            .get()
-                            .collect(toMap(headerCells::get, cellList::get));
-                })
-                .collect(Collectors.toList());
-    }*/
 
     @Override
     public List<Pv> getPvByEtudient(String etudiantCin) {
