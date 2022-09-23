@@ -37,6 +37,10 @@ public class PvController {
             return  pvService.generatePvs(filiere,semestre,module,time);
     }
 
+    @GetMapping("/{filiere}/{semestre}/{module}/{time}/{date}")
+    public List<Pv> generatePvs(@PathVariable String filiere,@PathVariable String semestre,@PathVariable String module,@PathVariable(name = "time") String time,@PathVariable(name = "date") String date){
+        return  pvService.generatePvs2(filiere,semestre,module,time, date);
+    }
 
     @GetMapping("/salleTimes/{id}")
     public List<ExamenTime> getSalleTimes(@PathVariable(name = "id") Long id){
