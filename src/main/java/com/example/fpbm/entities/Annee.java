@@ -1,5 +1,6 @@
 package com.example.fpbm.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,8 +18,14 @@ public class Annee {
     @Column(name = "annee")
     private String annee;
 
+    @JsonIgnore
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany( targetEntity=ProfesseurHasModule.class, mappedBy="annee" )
     private Collection<ProfesseurHasModule> professeurHasModules;
+
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @OneToMany( targetEntity=EtudiantHasModule.class, mappedBy="annee" )
+    private Collection<EtudiantHasModule> etudiantHasModules;
 }
 

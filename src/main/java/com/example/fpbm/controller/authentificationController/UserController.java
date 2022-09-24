@@ -34,6 +34,11 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getAllUsers());
     }
 
+    @GetMapping("/user/{username}")
+    public User getUserByUsername(@PathVariable(name = "username") String username){
+        return userService.getUser(username);
+    }
+
     @PostMapping("/user")
     public ResponseEntity<User>saveUser(@RequestBody User user){
         return ResponseEntity.ok().body(userService.saveUser(user));
@@ -47,6 +52,8 @@ public class UserController {
         userService.addRoleToUser(form.getUsername(), form.getRoleName());
         return ResponseEntity.ok().build();
     }
+
+
 
     @GetMapping("/refreshToken")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
