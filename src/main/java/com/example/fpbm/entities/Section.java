@@ -16,7 +16,5 @@ public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToMany(targetEntity = ProfesseurHasModule.class, mappedBy = "section")
-    private Collection<ProfesseurHasModule> professeurHasModules;
 }
 

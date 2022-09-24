@@ -29,6 +29,11 @@ public class Etudiant extends Personne{
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany(targetEntity= ModuleGroup.class, mappedBy="etudiant")
     private Collection<ModuleGroup> moduleGroups;
+
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @OneToMany(targetEntity= EtudiantHasModule.class, mappedBy="etudiant")
+    private Collection<EtudiantHasModule> etudiantHasModules;
     @JsonIgnore
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToMany
@@ -42,11 +47,12 @@ public class Etudiant extends Personne{
     @OneToMany(targetEntity = OrderedPvs.class, mappedBy = "etudiant")
     private Collection<OrderedPvs> orderedPvsCollection;
 
-    public Etudiant(long id, String email, List<Role> roles, String username, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone, String nbApogee, Filiere filiere, Collection<ModuleGroup> moduleGroups, List<Pv> pv) {
+    public Etudiant(long id, String email, List<Role> roles, String username, String password, String cin, String cne, String nom, String prenom, Date dateDeNaissance, String address, String telephone, String nbApogee, Filiere filiere, Collection<ModuleGroup> moduleGroups, List<Pv> pv, Collection<EtudiantHasModule> etudiantHasModules) {
         super(id, email,roles,username, password, cin, cne, nom, prenom, dateDeNaissance, address, telephone);
         this.nbApogee = nbApogee;
         this.filiere = filiere;
         this.moduleGroups = moduleGroups;
         this.pvs = pv;
+        this.etudiantHasModules = etudiantHasModules;
     }
 }
