@@ -240,7 +240,7 @@ public class DemoApplication implements CommandLineRunner {
 		Etudiant etudiant28 =etudiantRepository.save(new Etudiant(4,"anour@gmail.com",(List<Role>) etudientRole, "etud4", "000", "000", "D12345678", "ait fal", "ossama", new Date(), "0000", "000", "000", filiere1, null,null, null));
 		Etudiant etudiant29 =etudiantRepository.save(new Etudiant(29,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere4, null,null, null));
 		Etudiant etudiant30 =etudiantRepository.save(new Etudiant(30,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "dozzi", "hamza", new Date(), "0000", "000", "000", filiere4, null,null, null));
-		etudiantRepository.save(new Etudiant(31,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere4, null,null,null));
+		Etudiant etudiant31 =etudiantRepository.save(new Etudiant(31,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "haji", "simo", new Date(), "0000", "000", "000", filiere4, null,null,null));
 		etudiantRepository.save(new Etudiant(32,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "foaz", "ihya", new Date(), "0000", "000", "000", filiere4, null,null,null));
 		etudiantRepository.save(new Etudiant(33,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "madin", "ayoub", new Date(), "0000", "000", "000", filiere4, null,null,null));
 		etudiantRepository.save(new Etudiant(34,"anour@gmail.com",(List<Role>) etudientRole, "589@gmail.com", "000", "000", "D12345678", "kabiri", "zakaria", new Date(), "0000", "000", "000", filiere4, null,null,null));
@@ -345,6 +345,29 @@ public class DemoApplication implements CommandLineRunner {
 		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant11, model25));
 		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant12, model25));
 		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant13, model25));
+
+
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant14, model1));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant15, model1));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant16, model1));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant17, model1));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant18, model1));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant19, model1));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant20, model1));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant21, model1));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant22, model1));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant23, model1));
+
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant14, model3));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant15, model3));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant16, model3));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant17, model3));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant18, model3));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant19, model3));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant20, model3));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant21, model3));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant22, model3));
+		etudiantHasModuleRepository.save(new EtudiantHasModule(annee1, etudiant23, model3));
 
 
 
