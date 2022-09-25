@@ -212,8 +212,8 @@ public class DemoApplication implements CommandLineRunner {
 
 
 
-		Etudiant etudiant4 =etudiantRepository.save(new Etudiant(5,"anour@gmail.com",(List<Role>) etudientRole, "etud5", "000", "000", "D12345678", "kasmi", "wafi", new Date(), "0000", "000", "000", filiere1, null,null, null));
-		Etudiant etudiant5 =etudiantRepository.save(new Etudiant(6,"anour@gmail.com",(List<Role>) etudientRole, "etud6", "000", "000", "D12345678", "narin", "ftah", new Date(), "0000", "000", "000", filiere1, null,null, null));
+		Etudiant etudiant4 =etudiantRepository.save(new Etudiant(5,"koliche@gmail.com",(List<Role>) etudientRole, "koliche1", passwordEncoder().encode("koliche0"), "000", "D12345678", "kasmi", "wafi", new Date(), "0000", "000", "000", filiere1, null,null, null));
+		Etudiant etudiant5 =etudiantRepository.save(new Etudiant(6,"koliche@gmail.com",(List<Role>) etudientRole, "koliche", passwordEncoder().encode("koliche0"), "P360954", "D131431481", "koliche", "mohamed", new Date(), "ouarzazate", "0639951628", "21346244", filiere1, null,null, null));
 		Etudiant etudiant6 =etudiantRepository.save(new Etudiant(7,"anour@gmail.com",(List<Role>) etudientRole, "etud8", "000", "000", "D12345678", "hhdhd", "mohamed", new Date(), "0000", "000", "000", filiere1, null,null, null));
 		Etudiant etudiant7 =etudiantRepository.save(new Etudiant(8,"anour@gmail.com",(List<Role>) etudientRole, "etud7", "000", "000", "D12345678", "kali", "hakim", new Date(), "0000", "000", "000", filiere1, null,null, null));
 		Etudiant etudiant8 =etudiantRepository.save(new Etudiant(9,"anour@gmail.com",(List<Role>) etudientRole, "etud9", "000", "000", "D12345678", "dozz", "abdo", new Date(), "0000", "000", "000", filiere1, null,null, null));
