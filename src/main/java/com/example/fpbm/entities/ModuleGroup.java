@@ -24,8 +24,5 @@ public class ModuleGroup {
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity=Etudiant.class)
     private Etudiant etudiant;
-    @JsonIgnore
-    @ToString.Exclude @EqualsAndHashCode.Exclude
-    @OneToMany(targetEntity= ExamenGroup.class, mappedBy="moduleGroup")
-    private Collection<ExamenGroup> examenGroups ;
+
 }

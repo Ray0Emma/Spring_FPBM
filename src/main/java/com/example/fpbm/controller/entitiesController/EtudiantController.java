@@ -1,6 +1,7 @@
 package com.example.fpbm.controller.entitiesController;
 
 import com.example.fpbm.entities.Etudiant;
+import com.example.fpbm.repositories.entitiesRepository.EtudiantRepository;
 import com.example.fpbm.services.entitiesServices.EtudiantService;
 import com.example.fpbm.services.ExcelServices.EtudiantExcelImport;
 import com.example.fpbm.services.entitiesServices.FiliereService;
@@ -25,6 +26,9 @@ public class EtudiantController {
     @Autowired
     private EtudiantService etudiantService;
 
+    @Autowired
+    private EtudiantRepository etudiantRepository;
+
     @PostMapping(path="/uploadFile")
 //    @ResponseBody
     public String importTransactionsFromExcelToDb(@RequestParam("file") List<MultipartFile> file) {
@@ -41,6 +45,11 @@ public class EtudiantController {
     @GetMapping()
     public List<Etudiant> fetchAllEtudiant(){
         return etudiantService.fetchAllEtudiant();
+    }
+
+    @GetMapping("/hasmodule/{name}")
+    public List<Etudiant> getEtudiantByModule(@PathVariable(name = "name") String name){
+        return etudiantRepository.getEtudiantByModule(name);
     }
 
     @GetMapping("/{id}")

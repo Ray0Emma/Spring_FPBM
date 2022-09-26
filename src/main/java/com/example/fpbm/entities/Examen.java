@@ -23,8 +23,6 @@ public class Examen {
     private String heure;
     @ManyToOne(targetEntity=Salle.class)
     private Salle salle;
-    @ManyToOne(targetEntity=ProfesseurHasModule.class)
-    private ProfesseurHasModule professeurHasModule;
     @OneToMany(targetEntity= ExamenGroup.class, mappedBy="examen")
     private Collection<ExamenGroup> examenGroups;
     @OneToMany(targetEntity=Surveillant.class, mappedBy="examen")

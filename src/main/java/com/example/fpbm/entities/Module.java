@@ -25,7 +25,13 @@ public class Module {
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @OneToMany(targetEntity=ProfesseurHasModule.class, mappedBy="module")
     private Collection<ProfesseurHasModule> professeurHasModules;
+
     @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(targetEntity=Semester.class)
     private Semester semester;
+
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @OneToMany(targetEntity=EtudiantHasModule.class, mappedBy="module")
+    private Collection<EtudiantHasModule> etudiantHasModules;
 }

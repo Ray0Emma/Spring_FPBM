@@ -4,6 +4,7 @@ import com.example.fpbm.entities.Etudiant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -13,4 +14,9 @@ public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
     List<Etudiant> getEtudiantsByFiliere(String f, String s, String m);
 
     Etudiant getEtudiantByCin(String cin);
+
+    @Query("select e from Etudiant e join e.etudiantHasModules ex where ex.module.name=:name")
+    public List<Etudiant> getEtudiantByModule(@PathVariable(name = "name") String name);
+
+
 }

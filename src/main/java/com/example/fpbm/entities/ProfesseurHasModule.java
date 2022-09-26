@@ -18,12 +18,6 @@ public class ProfesseurHasModule {
     private long id;
     @ManyToOne(targetEntity=Annee.class)
     private Annee annee;
-    @ManyToOne(targetEntity=Courstdtp.class)
-    private Courstdtp courstdtp;
-    @ManyToOne(targetEntity=Section.class)
-    private Section section;
-    @OneToMany( targetEntity=Examen.class, mappedBy="professeurHasModule" )
-    private Collection<Examen> examens;
     @ManyToOne(targetEntity=Professeur.class)
     private Professeur professeur;
     @ManyToOne(targetEntity=Module.class)
