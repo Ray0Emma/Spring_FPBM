@@ -43,32 +43,32 @@ public class EtudiantExcelImport {
                         if (rowIndex == 0) {
                             continue;
                         }
-                        String email = row.getCell(0).getStringCellValue();
-                        String password = row.getCell(1).getStringCellValue();
-                        String address = row.getCell(2).getStringCellValue();
-                        String cin = row.getCell(3).getStringCellValue();
-                        String cne = row.getCell(4).getStringCellValue();
-                        String myDate = String.valueOf(formatter.formatCellValue(row.getCell(5)));
+//                        String email = row.getCell(0).getStringCellValue();
+//                        String password = row.getCell(1).getStringCellValue();
+//                        String address = row.getCell(2).getStringCellValue();
+                        String cin = formatter.formatCellValue(row.getCell(1));
+                        String cne = formatter.formatCellValue(row.getCell(5));
+                        String myDate = String.valueOf(formatter.formatCellValue(row.getCell(4)));
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                         Date birthdate =  sdf.parse(myDate);
-                        String nom = row.getCell(6).getStringCellValue();
-                        String prenom = row.getCell(7).getStringCellValue();
-                        String tel = formatter.formatCellValue(row.getCell(8));
-                        String apogee = formatter.formatCellValue(row.getCell(9));
-                        long filiere= (long) row.getCell(10).getNumericCellValue();
+                        String nom = row.getCell(2).getStringCellValue();
+                        String prenom = row.getCell(3).getStringCellValue();
+//                        String tel = formatter.formatCellValue(row.getCell(8));
+                        String apogee = formatter.formatCellValue(row.getCell(0));
+//                        long filiere= (long) row.getCell(10).getNumericCellValue();
 
                         Etudiant etudiant = new Etudiant();
-                        etudiant.setEmail(email);
-                        etudiant.setPassword(password);
-                        etudiant.setAddress(address);
+//                        etudiant.setEmail(email);
+//                        etudiant.setPassword(password);
+//                        etudiant.setAddress(address);
                         etudiant.setCin(cin);
                         etudiant.setCne(cne);
                         etudiant.setDateDeNaissance(birthdate);
                         etudiant.setNom(nom);
                         etudiant.setPrenom(prenom);
-                        etudiant.setTelephone(tel);
+//                        etudiant.setTelephone(tel);
                         etudiant.setNbApogee(apogee);
-                        etudiant.setFiliere(filiereService.getFiliere(filiere));
+                        etudiant.setFiliere(filiereService.getFiliere(6L));
 
                         etudiants.add(etudiant);
                     }
