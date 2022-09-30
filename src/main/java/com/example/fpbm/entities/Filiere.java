@@ -17,7 +17,7 @@ public class Filiere {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
 
     // May be this <name = "iddepartement"> will make a problem

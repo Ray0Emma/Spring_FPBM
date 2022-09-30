@@ -17,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Etudiant extends Personne{
-    @Column(name = "nbApogee")
+    @Column(name = "nbApogee", unique = true)
     private String nbApogee;
 
     @JsonIgnore
